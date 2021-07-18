@@ -6,6 +6,8 @@ const Title = styled('h1')`
   color: ${({ theme }) => theme.colours.accentDark};
 `
 
-export const HomePage: Page<{}> = () => {
+const HomePage: Page<{}> = () => {
   return <Title>Hello world</Title>
 }
+
+export default HomePage
