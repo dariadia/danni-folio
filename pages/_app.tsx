@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
@@ -22,3 +22,5 @@ export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     </>
   )
 }
+
+export default App
