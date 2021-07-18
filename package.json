@@ -16,13 +16,38 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "styled-components": "^5.2.3"
+    "styled-components": "^5.2.3",
+    "next-useragent": "^2.5.1",
+    "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.12.0",
+    "@testing-library/jest-dom": "^5.1.0",
+    "@testing-library/react": "^11.0.0",
+    "@types/node": "15.0.2",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.0",
     "@types/styled-system": "^5.1.10",
     "@types/styled-system__css": "^5.0.14",
-    "@types/styled-system__should-forward-prop": "^5.1.2"
+    "@types/styled-system__should-forward-prop": "^5.1.2",
+    "@typescript-eslint/eslint-plugin": "4.2.0",
+    "@typescript-eslint/parser": "4.2.0",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "^25.1.0",
+    "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "7.9.0",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "24.0.2",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.21.1",
+    "eslint-plugin-react-hooks": "4.1.2",
+    "nodemon": "^2.0.7",
+    "normalize-url": ">=4.5.1",
+    "prettier": "2.1.2",
+    "prettier-eslint": "11.0.0",
+    "typescript": "^4.2.0"
   },
   "license": "MIT"
 }

@@ -1,3 +1,6 @@
+import React from 'react'
+import { AppProps } from 'next/app'
+
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { mainTheme as theme } from 'danni-s-design-system'
 
@@ -9,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export default function App({ Component, pageProps }) {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <GlobalStyle />
@@ -19,3 +22,5 @@ export default function App({ Component, pageProps }) {
     </>
   )
 }
+
+export default App
