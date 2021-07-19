@@ -1,21 +1,14 @@
 import React from 'react'
 import { AppProps } from 'next/app'
 
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { mainTheme as theme } from 'danni-s-design-system'
+import { appWithTranslation } from 'next-i18next'
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
+import { ThemeProvider } from 'styled-components'
+import { mainTheme as theme } from 'danni-s-design-system'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
@@ -23,4 +16,4 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-export default App
+export default appWithTranslation(App)
