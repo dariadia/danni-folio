@@ -1,1 +1,1 @@
-**Fixes** #issueNo
+Fixes #issueNo
