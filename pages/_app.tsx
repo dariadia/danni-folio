@@ -16,8 +16,8 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Layout {...pageProps}>
-          <Component {...pageProps} />
+        <Layout {...{ theme, ...pageProps }}>
+          <Component {...{ theme, ...pageProps }} />
         </Layout>
       </ThemeProvider>
     </>
