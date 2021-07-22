@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@styled-system/css": "^5.1.5",
-    "danni-s-design-system": "0.1.10",
+    "danni-s-design-system": "0.1.11",
     "lint-staged": "10.4.0",
     "husky": "^7.0.1",
     "next": "latest",
