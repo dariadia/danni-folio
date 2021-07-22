@@ -1,11 +1,27 @@
 import React, { ComponentType } from 'react'
+import Head from 'next/head'
 import { AppProps } from 'next/app'
 
 import { appWithTranslation } from 'next-i18next'
 
-import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { normalize } from 'styled-normalize'
+
 import { mainTheme as theme } from 'danni-s-design-system'
 import { Layout as LayoutType } from 'types'
+
+const GlobalStyle = createGlobalStyle`
+ ${normalize}
+
+ * {
+    box-sizing: border-box;
+  }
+  html {
+    height: 100%;
+    font-family: Graphik;
+    -webkit-font-smoothing: antialiased;
+  }
+`
 
 type ApplicationProps = AppProps & {
   Component: AppProps['Component'] & { Layout?: React.FC<LayoutType> }
@@ -16,11 +32,16 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      </Head>
       <ThemeProvider theme={theme}>
         <Layout {...{ theme, ...pageProps }}>
           <Component {...{ theme, ...pageProps }} />
         </Layout>
       </ThemeProvider>
+      <GlobalStyle />
     </>
   )
 }
