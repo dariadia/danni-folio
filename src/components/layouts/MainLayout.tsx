@@ -1,46 +1,38 @@
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 
-import { Grid, ThemeType, Box } from 'danni-s-design-system'
+import { Grid, Box, baseTheme } from 'danni-s-design-system'
 import { Header, Footer } from '.'
 
 import { Layout } from 'types'
 
-const getGridSx = ({
-  theme,
-  isIndexPage,
-}: {
-  theme: ThemeType
-  isIndexPage: boolean
-}) => {
+const getGridSx = (isIndexPage: boolean) => {
   const baseProps = {
-    maxHeight: `calc((100% - ${theme.space.xxl}px))`,
+    maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
     minHeight: '100vh',
-    boxShadow: theme.shadows.book,
+    boxShadow: baseTheme.shadows.bookLight,
   }
   return isIndexPage
     ? {
         ...baseProps,
-        maxWidth: `calc((100% - ${theme.space.xxl}px) / 2)`,
+        maxWidth: `calc((100% - ${baseTheme.space.xxl}px) / 2)`,
         gridTemplateColumns: `repeat(1, 1fr)`,
       }
     : {
         ...baseProps,
-        maxWidth: `calc(100% - ${theme.space.xxl}px)`,
+        maxWidth: `calc(100% - ${baseTheme.space.xxl}px)`,
         gridTemplateColumns: `repeat(2, 1fr)`,
       }
 }
 
-export const MainLayout: React.FC<Layout> = ({ children, theme }) => {
+export const MainLayout: React.FC<Layout> = ({ children }) => {
   const router = useRouter()
   const isIndexPage = router.route === '/'
 
-  if (!theme) return null
-
   return (
-    <Box bg="accentDark">
+    <Box bg="darkest">
       <Header />
-      <Grid m="auto" p="l" sx={getGridSx({ theme, isIndexPage })}>
+      <Grid m="auto" p="l" bg="white" sx={getGridSx(isIndexPage)}>
         {children}
       </Grid>
       <Footer />
