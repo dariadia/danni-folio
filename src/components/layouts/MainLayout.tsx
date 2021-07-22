@@ -1,25 +1,46 @@
 import React from 'react'
-import { Grid } from 'danni-s-design-system'
+import { useRouter } from 'next/dist/client/router'
+
+import { Grid, ThemeType } from 'danni-s-design-system'
 import { Header } from './Header'
 
 import { Layout } from 'types'
 
+const getGridSx = ({
+  theme,
+  isIndexPage,
+}: {
+  theme: ThemeType
+  isIndexPage: boolean
+}) => {
+  const baseProps = {
+    maxHeight: `calc((100% - ${theme.space.xxl}px))`,
+    minHeight: '90vh',
+    boxShadow: theme.shadows.book,
+  }
+  return isIndexPage
+    ? {
+        ...baseProps,
+        maxWidth: `calc((100% - ${theme.space.xxl}px) / 2)`,
+        gridTemplateColumns: `repeat(1, 1fr)`,
+      }
+    : {
+        ...baseProps,
+        maxWidth: `calc(100% - ${theme.space.xxl}px)`,
+        gridTemplateColumns: `repeat(2, 1fr)`,
+      }
+}
+
 export const MainLayout: React.FC<Layout> = ({ children, theme }) => {
+  const router = useRouter()
+  const isIndexPage = router.route === '/'
+
   if (!theme) return null
+
   return (
     <>
       <Header />
-      <Grid
-        m="auto"
-        p="l"
-        sx={{
-          maxWidth: `calc(100% - ${theme.space.xxl}px)`,
-          maxHeight: `calc(100% - ${theme.space.xxl}px)`,
-          minHeight: '90vh',
-          boxShadow: theme.shadows.book,
-          gridTemplateColumns: 'repeat(2, 1fr)',
-        }}
-      >
+      <Grid m="auto" p="l" sx={getGridSx({ theme, isIndexPage })}>
         {children}
       </Grid>
       {/* <Footer /> */}
