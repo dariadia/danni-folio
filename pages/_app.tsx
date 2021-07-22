@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
   html {
     height: 100%;
-    font-family: Graphik;
+    font-family: Karla;
     -webkit-font-smoothing: antialiased;
   }
 `
@@ -37,8 +37,8 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Layout {...{ theme, ...pageProps }}>
-          <Component {...{ theme, ...pageProps }} />
+        <Layout {...pageProps}>
+          <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
       <GlobalStyle />
