@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 
-import { Grid, ThemeType } from 'danni-s-design-system'
-import { Header } from './Header'
+import { Grid, ThemeType, Box } from 'danni-s-design-system'
+import { Header, Footer } from '.'
 
 import { Layout } from 'types'
 
@@ -15,7 +15,7 @@ const getGridSx = ({
 }) => {
   const baseProps = {
     maxHeight: `calc((100% - ${theme.space.xxl}px))`,
-    minHeight: '90vh',
+    minHeight: '100vh',
     boxShadow: theme.shadows.book,
   }
   return isIndexPage
@@ -38,12 +38,12 @@ export const MainLayout: React.FC<Layout> = ({ children, theme }) => {
   if (!theme) return null
 
   return (
-    <>
+    <Box bg="accentDark">
       <Header />
       <Grid m="auto" p="l" sx={getGridSx({ theme, isIndexPage })}>
         {children}
       </Grid>
-      {/* <Footer /> */}
-    </>
+      <Footer />
+    </Box>
   )
 }
