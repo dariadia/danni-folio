@@ -1,11 +1,10 @@
 import React from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
-import { Box } from 'danni-s-design-system'
+import { MainLayout } from '@/components/layouts'
 
 import type { Page, Locale } from 'types'
 
@@ -19,27 +18,10 @@ type Props = {}
 const HomePage: Page<Props> = () => {
   const { t } = useTranslation('common')
 
-  return (
-    <>
-      <Link href="/" locale="en-GB">
-        <a>en-GB</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="en-US">
-        <a>en-US</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="de">
-        <a>DE</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="ru">
-        <a>RU</a>
-      </Link>
-      <Title>{t('greeting')}</Title>
-    </>
-  )
+  return <Title>{t('greeting')}</Title>
 }
+
+HomePage.Layout = MainLayout
 
 export async function getStaticProps({
   locale,
