@@ -22,18 +22,20 @@ const getGridSx = ({
     boxShadow: baseTheme.shadows.bookLight,
   }
   const BOOK_TWO_PAGES_WIDTH = `calc(100% - ${baseTheme.space.xxl}px)`
+  const BOOK_TWO_PAGES = 'repeat(2, 1fr)'
   const BOOK_ONE_PAGE_WIDTH = `calc((100% - ${baseTheme.space.xxl}px) / 2)`
+  const BOOK_ONE_PAGE = `repeat(1, 1fr)`
 
   return isIndexPage
     ? {
         ...baseProps,
         maxWidth: isDesktop ? BOOK_ONE_PAGE_WIDTH : BOOK_TWO_PAGES_WIDTH,
-        gridTemplateColumns: `repeat(1, 1fr)`,
+        gridTemplateColumns: BOOK_ONE_PAGE,
       }
     : {
         ...baseProps,
         maxWidth: BOOK_TWO_PAGES_WIDTH,
-        gridTemplateColumns: `repeat(2, 1fr)`,
+        gridTemplateColumns: isDesktop ? BOOK_TWO_PAGES : BOOK_ONE_PAGE,
       }
 }
 
