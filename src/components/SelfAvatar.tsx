@@ -9,7 +9,8 @@ const GREYROMANTIC_COLOUR =
   'linear-gradient(180deg, #39A33E 20%, #A3A3A3 20%, 40%, #FFFFFF 40%, 60%, #A3A3A3 60%, 80%, #39A33E 80%)'
 
 const Wrapper = styled(Circle).attrs({
-  size: 'elephant',
+  size: 'dinosaur',
+  m: 'auto',
 })`
   background: ${NONBINARY_COLOUR};
   overflow: hidden;
