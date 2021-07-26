@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Circle, Box, baseTheme } from 'danni-s-design-system'
+import { Circle, Box, baseTheme, mainTheme } from 'danni-s-design-system'
 import type { ConstrainedBoxProps } from 'danni-s-design-system'
 
 const NONBINARY_COLOUR =
@@ -56,9 +56,54 @@ const HairBack = styled(Box).attrs({
   }
 `
 
+const Shirt = styled(Box)`
+  width: 60px;
+  height: 30px;
+  background: ${mainTheme.colours.accentDark};
+  position: absolute;
+  left: calc(50% - 30px);
+  top: 75%;
+  z-index: ${baseTheme.zIndices.upAbove};
+  &:after {
+    content: '';
+    position: absolute;
+    border-bottom: 20px solid darken(white, 10%);
+    border-left: 20x solid transparent;
+    border-right: 15px solid transparent;
+    height: 0;
+    width: 22px;
+    right: calc(50% - 10px);
+    top: -20px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    border-bottom: 20px solid darken(white, 20%);
+    border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+    height: 0;
+    width: 25px;
+    right: 2px;
+    top: -20px;
+  }
+`
+
+const ShirtButton = styled(Box)`
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: ${mainTheme.colours.accentLightest};
+  border-radius: 100%;
+  left: calc(50% - 5px);
+  top: 10px;
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
     <HairBack side={RIGHT} />
+    <Shirt>
+      <ShirtButton />
+    </Shirt>
   </Wrapper>
 )

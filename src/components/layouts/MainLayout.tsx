@@ -46,7 +46,7 @@ export const MainLayout: React.FC<Layout> = ({ children, userAgentString }) => {
   const isDesktop = isDeviceDesktop(userAgent)
 
   return (
-    <Box bg="darkest" sx={{ maxHeight: '100vh', minHeight: '100vh' }}>
+    <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
       <Header />
       <Grid
         m="auto"
