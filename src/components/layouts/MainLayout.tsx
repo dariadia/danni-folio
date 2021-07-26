@@ -18,7 +18,7 @@ const getGridSx = ({
 }) => {
   const baseProps = {
     maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
-    minHeight: '100vh',
+    minHeight: '94vh',
     boxShadow: baseTheme.shadows.bookLight,
   }
   const BOOK_TWO_PAGES_WIDTH = `calc(100% - ${baseTheme.space.xxl}px)`
@@ -46,7 +46,7 @@ export const MainLayout: React.FC<Layout> = ({ children, userAgentString }) => {
   const isDesktop = isDeviceDesktop(userAgent)
 
   return (
-    <Box bg="darkest">
+    <Box bg="darkest" sx={{ maxHeight: '100vh', minHeight: '100vh' }}>
       <Header />
       <Grid
         m="auto"
