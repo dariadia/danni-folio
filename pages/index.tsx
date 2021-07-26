@@ -11,7 +11,7 @@ import { NextApiRequest } from 'next'
 const HomePage: Page<IndexPageProps> = () => {
   return (
     <>
-      <SelfAvatar />
+      <SelfAvatar mx="auto" my="xxxl" />
     </>
   )
 }

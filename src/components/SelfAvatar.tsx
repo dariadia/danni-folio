@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Circle } from 'danni-s-design-system'
+import { Circle, ConstrainedBoxProps } from 'danni-s-design-system'
 
 const NONBINARY_COLOUR =
   'linear-gradient(180deg, #FFF430 25%, #FFFFFF 25%, 50%, #9C59D1 50%, 75%, #181818 75%)'
@@ -10,8 +10,8 @@ const GREYROMANTIC_COLOUR =
 
 const Wrapper = styled(Circle).attrs({
   size: 'dinosaur',
-  m: 'auto',
-})`
+})<ConstrainedBoxProps>`
+  margin: ${({ mx, my }) => `${String(my)} ${String(mx)}`};
   background: ${NONBINARY_COLOUR};
   overflow: hidden;
   transition: background 0.5s ease;
@@ -22,4 +22,6 @@ const Wrapper = styled(Circle).attrs({
     }
 `
 
-export const SelfAvatar: React.FC = () => <Wrapper />
+export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
+  <Wrapper {...{ mx, my }} />
+)
