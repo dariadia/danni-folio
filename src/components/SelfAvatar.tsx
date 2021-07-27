@@ -14,9 +14,13 @@ const LEFT = 'left'
 const RIGHT = 'right'
 const SKIN = '#D2996C'
 const HAIR = '#FD6700'
-// const GLASSES = '#4B0082'
+const GLASSES = '#4B0082'
 
 type Hair = {
+  side: 'left' | 'right'
+}
+
+type GlassesLens = {
   side: 'left' | 'right'
 }
 
@@ -164,6 +168,44 @@ const Eyebrows = styled(Flex)`
   justify-content: space-between;
 `
 
+const Eyes = styled(Flex)`
+  justify-content: space-between;
+  position: absolute;
+  top: 12px;
+  left: -7px;
+  &::before,
+  &::after {
+    background: black;
+    display: inline-block;
+    content: '';
+    width: 15px;
+    height: 30px;
+    margin: 0 14px;
+    border-radius: 200px;
+    animation: blink 3s ease-in-out infinite;
+  }
+`
+
+const Glasses = styled(Box)`
+  position: relative;
+  width: 5px;
+  height: 2px;
+  background: ${GLASSES};
+  left: 6.5%;
+  top: 25px;
+`
+
+const GlassLens = styled(Circle).attrs({ size: '50px' })<GlassesLens>`
+  position: absolute;
+  background: transparent;
+  border-radius: 100%;
+  border: 2px solid ${GLASSES};
+  left: ${({ side }) => (side === LEFT ? '-50px' : '4px')};
+  top: -22px;
+  overflow: hidden;
+  z-index: ${baseTheme.zIndices.above};
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
@@ -175,6 +217,11 @@ export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
         <Eyebrow />
         <Eyebrow />
       </Eyebrows>
+      <Eyes />
+      <Glasses>
+        <GlassLens side={LEFT} />
+        <GlassLens side={RIGHT} />
+      </Glasses>
     </Face>
     <Neck />
     <Shirt>
