@@ -15,12 +15,13 @@ const RIGHT = 'right'
 const SKIN = '#D2996C'
 const HAIR = '#FD6700'
 const GLASSES = '#4B0082'
+const FRECKLES_COUNT = 6
 
 type Hair = {
   side: 'left' | 'right'
 }
 
-type GlassesLens = {
+type GlassesLensProps = {
   side: 'left' | 'right'
 }
 
@@ -195,7 +196,7 @@ const Glasses = styled(Box)`
   top: 25px;
 `
 
-const GlassLens = styled(Circle).attrs({ size: '50px' })<GlassesLens>`
+const GlassesLens = styled(Circle).attrs({ size: '50px' })<GlassesLensProps>`
   position: absolute;
   background: transparent;
   border-radius: 100%;
@@ -226,6 +227,36 @@ const Shine = styled(Box)`
   }
 `
 
+const Nose = styled(Box)`
+  width: 15px;
+  height: 10px;
+  position: absolute;
+  top: 53px;
+  left: 28px;
+  border-radius: 40px;
+  background: ${darken(0.06, SKIN)};
+`
+
+const Freckles = styled(Flex)`
+  width: 75px;
+  justify-content: space-between;
+  position: absolute;
+  top: 50px;
+`
+
+const Freckle = styled(Box)`
+  width: 5px;
+  height: 4px;
+  border-radius: 10px;
+  background: ${darken(0.3, SKIN)};
+  &:nth-child(even) {
+    margin-top: 5px;
+  }
+  &:nth-child(4) {
+    margin-left: 5px;
+  }
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
@@ -239,13 +270,19 @@ export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
       </Eyebrows>
       <Eyes />
       <Glasses>
-        <GlassLens side={LEFT}>
+        <GlassesLens side={LEFT}>
           <Shine />
-        </GlassLens>
-        <GlassLens side={RIGHT}>
+        </GlassesLens>
+        <GlassesLens side={RIGHT}>
           <Shine />
-        </GlassLens>
+        </GlassesLens>
       </Glasses>
+      <Nose />
+      <Freckles>
+        {[...Array(FRECKLES_COUNT)].map((freckle, index) => (
+          <Freckle key={`${freckle}:${index}`} />
+        ))}
+      </Freckles>
     </Face>
     <Neck />
     <Shirt>
