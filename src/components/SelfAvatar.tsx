@@ -206,6 +206,26 @@ const GlassLens = styled(Circle).attrs({ size: '50px' })<GlassesLens>`
   z-index: ${baseTheme.zIndices.above};
 `
 
+const Shine = styled(Box)`
+  position: absolute;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100px;
+    background: white;
+    opacity: 0.3;
+    transform: rotate(30deg);
+    top: -25px;
+    left: 5px;
+  }
+  &:after {
+    @extend .shine, :before;
+    width: 5px;
+    left: 30px;
+  }
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
@@ -219,8 +239,12 @@ export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
       </Eyebrows>
       <Eyes />
       <Glasses>
-        <GlassLens side={LEFT} />
-        <GlassLens side={RIGHT} />
+        <GlassLens side={LEFT}>
+          <Shine />
+        </GlassLens>
+        <GlassLens side={RIGHT}>
+          <Shine />
+        </GlassLens>
       </Glasses>
     </Face>
     <Neck />
