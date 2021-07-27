@@ -12,7 +12,7 @@ const GREYROMANTIC_COLOUR =
 
 const LEFT = 'left'
 const RIGHT = 'right'
-// const SKIN = '#D2996C'
+const SKIN = '#D2996C'
 const HAIR = '#FD6700'
 // const GLASSES = '#4B0082'
 
@@ -122,11 +122,24 @@ const ShirtButton = styled(Box)`
   top: 10px;
 `
 
+const AvatarHead = styled(Box).attrs({
+  width: baseTheme.space.elephant,
+})`
+  position: absolute;
+  z-index: ${baseTheme.zIndices.upAbove};
+  height: 120px;
+  background: ${SKIN};
+  border-radius: 50px;
+  left: calc(50% - 45px);
+  top: 70px;
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
     <HairBack side={RIGHT} />
     <HairTop />
+    <AvatarHead />
     <Shirt>
       <ShirtButton />
     </Shirt>
