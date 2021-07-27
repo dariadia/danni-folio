@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { darken } from 'polished'
 
 import { Circle, Box, Flex, baseTheme, mainTheme } from 'danni-s-design-system'
@@ -25,6 +25,41 @@ type GlassesLensProps = {
   side: 'left' | 'right'
 }
 
+const glassesFlash = keyframes`
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(80deg);
+  }
+`
+const blink = keyframes`
+  0% {
+    transform: scaleY(1);
+  }
+  18% {
+    transform: scaleY(1);
+  }
+  20% {
+    transform: scaleY(0);
+  }
+  25% {
+    transform: scaleY(1);
+  }
+  38% {
+    transform: scaleY(1);
+  }
+  40% {
+    transform: scaleY(0);
+  }
+  45% {
+    transform: scaleY(1);
+  }
+  80% {
+    transform: scaleY(1);
+  }
+`
+
 const Wrapper = styled(Circle)<ConstrainedBoxProps>`
   width: 300px;
   height: 300px;
@@ -36,7 +71,7 @@ const Wrapper = styled(Circle)<ConstrainedBoxProps>`
   &:hover {
     background: ${GREYROMANTIC_COLOUR};
     .shine::before {
-      animation: glasses-flash 2s ease-in reverse;
+      animation: ${glassesFlash} 2s ease-in reverse;
     }
 `
 
@@ -183,7 +218,7 @@ const Eyes = styled(Flex)`
     height: 30px;
     margin: 0 14px;
     border-radius: 200px;
-    animation: blink 3s ease-in-out infinite;
+    animation: ${blink} 3s ease-in-out infinite;
   }
 `
 
@@ -257,6 +292,16 @@ const Freckle = styled(Box)`
   }
 `
 
+const Mouth = styled(Box)`
+  width: 25px;
+  height: 5px;
+  border-radius: 50%;
+  border-bottom: 3px solid ${darken(0.1, SKIN)};
+  position: absolute;
+  top: 70px;
+  left: 24px;
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
@@ -283,6 +328,7 @@ export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
           <Freckle key={`${freckle}:${index}`} />
         ))}
       </Freckles>
+      <Mouth />
     </Face>
     <Neck />
     <Shirt>
