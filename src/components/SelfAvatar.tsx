@@ -134,12 +134,23 @@ const AvatarHead = styled(Box).attrs({
   top: 70px;
 `
 
+const AvatarNeck = styled(Box)`
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  background: ${SKIN};
+  left: calc(50% - 20px);
+  top: 60%;
+  box-shadow: inset 0px 16px 0px 0px ${darken(0.1, SKIN)};
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
     <HairBack side={RIGHT} />
     <HairTop />
     <AvatarHead />
+    <AvatarNeck />
     <Shirt>
       <ShirtButton />
     </Shirt>
