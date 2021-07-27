@@ -57,6 +57,29 @@ const HairBack = styled(Box).attrs({
   }
 `
 
+const HairTop = styled(Circle)`
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background: ${HAIR};
+  left: calc(50% - 65px);
+  top: 12%;
+  box-shadow: inset 10px 7px 5px 0px ${darken(0.07, HAIR)};
+  &:after {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 40px;
+    background: ${HAIR};
+    border-radius: 0px 200px 0px 200px;
+    z-index: 4;
+    left: 40px;
+    top: 20px;
+    transform: rotate(10deg);
+    box-shadow: inset 1px 12px 9px 6px ${darken(0.07, HAIR)};
+  }
+`
+
 const Shirt = styled(Box)`
   width: 60px;
   height: 30px;
@@ -97,29 +120,6 @@ const ShirtButton = styled(Box)`
   border-radius: 100%;
   left: calc(50% - 5px);
   top: 10px;
-`
-
-const HairTop = styled(Circle)`
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  background: ${HAIR};
-  left: calc(50% - 65px);
-  top: 12%;
-  box-shadow: inset 10px 7px 5px 0px ${darken(0.07, HAIR)};
-  &:after {
-    content: '';
-    position: absolute;
-    width: 90px;
-    height: 40px;
-    background: ${HAIR};
-    border-radius: 0px 200px 0px 200px;
-    z-index: 4;
-    left: 40px;
-    top: 20px;
-    transform: rotate(10deg);
-    box-shadow: inset 1px 12px 9px 6px ${darken(0.07, HAIR)};
-  }
 `
 
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
