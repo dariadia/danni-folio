@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { darken } from 'polished'
 
-import { Circle, Box, baseTheme, mainTheme } from 'danni-s-design-system'
+import { Circle, Box, Flex, baseTheme, mainTheme } from 'danni-s-design-system'
 import type { ConstrainedBoxProps } from 'danni-s-design-system'
 
 const NONBINARY_COLOUR =
@@ -122,7 +122,7 @@ const ShirtButton = styled(Box)`
   top: 10px;
 `
 
-const AvatarHead = styled(Box).attrs({
+const Head = styled(Box).attrs({
   width: baseTheme.space.elephant,
 })`
   position: absolute;
@@ -134,7 +134,7 @@ const AvatarHead = styled(Box).attrs({
   top: 70px;
 `
 
-const AvatarNeck = styled(Box)`
+const Neck = styled(Box)`
   position: absolute;
   width: 40px;
   height: 50px;
@@ -144,13 +144,39 @@ const AvatarNeck = styled(Box)`
   box-shadow: inset 0px 16px 0px 0px ${darken(0.1, SKIN)};
 `
 
+const Face = styled(Box)`
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: calc(50% - 35px);
+  top: calc(50% - 50px);
+  z-index: ${baseTheme.zIndices.upAbove};
+`
+
+const Eyebrow = styled(Box)`
+  width: 20px;
+  height: 5px;
+  background: ${darken(0.4, HAIR)};
+`
+
+const Eyebrows = styled(Flex)`
+  width: 70px;
+  justify-content: space-between;
+`
+
 export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
   <Wrapper {...{ mx, my }}>
     <HairBack side={LEFT} />
     <HairBack side={RIGHT} />
     <HairTop />
-    <AvatarHead />
-    <AvatarNeck />
+    <Head />
+    <Face>
+      <Eyebrows>
+        <Eyebrow />
+        <Eyebrow />
+      </Eyebrows>
+    </Face>
+    <Neck />
     <Shirt>
       <ShirtButton />
     </Shirt>
