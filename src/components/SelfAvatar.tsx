@@ -242,7 +242,7 @@ const GlassesLens = styled(Circle).attrs({ size: '50px' })<GlassesLensProps>`
   z-index: ${baseTheme.zIndices.above};
 `
 
-const Shine = styled(Box)`
+const Shine = styled(Box).attrs({ className: 'shine' })`
   position: absolute;
   &:before {
     content: '';
