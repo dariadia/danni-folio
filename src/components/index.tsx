@@ -1,0 +1,1 @@
+export { SelfAvatar } from './SelfAvatar'
