@@ -28,8 +28,8 @@ const HomePage: Page<IndexPageProps> = () => {
           whileTap={{ scale: 0.9 }}
         >
           <Button
-            activeColor="complementaryDark"
-            bg="complementaryDark"
+            activeColor="complementaryLight"
+            bg="complementaryLight"
             color="white"
             p="m"
             my="l"
