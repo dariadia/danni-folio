@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
-import { baseTheme, Button } from 'danni-s-design-system'
+import { baseTheme, HeadingH3, Button } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 import { SelfAvatar } from '@/components'
 
@@ -23,7 +23,8 @@ const HomePage: Page<IndexPageProps> = () => {
       <Link href="/contents" passHref>
         <motion.a
           style={{ textDecoration: 'none' }}
-          whileHover={{ scale: 1.1 }}
+          initial={{ scale: 0.9 }}
+          whileHover={{ scale: 1 }}
           whileTap={{ scale: 0.9 }}
         >
           <Button
@@ -35,9 +36,14 @@ const HomePage: Page<IndexPageProps> = () => {
             mx="auto"
             textAlign="center"
             transition="slow"
-            sx={{ borderRadius: baseTheme.radii.m, textTransform: 'uppercase' }}
+            sx={{
+              borderRadius: baseTheme.radii.m,
+              textTransform: 'uppercase',
+            }}
           >
-            {t('click_to_open')}
+            <HeadingH3 variant="headingSmall" kind="serif">
+              {t('click_to_open')}
+            </HeadingH3>
           </Button>
         </motion.a>
       </Link>
