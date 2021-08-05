@@ -13,7 +13,11 @@ import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
 const ContentsPage: Page<ContentsPageProps> = () => {
   return (
     <>
-      <motion.div className="selfAvatar" layoutId="selfAvatar">
+      <motion.div
+        className="selfAvatar"
+        layoutId="selfAvatar"
+        initial={{ scale: 0.5 }}
+      >
         <SelfAvatar mx="auto" my="xxxl" />
       </motion.div>
     </>
