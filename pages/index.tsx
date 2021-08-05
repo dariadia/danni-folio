@@ -2,6 +2,7 @@ import React from 'react'
 import { NextApiRequest } from 'next'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { baseTheme, Button } from 'danni-s-design-system'
@@ -11,6 +12,8 @@ import { SelfAvatar } from '@/components'
 import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
 
 const HomePage: Page<IndexPageProps> = () => {
+  const { t } = useTranslation(['common'])
+
   return (
     <>
       <motion.div className="selfAvatar" layoutId="selfAvatar">
@@ -31,9 +34,9 @@ const HomePage: Page<IndexPageProps> = () => {
           mx="auto"
           textAlign="center"
           transition="slow"
-          sx={{ borderRadius: baseTheme.radii.m }}
+          sx={{ borderRadius: baseTheme.radii.m, textTransform: 'uppercase' }}
         >
-          Open!
+          {t('click_to_open')}
         </Button>
       </motion.a>
     </>
