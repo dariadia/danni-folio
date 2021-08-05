@@ -4,12 +4,11 @@ import { NextApiRequest } from 'next'
 import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import Link from 'next/link'
+import { baseTheme, Button } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 import { SelfAvatar } from '@/components'
 
 import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
-import { Button } from 'danni-s-design-system'
 
 const HomePage: Page<IndexPageProps> = () => {
   return (
@@ -17,26 +16,26 @@ const HomePage: Page<IndexPageProps> = () => {
       <motion.div className="selfAvatar" layoutId="selfAvatar">
         <SelfAvatar mx="auto" my="xxxl" />
       </motion.div>
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4 }}
+      <motion.a
+        href="/contents"
+        style={{ textDecoration: 'none' }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
-        <Link href="/contents" passHref>
-          <Button
-            activeColor="complementaryDark"
-            bg="accentDark"
-            color="accentLightest"
-            p="s"
-            my="l"
-            mx="auto"
-            textAlign="center"
-            transition="slow"
-          >
-            Open!
-          </Button>
-        </Link>
-      </motion.div>
+        <Button
+          activeColor="complementaryDark"
+          bg="complementaryDark"
+          color="white"
+          p="m"
+          my="l"
+          mx="auto"
+          textAlign="center"
+          transition="slow"
+          sx={{ borderRadius: baseTheme.radii.m }}
+        >
+          Open!
+        </Button>
+      </motion.a>
     </>
   )
 }
