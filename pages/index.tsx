@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import Link from 'next/link'
 import { baseTheme, Button } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 import { SelfAvatar } from '@/components'
@@ -19,26 +20,27 @@ const HomePage: Page<IndexPageProps> = () => {
       <motion.div className="selfAvatar" layoutId="selfAvatar">
         <SelfAvatar mx="auto" my="xxxl" />
       </motion.div>
-      <motion.a
-        href="/contents"
-        style={{ textDecoration: 'none' }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <Button
-          activeColor="complementaryDark"
-          bg="complementaryDark"
-          color="white"
-          p="m"
-          my="l"
-          mx="auto"
-          textAlign="center"
-          transition="slow"
-          sx={{ borderRadius: baseTheme.radii.m, textTransform: 'uppercase' }}
+      <Link href="/contents" passHref>
+        <motion.a
+          style={{ textDecoration: 'none' }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          {t('click_to_open')}
-        </Button>
-      </motion.a>
+          <Button
+            activeColor="complementaryDark"
+            bg="complementaryDark"
+            color="white"
+            p="m"
+            my="l"
+            mx="auto"
+            textAlign="center"
+            transition="slow"
+            sx={{ borderRadius: baseTheme.radii.m, textTransform: 'uppercase' }}
+          >
+            {t('click_to_open')}
+          </Button>
+        </motion.a>
+      </Link>
     </>
   )
 }
