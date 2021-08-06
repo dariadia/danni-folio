@@ -12,3 +12,7 @@ export type Layout = {
 export interface IndexPage {
   userAgentString?: string
 }
+
+export interface ContentsPage extends IndexPage {
+  page?: number
+}
