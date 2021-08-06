@@ -1,4 +1,5 @@
 {
   "greeting": "Greetings! My name is Danni",
-  "click_to_open": "Click me to open"
+  "click_to_open": "Click me to open",
+  "go_to_main": "Close and return to index"
 }
