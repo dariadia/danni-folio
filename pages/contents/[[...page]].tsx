@@ -13,7 +13,7 @@ import { baseTheme } from 'danni-s-design-system'
 
 const ContentsPage: Page<ContentsPageProps> = () => {
   const moveX = -baseTheme.space.elephant - baseTheme.space.xl
-  const moveY = -baseTheme.space.elephant
+  const moveY = -baseTheme.space.elephant * 2 + baseTheme.space.l
 
   return (
     <>
