@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
 import { MainLayout } from '@/components/layouts'
-import { ClickMeButton, SelfAvatar } from '@/components'
+// import { ClickMeButton, SelfAvatar } from '@/components'
 
 import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
 
@@ -14,7 +14,7 @@ const HomePage: Page<IndexPageProps> = () => {
   return (
     <>
       <motion.div className="selfAvatar" layoutId="selfAvatar">
-        <SelfAvatar mx="auto" my="xxxl" />
+        {/* <SelfAvatar mx="auto" my="xxxl" /> */}
       </motion.div>
       <Link href="/contents" passHref>
         <motion.a
@@ -24,7 +24,7 @@ const HomePage: Page<IndexPageProps> = () => {
           whileHover={{ scale: 1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ClickMeButton />
+          {/* <ClickMeButton /> */}
         </motion.a>
       </Link>
     </>

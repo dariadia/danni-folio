@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { baseTheme } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
-import { GoToMainButton, SelfAvatar } from '@/components'
+// import { GoToMainButton, SelfAvatar } from '@/components'
 
 import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
 
@@ -37,7 +37,7 @@ const ContentsPage: Page<ContentsPageProps> = ({ userAgentString }) => {
             y: moveSelfAvatarY,
           }}
         >
-          <SelfAvatar />
+          {/* <SelfAvatar /> */}
         </motion.div>
       </Link>
       <Link href="/" passHref>
@@ -48,7 +48,7 @@ const ContentsPage: Page<ContentsPageProps> = ({ userAgentString }) => {
           whileHover={{ scale: 0.5 }}
           whileTap={{ scale: 0.5 }}
         >
-          <GoToMainButton />
+          {/* <GoToMainButton /> */}
         </motion.a>
       </Link>
     </>
@@ -58,7 +58,7 @@ const ContentsPage: Page<ContentsPageProps> = ({ userAgentString }) => {
         style={{ textDecoration: 'none', height: 'fit-content' }}
         layoutId="navButton"
       >
-        <GoToMainButton />
+        {/* <GoToMainButton /> */}
       </motion.a>
     </Link>
   )
