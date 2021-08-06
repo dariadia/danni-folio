@@ -9,8 +9,8 @@ import { isDeviceDesktop } from 'utils/device'
 import Link from 'next/link'
 import { baseTheme } from 'danni-s-design-system'
 
-import { MainLayout } from '@/components/layouts'
-import { GoToMainButton, SelfAvatar } from '@/components'
+import { MainLayout } from 'src/components/layouts'
+import { GoToMainButton, SelfAvatar } from 'src/components'
 
 import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
 
