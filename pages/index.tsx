@@ -19,6 +19,7 @@ const HomePage: Page<IndexPageProps> = () => {
       <Link href="/contents" passHref>
         <motion.a
           style={{ textDecoration: 'none' }}
+          layoutId="navButton"
           initial={{ scale: 0.9 }}
           whileHover={{ scale: 1 }}
           whileTap={{ scale: 0.9 }}

@@ -8,13 +8,15 @@ import Link from 'next/link'
 import { baseTheme } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
-import { ClickMeButton, SelfAvatar } from '@/components'
+import { GoToMainButton, SelfAvatar } from '@/components'
 
 import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
 
 const ContentsPage: Page<ContentsPageProps> = () => {
-  const moveX = -baseTheme.space.elephant - baseTheme.space.xl
-  const moveY = -baseTheme.space.elephant * 2 + baseTheme.space.l
+  const moveSelfAvatarX = -baseTheme.space.elephant - baseTheme.space.xl
+  const moveSelfAvatarY = -baseTheme.space.elephant * 2 + baseTheme.space.l
+
+  const moveButtonX = baseTheme.space.elephant
 
   return (
     <>
@@ -23,20 +25,21 @@ const ContentsPage: Page<ContentsPageProps> = () => {
         layoutId="selfAvatar"
         initial={{
           scale: 0.4,
-          x: moveX,
-          y: moveY,
+          x: moveSelfAvatarX,
+          y: moveSelfAvatarY,
         }}
       >
         <SelfAvatar />
       </motion.div>
       <Link href="/" passHref>
         <motion.a
-          style={{ textDecoration: 'none' }}
-          initial={{ scale: 0.9 }}
-          whileHover={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
+          style={{ textDecoration: 'none', height: 'fit-content' }}
+          layoutId="navButton"
+          initial={{ scale: 0.47, x: moveButtonX }}
+          whileHover={{ scale: 0.5 }}
+          whileTap={{ scale: 0.5 }}
         >
-          <ClickMeButton />
+          <GoToMainButton />
         </motion.a>
       </Link>
     </>
