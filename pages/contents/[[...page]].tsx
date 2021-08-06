@@ -1,15 +1,16 @@
 import React from 'react'
 import { NextApiRequest } from 'next'
 
+import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { MainLayout } from '@/components/layouts'
-import { SelfAvatar } from '@/components'
+import Link from 'next/link'
+import { baseTheme } from 'danni-s-design-system'
 
-import { motion } from 'framer-motion'
+import { MainLayout } from '@/components/layouts'
+import { ClickMeButton, SelfAvatar } from '@/components'
 
 import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
-import { baseTheme } from 'danni-s-design-system'
 
 const ContentsPage: Page<ContentsPageProps> = () => {
   const moveX = -baseTheme.space.elephant - baseTheme.space.xl
@@ -28,6 +29,16 @@ const ContentsPage: Page<ContentsPageProps> = () => {
       >
         <SelfAvatar />
       </motion.div>
+      <Link href="/" passHref>
+        <motion.a
+          style={{ textDecoration: 'none' }}
+          initial={{ scale: 0.9 }}
+          whileHover={{ scale: 1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ClickMeButton />
+        </motion.a>
+      </Link>
     </>
   )
 }
