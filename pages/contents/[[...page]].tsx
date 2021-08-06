@@ -17,25 +17,29 @@ const ContentsPage: Page<ContentsPageProps> = () => {
   const moveSelfAvatarY = -baseTheme.space.elephant * 2 + baseTheme.space.l
 
   const moveButtonX = baseTheme.space.elephant
+  const moveButtonY = -baseTheme.space.xxl
 
   return (
     <>
-      <motion.div
-        className="selfAvatar"
-        layoutId="selfAvatar"
-        initial={{
-          scale: 0.4,
-          x: moveSelfAvatarX,
-          y: moveSelfAvatarY,
-        }}
-      >
-        <SelfAvatar />
-      </motion.div>
+      <Link href="/" passHref>
+        <motion.div
+          className="selfAvatar"
+          layoutId="selfAvatar"
+          style={{ cursor: 'pointer' }}
+          initial={{
+            scale: 0.4,
+            x: moveSelfAvatarX,
+            y: moveSelfAvatarY,
+          }}
+        >
+          <SelfAvatar />
+        </motion.div>
+      </Link>
       <Link href="/" passHref>
         <motion.a
           style={{ textDecoration: 'none', height: 'fit-content' }}
           layoutId="navButton"
-          initial={{ scale: 0.47, x: moveButtonX }}
+          initial={{ scale: 0.47, x: moveButtonX, y: moveButtonY }}
           whileHover={{ scale: 0.5 }}
           whileTap={{ scale: 0.5 }}
         >
