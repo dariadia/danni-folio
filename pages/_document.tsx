@@ -1,14 +1,5 @@
-import React from 'react'
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document'
-
+import Document, { DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { mediaStyles } from 'utils/media'
 
 type InitialProps = {
   styles: JSX.Element
@@ -40,21 +31,5 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal()
     }
-  }
-  render(): JSX.Element {
-    return (
-      <Html lang="en">
-        <Head>
-          <style
-            type="text/css"
-            dangerouslySetInnerHTML={{ __html: mediaStyles }}
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
   }
 }
