@@ -1,5 +1,5 @@
 import React from 'react'
-import { NextApiRequest } from 'next'
+// import { NextApiRequest } from 'next'
 
 import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -68,16 +68,17 @@ ContentsPage.Layout = ({ children, ...props }) => (
   <MainLayout {...props}>{children}</MainLayout>
 )
 
-export async function getServerSideProps({
+export async function getStaticProps({
   locale,
-  req,
-}: {
+}: // req,
+{
   locale: Locale
-  req: NextApiRequest
+  // req: NextApiRequest
 }): Promise<{ props: ContentsPageProps }> {
   return {
     props: {
-      userAgentString: req.headers['user-agent'],
+      userAgentString:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }
