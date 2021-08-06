@@ -38,7 +38,7 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
       </Head>
       <ThemeProvider theme={theme}>
         <Layout {...pageProps}>
-          <Component {...pageProps} />
+          <Component />
         </Layout>
       </ThemeProvider>
       <GlobalStyle />

@@ -1,35 +1,35 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
 
 import { MainLayout } from '@/components/layouts'
+import { SelfAvatar } from '@/components'
 
-import type { Page, Locale } from 'types'
+import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
+import { NextApiRequest } from 'next'
 
-const Title = styled('h1')`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colours.accentDark};
-`
-
-type Props = {}
-
-const HomePage: Page<Props> = () => {
-  const { t } = useTranslation('common')
-
-  return <Title>{t('greeting')}</Title>
+const HomePage: Page<IndexPageProps> = () => {
+  return (
+    <>
+      <SelfAvatar mx="auto" my="xxxl" />
+    </>
+  )
 }
 
-HomePage.Layout = MainLayout
+HomePage.Layout = ({ children, ...props }) => (
+  <MainLayout {...props}>{children}</MainLayout>
+)
 
-export async function getStaticProps({
+export async function getServerSideProps({
   locale,
+  req,
 }: {
   locale: Locale
-}): Promise<{ props: Props }> {
+  req: NextApiRequest
+}): Promise<{ props: IndexPageProps }> {
   return {
     props: {
+      userAgentString: req.headers['user-agent'],
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }
