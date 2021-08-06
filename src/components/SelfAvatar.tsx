@@ -63,7 +63,7 @@ const blink = keyframes`
 const Wrapper = styled(Circle)<ConstrainedBoxProps>`
   width: 300px;
   height: 300px;
-  margin: ${({ mx, my }) => `${String(my)} ${String(mx)}`};
+  margin: ${({ mx, my }) => `${String(my || 0)} ${String(mx || 0)}`};
   position: relative;
   background: ${NONBINARY_COLOUR};
   overflow: hidden;
