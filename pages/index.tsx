@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
-import { MainLayout } from 'src/components/layouts'
-import { ClickMeButton, SelfAvatar } from 'src/components'
+import { MainLayout } from '@/components/layouts'
+import { ClickMeButton, SelfAvatar } from '@/components'
 
 import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
 
