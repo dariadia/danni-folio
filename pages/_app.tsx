@@ -2,6 +2,7 @@ import React, { ComponentType } from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 
+import { AnimateSharedLayout } from 'framer-motion'
 import { appWithTranslation } from 'next-i18next'
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -36,11 +37,13 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <Layout {...pageProps}>
-          <Component />
-        </Layout>
-      </ThemeProvider>
+      <AnimateSharedLayout>
+        <ThemeProvider theme={theme}>
+          <Layout {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </AnimateSharedLayout>
       <GlobalStyle />
     </>
   )
