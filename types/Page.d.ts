@@ -6,4 +6,13 @@ export type Page<T> = NextPage<T> & { Layout?: React.FC }
 
 export type Layout = {
   theme?: ThemeType
+  userAgentString?: string
+}
+
+export interface IndexPage {
+  userAgentString?: string
+}
+
+export interface ContentsPage extends IndexPage {
+  page?: number
 }

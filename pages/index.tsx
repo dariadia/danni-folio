@@ -1,35 +1,50 @@
 import React from 'react'
-import styled from 'styled-components'
+import { NextApiRequest } from 'next'
 
+import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
 
+import Link from 'next/link'
 import { MainLayout } from '@/components/layouts'
+import { ClickMeButton, SelfAvatar } from '@/components'
 
-import type { Page, Locale } from 'types'
+import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
 
-const Title = styled('h1')`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colours.accentDark};
-`
-
-type Props = {}
-
-const HomePage: Page<Props> = () => {
-  const { t } = useTranslation('common')
-
-  return <Title>{t('greeting')}</Title>
+const HomePage: Page<IndexPageProps> = () => {
+  return (
+    <>
+      <motion.div className="selfAvatar" layoutId="selfAvatar">
+        <SelfAvatar mx="auto" my="xxxl" />
+      </motion.div>
+      <Link href="/contents" passHref>
+        <motion.a
+          style={{ textDecoration: 'none' }}
+          layoutId="navButton"
+          initial={{ scale: 0.9 }}
+          whileHover={{ scale: 1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ClickMeButton />
+        </motion.a>
+      </Link>
+    </>
+  )
 }
 
-HomePage.Layout = MainLayout
+HomePage.Layout = ({ children, ...props }) => (
+  <MainLayout {...props}>{children}</MainLayout>
+)
 
-export async function getStaticProps({
+export async function getServerSideProps({
   locale,
+  req,
 }: {
   locale: Locale
-}): Promise<{ props: Props }> {
+  req: NextApiRequest
+}): Promise<{ props: IndexPageProps }> {
   return {
     props: {
+      userAgentString: req.headers['user-agent'],
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }
