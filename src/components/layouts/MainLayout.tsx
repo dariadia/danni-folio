@@ -1,9 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 
-import { useUserAgent } from 'next-useragent'
-import { isDeviceDesktop } from 'utils/device'
-
 import { Grid, Box, baseTheme } from 'danni-s-design-system'
 import { Header, Footer } from '.'
 
@@ -39,11 +36,9 @@ const getGridSx = ({
       }
 }
 
-export const MainLayout: React.FC<Layout> = ({ children, userAgentString }) => {
+export const MainLayout: React.FC<Layout> = ({ children }) => {
   const router = useRouter()
   const isIndexPage = router.route === '/'
-  const userAgent = useUserAgent(userAgentString || window.navigator.userAgent)
-  const isDesktop = isDeviceDesktop(userAgent)
 
   return (
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
@@ -52,7 +47,7 @@ export const MainLayout: React.FC<Layout> = ({ children, userAgentString }) => {
         m="auto"
         p="l"
         bg="white"
-        sx={getGridSx({ isIndexPage, isDesktop })}
+        sx={getGridSx({ isIndexPage, isDesktop: true })}
       >
         {children}
       </Grid>

@@ -1,5 +1,4 @@
 import React from 'react'
-// import { NextApiRequest } from 'next'
 
 import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -8,9 +7,9 @@ import Link from 'next/link'
 import { MainLayout } from '@/components/layouts'
 import { ClickMeButton, SelfAvatar } from '@/components'
 
-import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
+import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
-const HomePage: Page<IndexPageProps> = () => {
+const HomePage: Page<SinglePageProps> = () => {
   return (
     <>
       <motion.div className="selfAvatar" layoutId="selfAvatar">
@@ -37,15 +36,12 @@ HomePage.Layout = ({ children, ...props }) => (
 
 export async function getStaticProps({
   locale,
-}: // req,
-{
+}: {
   locale: Locale
-  // req: NextApiRequest
-}): Promise<{ props: IndexPageProps }> {
+}): Promise<{ props: SinglePageProps }> {
   return {
     props: {
-      userAgentString:
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+      locale,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }
