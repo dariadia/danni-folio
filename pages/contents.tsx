@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-// import { MediaContextProvider, Media } from 'utils/media'
+import { MediaContextProvider, Media } from 'utils/media'
 
 import Link from 'next/link'
 import {
@@ -23,39 +23,82 @@ import { SelfAvatar } from '@/components'
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const SelfAvatarWithMotion = () => {
-  const SelfAvatarX = baseTheme.space.xxl
-  const SelfAvatarY = baseTheme.space.xxxl
+  const SelfAvatarXDesktop = baseTheme.space.xxl
+  const SelfAvatarYDesktop = baseTheme.space.xxxl
+  const SelfAvatarXMobile = baseTheme.space.xxxl
+  const SelfAvatarYMobile = baseTheme.space.m
 
   return (
-    <Link href="/" passHref>
-      <motion.a
-        className="selfAvatar"
-        layoutId="selfAvatar"
-        style={{
-          height: 'fit-content',
-          position: 'absolute',
-          left: `-${SelfAvatarX}px`,
-          top: `-${SelfAvatarY}px`,
-        }}
-        initial={{
-          scale: 0.5,
-        }}
-      >
-        <SelfAvatar mx="auto" />
-      </motion.a>
-    </Link>
+    <MediaContextProvider>
+      <Media greaterThanOrEqual="tablet">
+        <Link href="/" passHref>
+          <motion.a
+            className="selfAvatar"
+            layoutId="selfAvatar"
+            style={{
+              height: 'fit-content',
+              position: 'absolute',
+              left: `-${SelfAvatarXDesktop}px`,
+              top: `-${SelfAvatarYDesktop}px`,
+            }}
+            initial={{
+              scale: 0.5,
+            }}
+          >
+            <SelfAvatar mx="auto" />
+          </motion.a>
+        </Link>
+      </Media>
+      <Media lessThan="tablet">
+        <Link href="/" passHref>
+          <motion.a
+            className="selfAvatar"
+            layoutId="selfAvatar"
+            style={{
+              height: 'fit-content',
+              position: 'absolute',
+              left: `${SelfAvatarXMobile}px`,
+              top: `-${SelfAvatarYMobile}px`,
+            }}
+            initial={{
+              scale: 0.5,
+            }}
+          >
+            <SelfAvatar mx="auto" />
+          </motion.a>
+        </Link>
+      </Media>
+      <Media lessThan="mobile">
+        <Link href="/" passHref>
+          <motion.a
+            className="selfAvatar"
+            layoutId="selfAvatar"
+            style={{
+              height: 'fit-content',
+              position: 'absolute',
+              left: `${SelfAvatarXMobile}px`,
+              top: `-${SelfAvatarYMobile}px`,
+            }}
+            initial={{
+              scale: 0.4,
+            }}
+          >
+            <SelfAvatar mx="auto" />
+          </motion.a>
+        </Link>
+      </Media>
+    </MediaContextProvider>
   )
 }
 
-const ContentsPage: Page<SinglePageProps> = () => {
+const Greeting = () => {
   const { t } = useTranslation(['introduction'])
 
   const GreetingX = baseTheme.space.elephant * 2
 
   return (
-    <>
-      <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
-        <SelfAvatarWithMotion />
+    <MediaContextProvider>
+      <Media greaterThanOrEqual="tablet">
         <Box ml={GreetingX} as="section">
           <HeadingH3 as="h1" kind="serif">
             {t('greeting')}
@@ -67,6 +110,32 @@ const ContentsPage: Page<SinglePageProps> = () => {
             {t('look_around')}
           </Text>
         </Box>
+      </Media>
+      <Media lessThan="tablet">
+        <Box mt="dinosaur" as="section">
+          <HeadingH3 as="h1" kind="serif">
+            {t('greeting')}
+          </HeadingH3>
+          <Text as="h3" variant="bodyMd" mt="s" sx={{ fontWeight: 400 }}>
+            {t('welcome')}
+          </Text>
+          <Text variant="bodyMd" mt="xs">
+            {t('look_around')}
+          </Text>
+        </Box>
+      </Media>
+    </MediaContextProvider>
+  )
+}
+
+const ContentsPage: Page<SinglePageProps> = () => {
+  const { t } = useTranslation(['introduction'])
+
+  return (
+    <>
+      <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
+        <SelfAvatarWithMotion />
+        <Greeting />
         <Box px="s" mt="xxxl" as="section">
           <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
