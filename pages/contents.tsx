@@ -57,7 +57,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
             {t('look_around')}
           </Text>
         </Box>
-        <Box mt="elephant" as="section">
+        <Box pt="m" px="s" mt="xxxl" as="section">
           <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
