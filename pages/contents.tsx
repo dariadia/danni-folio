@@ -86,7 +86,21 @@ const ContentsPage: Page<SinglePageProps> = () => {
           <List liSx={{ marginLeft: `${baseTheme.space.xl}px` }}>
             <Text mt="s">{t('folio_item_books')}</Text>
             <Text mt="s">{t('folio_item_code')}</Text>
-            <Text mt="s">{t('folio_item_colour')}</Text>
+            <Text mt="s">
+              <Trans
+                i18nKey="introduction:folio_item_colour"
+                components={{
+                  green: (
+                    <Text
+                      color="complementaryDark"
+                      fontWeight="bold"
+                      as="span"
+                      inlineBlock
+                    />
+                  ),
+                }}
+              />
+            </Text>
           </List>
         </Box>
       </Box>
