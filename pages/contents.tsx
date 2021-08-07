@@ -24,7 +24,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['introduction'])
 
   const SelfAvatarX = baseTheme.space.xxl
-  const SelfAvatarY = baseTheme.space.xxxl + baseTheme.space.xs
+  const SelfAvatarY = baseTheme.space.xxxl
   const GreetingX = baseTheme.space.elephant * 2
 
   return (
@@ -46,7 +46,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
           <SelfAvatar mx="auto" />
         </motion.a>
       </Link>
-      <Box p="s" sx={{ boxShadow: baseTheme.shadows.low }}>
+      <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
         <Box ml={GreetingX} as="section">
           <HeadingH3 as="h1" kind="serif">
             {t('greeting')}
@@ -58,7 +58,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
             {t('look_around')}
           </Text>
         </Box>
-        <Box py="m" px="s" mt="xxxl" as="section">
+        <Box px="s" mt="xxxl" as="section">
           <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
