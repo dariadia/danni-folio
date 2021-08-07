@@ -22,7 +22,7 @@ import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 const ContentsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['introduction'])
 
-  const SelfAvatarX = baseTheme.space.xxxl + baseTheme.space.s
+  const SelfAvatarX = baseTheme.space.xxl
   const SelfAvatarY = baseTheme.space.xxxl + baseTheme.space.s
   const GreetingX = baseTheme.space.elephant * 2
 
@@ -45,7 +45,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
           <SelfAvatar mx="auto" />
         </motion.a>
       </Link>
-      <Box>
+      <Box p="s" sx={{ boxShadow: baseTheme.shadows.low }}>
         <Box ml={GreetingX} as="section">
           <HeadingH3 as="h1" kind="serif">
             {t('greeting')}
@@ -103,6 +103,9 @@ const ContentsPage: Page<SinglePageProps> = () => {
             </Text>
           </List>
         </Box>
+      </Box>
+      <Box pl="xl" pr="s" py="s" sx={{ boxShadow: baseTheme.shadows.low }}>
+        Contents
       </Box>
     </>
   )
