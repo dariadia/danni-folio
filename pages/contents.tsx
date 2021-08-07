@@ -112,15 +112,19 @@ const ContentsPage: Page<SinglePageProps> = () => {
         py="s"
         flexDirection="column"
         justifyContent="center"
-        sx={{ boxShadow: baseTheme.shadows.low }}
+        sx={{ boxShadow: baseTheme.shadows.low, textAlign: 'center' }}
       >
-        <HeadingH3
-          as="h2"
-          color="complementaryDark"
-          sx={{ textAlign: 'center' }}
-        >
+        <HeadingH3 as="h2" my="m" color="complementaryDark">
           Contents
         </HeadingH3>
+        <List liSx={{ margin: `${baseTheme.space.m}px` }}>
+          <Link href="#" passHref>
+            <HoverableText variant="bodyMd">Some page........ 1</HoverableText>
+          </Link>
+          <Link href="#" passHref>
+            <HoverableText variant="bodyMd">Some page......... 2</HoverableText>
+          </Link>
+        </List>
       </Flex>
     </>
   )
