@@ -19,6 +19,7 @@ const getGridSx = ({
     maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
     minHeight: '94vh',
     boxShadow: baseTheme.shadows.bookLight,
+    position: 'relative',
   }
   const BOOK_TWO_PAGES_WIDTH = `calc(100% - ${baseTheme.space.xxl}px)`
   const BOOK_TWO_PAGES = 'repeat(2, 1fr)'
