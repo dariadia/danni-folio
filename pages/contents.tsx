@@ -5,7 +5,14 @@ import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
-import { baseTheme, Box, HeadingH3, Text } from 'danni-s-design-system'
+import {
+  baseTheme,
+  Box,
+  HeadingH3,
+  HoverableText,
+  List,
+  Text,
+} from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
 import { GoToMainButton, SelfAvatar } from '@/components'
@@ -73,7 +80,30 @@ const ContentsPage: Page<SinglePageProps> = () => {
             components={{ italic: <i /> }}
           />
         </HeadingH3>
-        <Text>{t('folio')}</Text>
+        <Text my="m" as="p">
+          {t('folio')}
+        </Text>
+        <List liSx={{ marginLeft: `${baseTheme.space.xl}px` }}>
+          <Text mt="s" variant="bodySm">
+            {t('folio_definition_one')}
+          </Text>
+          <Text mt="s" variant="bodySm">
+            {t('folio_definition_two')}
+          </Text>
+        </List>
+        <Link href={t('folio_link')} passHref>
+          <HoverableText my="m" ml="xl" variant="bodySm">
+            {t('definition_origin')}
+          </HoverableText>
+        </Link>
+        <Text mt="l" mb="m" as="p" fontWeight="bold">
+          {t('folio_includes')}
+        </Text>
+        <List liSx={{ marginLeft: `${baseTheme.space.xl}px` }}>
+          <Text mt="s">{t('folio_item_books')}</Text>
+          <Text mt="s">{t('folio_item_code')}</Text>
+          <Text mt="s">{t('folio_item_colour')}</Text>
+        </List>
       </Box>
     </>
   )
