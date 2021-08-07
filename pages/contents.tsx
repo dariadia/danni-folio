@@ -8,6 +8,7 @@ import Link from 'next/link'
 import {
   baseTheme,
   Box,
+  Flex,
   HeadingH3,
   HoverableText,
   List,
@@ -104,9 +105,23 @@ const ContentsPage: Page<SinglePageProps> = () => {
           </List>
         </Box>
       </Box>
-      <Box pl="xl" pr="s" py="s" sx={{ boxShadow: baseTheme.shadows.low }}>
-        Contents
-      </Box>
+      <Flex
+        as="section"
+        pl="xl"
+        pr="s"
+        py="s"
+        flexDirection="column"
+        justifyContent="center"
+        sx={{ boxShadow: baseTheme.shadows.low }}
+      >
+        <HeadingH3
+          as="h2"
+          color="complementaryDark"
+          sx={{ textAlign: 'center' }}
+        >
+          Contents
+        </HeadingH3>
+      </Flex>
     </>
   )
 }
