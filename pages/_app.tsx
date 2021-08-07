@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
     font-family: Karla;
+    white-space: pre-line;
     -webkit-font-smoothing: antialiased;
   }
 `
