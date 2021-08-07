@@ -16,8 +16,8 @@ const getGridSx = ({
   isIndexPage: boolean
 }) => {
   const baseProps = {
-    maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
-    minHeight: '94vh',
+    maxHeight: `calc((100% - ${baseTheme.space.xxl * 2}px))`,
+    minHeight: '90vh',
     boxShadow: baseTheme.shadows.bookLight,
     position: 'relative',
   }

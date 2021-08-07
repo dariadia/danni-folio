@@ -24,6 +24,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
 
   const SelfAvatarX = baseTheme.space.xxxl + baseTheme.space.s
   const SelfAvatarY = baseTheme.space.xxxl + baseTheme.space.s
+  const GreetingX = baseTheme.space.elephant * 2
 
   return (
     <>
@@ -45,7 +46,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
         </motion.a>
       </Link>
       <Box>
-        <Box ml="elephant" as="section">
+        <Box ml={GreetingX} as="section">
           <HeadingH3 as="h1" kind="serif">
             {t('greeting')}
           </HeadingH3>

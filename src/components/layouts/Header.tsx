@@ -15,7 +15,7 @@ const StyledHeader = styled('header')<{ controlsShown?: boolean }>`
 
 export const Header: React.FC = () => {
   const [controlsShown, toggleControls] = useState(false)
-  const ButtonX = baseTheme.space.elephant + baseTheme.space.m
+  const ButtonX = baseTheme.space.elephant * 2
   const ButtonY = baseTheme.space.xl
 
   return (
@@ -41,6 +41,7 @@ export const Header: React.FC = () => {
             textDecoration: 'none',
             height: 'fit-content',
             position: 'absolute',
+            zIndex: baseTheme.zIndices.above,
             right: `-${ButtonX}px`,
             top: `-${ButtonY}px`,
           }}
