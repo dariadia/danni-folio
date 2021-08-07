@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { useRouter } from 'next/dist/client/router'
+import { MediaContextProvider, Media } from 'utils/media'
 
 import { Grid, Box, baseTheme } from 'danni-s-design-system'
 import { Header, Footer } from '.'
@@ -43,14 +45,28 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
   return (
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
       <Header />
-      <Grid
-        m="auto"
-        p="l"
-        bg="white"
-        sx={getGridSx({ isIndexPage, isDesktop: true })}
-      >
-        {children}
-      </Grid>
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="tablet">
+          <Grid
+            m="auto"
+            p="l"
+            bg="white"
+            sx={getGridSx({ isIndexPage, isDesktop: true })}
+          >
+            {children}
+          </Grid>
+        </Media>
+        <Media lessThan="tablet">
+          <Grid
+            m="auto"
+            p="l"
+            bg="white"
+            sx={getGridSx({ isIndexPage, isDesktop: false })}
+          >
+            {children}
+          </Grid>
+        </Media>
+      </MediaContextProvider>
       <Footer />
     </Box>
   )
