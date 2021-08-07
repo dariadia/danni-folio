@@ -25,6 +25,7 @@ export const GoToMainButton: React.FC<ConstrainedBoxProps> = () => {
           sx={{
             borderRadius: baseTheme.radii.m,
             textTransform: 'uppercase',
+            maxWidth: `${baseTheme.space.dinosaur * 2}px`,
           }}
         >
           <HeadingH3 variant="headingSmall" kind="serif">

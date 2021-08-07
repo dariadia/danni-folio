@@ -15,8 +15,8 @@ const StyledHeader = styled('header')<{ controlsShown?: boolean }>`
 
 export const Header: React.FC = () => {
   const [controlsShown, toggleControls] = useState(false)
-  const ButtonX = baseTheme.space.elephant * 2
-  const ButtonY = baseTheme.space.xl
+  const ButtonX = baseTheme.space.xl
+  const ButtonY = baseTheme.space.xxl
 
   return (
     <StyledHeader onClick={() => toggleControls(!controlsShown)}>
