@@ -1,10 +1,7 @@
 import React from 'react'
-import { NextApiRequest } from 'next'
 
 import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useUserAgent } from 'next-useragent'
-import { isDeviceDesktop } from 'utils/device'
 
 import Link from 'next/link'
 import { baseTheme } from 'danni-s-design-system'
@@ -12,33 +9,30 @@ import { baseTheme } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 import { GoToMainButton, SelfAvatar } from '@/components'
 
-import type { Page, Locale, ContentsPage as ContentsPageProps } from 'types'
+import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
-const ContentsPage: Page<ContentsPageProps> = ({ userAgentString }) => {
-  const userAgent = useUserAgent(userAgentString || window.navigator.userAgent)
-  const isDesktop = isDeviceDesktop(userAgent)
-
-  const moveSelfAvatarX = -baseTheme.space.elephant - baseTheme.space.xl
-  const moveSelfAvatarY = -baseTheme.space.elephant * 2 + baseTheme.space.l
+const ContentsPage: Page<SinglePageProps> = () => {
+  const moveSelfAvatarX = -baseTheme.space.elephant * 2
+  const moveSelfAvatarY = -baseTheme.space.elephant
 
   const moveButtonX = baseTheme.space.elephant
   const moveButtonY = -baseTheme.space.xxl
 
-  return isDesktop ? (
+  return (
     <>
       <Link href="/" passHref>
-        <motion.div
+        <motion.a
           className="selfAvatar"
           layoutId="selfAvatar"
-          style={{ cursor: 'pointer' }}
+          style={{ height: 'fit-content' }}
           initial={{
             scale: 0.4,
             x: moveSelfAvatarX,
             y: moveSelfAvatarY,
           }}
         >
-          <SelfAvatar />
-        </motion.div>
+          <SelfAvatar mx="auto" />
+        </motion.a>
       </Link>
       <Link href="/" passHref>
         <motion.a
@@ -52,32 +46,30 @@ const ContentsPage: Page<ContentsPageProps> = ({ userAgentString }) => {
         </motion.a>
       </Link>
     </>
-  ) : (
-    <Link href="/" passHref>
-      <motion.a
-        style={{ textDecoration: 'none', height: 'fit-content' }}
-        layoutId="navButton"
-      >
-        <GoToMainButton />
-      </motion.a>
-    </Link>
   )
+
+  // <Link href="/" passHref>
+  //   <motion.a
+  //     style={{ textDecoration: 'none', height: 'fit-content' }}
+  //     layoutId="navButton"
+  //   >
+  //     <GoToMainButton />
+  //   </motion.a>
+  // </Link>
 }
 
 ContentsPage.Layout = ({ children, ...props }) => (
   <MainLayout {...props}>{children}</MainLayout>
 )
 
-export async function getServerSideProps({
+export async function getStaticProps({
   locale,
-  req,
 }: {
   locale: Locale
-  req: NextApiRequest
-}): Promise<{ props: ContentsPageProps }> {
+}): Promise<{ props: SinglePageProps }> {
   return {
     props: {
-      userAgentString: req.headers['user-agent'],
+      locale,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }

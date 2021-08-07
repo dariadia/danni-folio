@@ -1,5 +1,4 @@
 import React from 'react'
-import { NextApiRequest } from 'next'
 
 import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -8,14 +7,16 @@ import Link from 'next/link'
 import { MainLayout } from '@/components/layouts'
 import { ClickMeButton, SelfAvatar } from '@/components'
 
-import type { Page, Locale, IndexPage as IndexPageProps } from 'types'
+import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
-const HomePage: Page<IndexPageProps> = () => {
+const HomePage: Page<SinglePageProps> = () => {
   return (
     <>
-      <motion.div className="selfAvatar" layoutId="selfAvatar">
-        <SelfAvatar mx="auto" my="xxxl" />
-      </motion.div>
+      <Link href="/contents" passHref>
+        <motion.a className="selfAvatar" layoutId="selfAvatar">
+          <SelfAvatar mx="auto" my="xxxl" />
+        </motion.a>
+      </Link>
       <Link href="/contents" passHref>
         <motion.a
           style={{ textDecoration: 'none' }}
@@ -35,16 +36,14 @@ HomePage.Layout = ({ children, ...props }) => (
   <MainLayout {...props}>{children}</MainLayout>
 )
 
-export async function getServerSideProps({
+export async function getStaticProps({
   locale,
-  req,
 }: {
   locale: Locale
-  req: NextApiRequest
-}): Promise<{ props: IndexPageProps }> {
+}): Promise<{ props: SinglePageProps }> {
   return {
     props: {
-      userAgentString: req.headers['user-agent'],
+      locale,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   }

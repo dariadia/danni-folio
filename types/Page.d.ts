@@ -2,17 +2,14 @@ import * as React from 'react'
 import { NextPage } from 'next'
 import { ThemeType } from 'danni-s-design-system'
 
+import type { Locale } from '.'
+
 export type Page<T> = NextPage<T> & { Layout?: React.FC }
 
 export type Layout = {
   theme?: ThemeType
-  userAgentString?: string
 }
 
-export interface IndexPage {
-  userAgentString?: string
-}
-
-export interface ContentsPage extends IndexPage {
-  page?: number
+export interface SinglePage {
+  locale?: Locale
 }
