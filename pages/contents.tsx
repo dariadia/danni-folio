@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+// import { MediaContextProvider, Media } from 'utils/media'
+
 import Link from 'next/link'
 import {
   baseTheme,
@@ -20,33 +22,40 @@ import { SelfAvatar } from '@/components'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
+const SelfAvatarWithMotion = () => {
+  const SelfAvatarX = baseTheme.space.xxl
+  const SelfAvatarY = baseTheme.space.xxxl
+
+  return (
+    <Link href="/" passHref>
+      <motion.a
+        className="selfAvatar"
+        layoutId="selfAvatar"
+        style={{
+          height: 'fit-content',
+          position: 'absolute',
+          left: `-${SelfAvatarX}px`,
+          top: `-${SelfAvatarY}px`,
+        }}
+        initial={{
+          scale: 0.5,
+        }}
+      >
+        <SelfAvatar mx="auto" />
+      </motion.a>
+    </Link>
+  )
+}
+
 const ContentsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['introduction'])
 
-  const SelfAvatarX = baseTheme.space.xxl
-  const SelfAvatarY = baseTheme.space.xxxl
   const GreetingX = baseTheme.space.elephant * 2
 
   return (
     <>
-      <Link href="/" passHref>
-        <motion.a
-          className="selfAvatar"
-          layoutId="selfAvatar"
-          style={{
-            height: 'fit-content',
-            position: 'absolute',
-            left: `-${SelfAvatarX}px`,
-            top: `-${SelfAvatarY}px`,
-          }}
-          initial={{
-            scale: 0.5,
-          }}
-        >
-          <SelfAvatar mx="auto" />
-        </motion.a>
-      </Link>
       <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
+        <SelfAvatarWithMotion />
         <Box ml={GreetingX} as="section">
           <HeadingH3 as="h1" kind="serif">
             {t('greeting')}
