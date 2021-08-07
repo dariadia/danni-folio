@@ -47,15 +47,6 @@ const ContentsPage: Page<SinglePageProps> = () => {
       </Link>
     </>
   )
-
-  // <Link href="/" passHref>
-  //   <motion.a
-  //     style={{ textDecoration: 'none', height: 'fit-content' }}
-  //     layoutId="navButton"
-  //   >
-  //     <GoToMainButton />
-  //   </motion.a>
-  // </Link>
 }
 
 ContentsPage.Layout = ({ children, ...props }) => (
