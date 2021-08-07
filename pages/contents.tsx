@@ -13,7 +13,7 @@ import { GoToMainButton, SelfAvatar } from '@/components'
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const ContentsPage: Page<SinglePageProps> = () => {
-  const { t } = useTranslation(['common'])
+  const { t } = useTranslation(['introduction'])
 
   const moveSelfAvatarX = -baseTheme.space.elephant * 2
   const moveSelfAvatarY = -baseTheme.space.elephant
@@ -58,8 +58,11 @@ const ContentsPage: Page<SinglePageProps> = () => {
         <HeadingH3 as="h1" kind="serif">
           {t('greeting')}
         </HeadingH3>
-        <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
+        <Text as="h3" mt="s" sx={{ fontWeight: 400 }}>
           {t('welcome')}
+        </Text>
+        <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
+          {t('look_around')}
         </Text>
       </Box>
     </>
@@ -78,7 +81,7 @@ export async function getStaticProps({
   return {
     props: {
       locale,
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'introduction'])),
     },
   }
 }
