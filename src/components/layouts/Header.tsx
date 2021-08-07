@@ -36,7 +36,7 @@ const ButtonWithMotion = () => {
             layoutId="navButton"
             initial={{ scale: 0.47 }}
             whileHover={{ scale: 0.5 }}
-            whileTap={{ scale: 0.5 }}
+            whileTap={{ scale: 0.4, filter: 'brightness(0.8)' }}
           >
             <GoToMainButton />
           </motion.a>
