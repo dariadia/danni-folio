@@ -50,7 +50,8 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
         <Media greaterThanOrEqual="tablet">
           <Grid
             m="auto"
-            p="l"
+            py="l"
+            px="xl"
             bg="white"
             sx={getGridSx({ isIndexPage, isDesktop: true })}
           >
