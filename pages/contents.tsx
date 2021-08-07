@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
-import { baseTheme } from 'danni-s-design-system'
+import { baseTheme, Box, HeadingH3, Text } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
 import { GoToMainButton, SelfAvatar } from '@/components'
@@ -12,6 +13,8 @@ import { GoToMainButton, SelfAvatar } from '@/components'
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const ContentsPage: Page<SinglePageProps> = () => {
+  const { t } = useTranslation(['common'])
+
   const moveSelfAvatarX = -baseTheme.space.elephant * 2
   const moveSelfAvatarY = -baseTheme.space.elephant
 
@@ -45,6 +48,20 @@ const ContentsPage: Page<SinglePageProps> = () => {
           <GoToMainButton />
         </motion.a>
       </Link>
+      <Box
+        sx={{
+          position: 'absolute',
+          left: `${baseTheme.space.dinosaur}px`,
+          top: `${baseTheme.space.l}px`,
+        }}
+      >
+        <HeadingH3 as="h1" kind="serif">
+          {t('greeting')}
+        </HeadingH3>
+        <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
+          {t('welcome')}
+        </Text>
+      </Box>
     </>
   )
 }
