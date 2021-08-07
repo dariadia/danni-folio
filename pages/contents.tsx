@@ -49,6 +49,7 @@ const ContentsPage: Page<SinglePageProps> = () => {
         </motion.a>
       </Link>
       <Box
+        as="section"
         sx={{
           position: 'absolute',
           left: `${baseTheme.space.dinosaur}px`,
@@ -58,20 +59,21 @@ const ContentsPage: Page<SinglePageProps> = () => {
         <HeadingH3 as="h1" kind="serif">
           {t('greeting')}
         </HeadingH3>
-        <Text as="h3" mt="s" sx={{ fontWeight: 400 }}>
+        <Text as="h3" variant="bodyMd" mt="s" sx={{ fontWeight: 400 }}>
           {t('welcome')}
         </Text>
-        <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
+        <Text variant="bodyMd" mt="xs">
           {t('look_around')}
         </Text>
       </Box>
-      <Box>
+      <Box as="section">
         <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
           <Trans
             i18nKey="introduction:intro_heading"
             components={{ italic: <i /> }}
           />
         </HeadingH3>
+        <Text>{t('folio')}</Text>
       </Box>
     </>
   )
