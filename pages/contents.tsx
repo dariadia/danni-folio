@@ -12,7 +12,7 @@ import { GoToMainButton, SelfAvatar } from '@/components'
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const ContentsPage: Page<SinglePageProps> = () => {
-  const moveSelfAvatarX = -baseTheme.space.elephant - baseTheme.space.xxxl
+  const moveSelfAvatarX = -baseTheme.space.elephant * 2
   const moveSelfAvatarY = -baseTheme.space.elephant
 
   const moveButtonX = baseTheme.space.elephant
