@@ -1,5 +1,15 @@
 {
   "greeting": "Hallo!\nIch heiße Danni 👋🏽",
   "welcome": "Willkommen in meinem Portfolio 🍀",
-  "look_around": "Sieh dich um 👀"
+  "look_around": "Sieh dich um 👀",
+  "intro_heading": "Also, was ist ein <italic>Folio</italic>...? 🐲",
+  "folio": "🟢 Folio [ˈfoːli̯o]",
+  "folio_link": "https://languages.oup.com/google-dictionary-de/",
+  "folio_definition_one": "✅ Verlagswesen: Buchformat in der Größe eines halben Bogens.",
+  "folio_definition_two": "✅ einzelnes Blatt Papier, ggf. einmal gefaltet",
+  "definition_origin": "Definitionen von Oxford Languages",
+  "folio_includes": "Daher inspirieren meine Lieblingsdingen mein Portfolio-Design:",
+  "folio_item_books": "📗 Bücher,",
+  "folio_item_code": "💚 Code,",
+  "folio_item_colour": "🍀 du hast vielleicht schon dich bemerkt, dass Grün meine Lieblingsfarbe ist."
 }

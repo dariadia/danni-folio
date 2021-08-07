@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { motion } from 'framer-motion'
-import { useTranslation } from 'next-i18next'
+import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Link from 'next/link'
@@ -65,6 +65,12 @@ const ContentsPage: Page<SinglePageProps> = () => {
           {t('look_around')}
         </Text>
       </Box>
+      <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
+        <Trans
+          i18nKey="introduction:intro_heading"
+          components={{ italic: <i /> }}
+        />
+      </Text>
     </>
   )
 }
