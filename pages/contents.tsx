@@ -22,8 +22,6 @@ const ContentsPage: Page<SinglePageProps> = () => {
     <>
       <Link href="/" passHref>
         <motion.a
-          role="navigation"
-          aria-label="Main"
           className="selfAvatar"
           layoutId="selfAvatar"
           style={{ height: 'fit-content' }}
