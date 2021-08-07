@@ -15,7 +15,7 @@ import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 const ContentsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['introduction'])
 
-  const moveSelfAvatarX = -baseTheme.space.elephant * 2
+  const moveSelfAvatarX = -baseTheme.space.elephant * 2 - baseTheme.space.s
   const moveSelfAvatarY = -baseTheme.space.elephant
 
   const moveButtonX = baseTheme.space.elephant
@@ -65,12 +65,14 @@ const ContentsPage: Page<SinglePageProps> = () => {
           {t('look_around')}
         </Text>
       </Box>
-      <Text as="h3" mt="xs" sx={{ fontWeight: 400 }}>
-        <Trans
-          i18nKey="introduction:intro_heading"
-          components={{ italic: <i /> }}
-        />
-      </Text>
+      <Box>
+        <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
+          <Trans
+            i18nKey="introduction:intro_heading"
+            components={{ italic: <i /> }}
+          />
+        </HeadingH3>
+      </Box>
     </>
   )
 }
