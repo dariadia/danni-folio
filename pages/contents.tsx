@@ -12,8 +12,8 @@ import { GoToMainButton, SelfAvatar } from '@/components'
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const ContentsPage: Page<SinglePageProps> = () => {
-  const moveSelfAvatarX = -baseTheme.space.elephant - baseTheme.space.xl
-  const moveSelfAvatarY = -baseTheme.space.elephant * 2 + baseTheme.space.l
+  const moveSelfAvatarX = -baseTheme.space.elephant - baseTheme.space.xxxl
+  const moveSelfAvatarY = -baseTheme.space.elephant
 
   const moveButtonX = baseTheme.space.elephant
   const moveButtonY = -baseTheme.space.xxl
@@ -21,18 +21,20 @@ const ContentsPage: Page<SinglePageProps> = () => {
   return (
     <>
       <Link href="/" passHref>
-        <motion.div
+        <motion.a
+          role="navigation"
+          aria-label="Main"
           className="selfAvatar"
           layoutId="selfAvatar"
-          style={{ cursor: 'pointer' }}
+          style={{ height: 'fit-content' }}
           initial={{
             scale: 0.4,
             x: moveSelfAvatarX,
             y: moveSelfAvatarY,
           }}
         >
-          <SelfAvatar />
-        </motion.div>
+          <SelfAvatar mx="auto" />
+        </motion.a>
       </Link>
       <Link href="/" passHref>
         <motion.a
