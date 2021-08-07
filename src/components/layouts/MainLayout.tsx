@@ -47,7 +47,7 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
       <Header />
       <MediaContextProvider>
-        <Media greaterThanOrEqual="tablet">
+        <Media greaterThanOrEqual="desktop">
           <Grid
             m="auto"
             py="xl"
@@ -58,7 +58,7 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
             {children}
           </Grid>
         </Media>
-        <Media lessThan="tablet">
+        <Media lessThan="desktop">
           <Grid
             m="auto"
             p="l"
