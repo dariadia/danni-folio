@@ -11,11 +11,9 @@ import { Layout } from 'types'
 const getGridSx = ({
   isDesktop,
   isIndexPage,
-  isContentsPage,
 }: {
   isDesktop: boolean
   isIndexPage: boolean
-  isContentsPage: boolean
 }) => {
   const baseProps = {
     maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
@@ -38,16 +36,12 @@ const getGridSx = ({
         ...baseProps,
         maxWidth: BOOK_TWO_PAGES_WIDTH,
         gridTemplateColumns: isDesktop ? BOOK_TWO_PAGES : BOOK_ONE_PAGE,
-        gridTemplateRows: isContentsPage
-          ? `${baseTheme.space.dinosaur}px auto`
-          : 'auto',
       }
 }
 
 export const MainLayout: React.FC<Layout> = ({ children }) => {
   const router = useRouter()
   const isIndexPage = router.route === '/'
-  const isContentsPage = router.route.includes('contents')
 
   return (
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
@@ -56,10 +50,10 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
         <Media greaterThanOrEqual="tablet">
           <Grid
             m="auto"
-            py="l"
-            px="xl"
+            py="xl"
+            px="xxl"
             bg="white"
-            sx={getGridSx({ isIndexPage, isContentsPage, isDesktop: true })}
+            sx={getGridSx({ isIndexPage, isDesktop: true })}
           >
             {children}
           </Grid>
@@ -69,7 +63,7 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
             m="auto"
             p="l"
             bg="white"
-            sx={getGridSx({ isIndexPage, isContentsPage, isDesktop: false })}
+            sx={getGridSx({ isIndexPage, isDesktop: false })}
           >
             {children}
           </Grid>
