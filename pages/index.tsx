@@ -12,9 +12,11 @@ import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 const HomePage: Page<SinglePageProps> = () => {
   return (
     <>
-      <motion.div className="selfAvatar" layoutId="selfAvatar">
-        <SelfAvatar mx="auto" my="xxxl" />
-      </motion.div>
+      <Link href="/contents" passHref>
+        <motion.a className="selfAvatar" layoutId="selfAvatar">
+          <SelfAvatar mx="auto" my="xxxl" />
+        </motion.a>
+      </Link>
       <Link href="/contents" passHref>
         <motion.a
           style={{ textDecoration: 'none' }}
