@@ -7,17 +7,19 @@ import Link from 'next/link'
 import { MainLayout } from '@/components/layouts'
 import { ClickMeButton, SelfAvatar } from '@/components'
 
+import { CONTENTS } from 'constants/locations'
+
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const HomePage: Page<SinglePageProps> = () => {
   return (
     <>
-      <Link href="/contents" passHref>
+      <Link href={`/${CONTENTS}`} passHref>
         <motion.a className="selfAvatar" layoutId="selfAvatar">
           <SelfAvatar mx="auto" my="xxxl" />
         </motion.a>
       </Link>
-      <Link href="/contents" passHref>
+      <Link href={`/${CONTENTS}`} passHref>
         <motion.a
           style={{ textDecoration: 'none' }}
           layoutId="navButton"
