@@ -1,14 +1,64 @@
 import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { MainLayout } from '@/components/layouts'
+import { CONTACTS } from 'constants/contacts'
 
-import { baseTheme, Flex, HeadingH2, ThemeType } from 'danni-s-design-system'
+import { MainLayout } from '@/components/layouts'
+import {
+  baseTheme,
+  ThemeType,
+  Flex,
+  HeadingH2,
+  List,
+  Text,
+  HoverableText,
+  Link,
+} from 'danni-s-design-system'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
-import { ThemeContext } from 'styled-components'
+
+const Contacts = () => {
+  const { t } = useTranslation(['contacts'])
+  const contactNodesArray = []
+
+  for (const contact in CONTACTS) {
+    const { link, value, translationKey } = CONTACTS[contact]
+    const contactName = translationKey
+      ? t(translationKey)
+      : contact.toLowerCase()
+
+    contactNodesArray.push(
+      link ? (
+        <>
+          <Link href={link} target="_blank" sx={{ textDecoration: 'none' }}>
+            <HoverableText>
+              <Text
+                color="complementaryDark"
+                fontWeight="bold"
+                mr="xs"
+                inlineBlock
+              >
+                {contactName}:
+              </Text>
+              {value}
+            </HoverableText>
+          </Link>
+        </>
+      ) : (
+        <>
+          <Text color="complementaryDark" fontWeight="bold" mr="xs" inlineBlock>
+            {contactName}:
+          </Text>
+          {value}
+        </>
+      ),
+    )
+  }
+  return contactNodesArray
+}
 
 const ContactsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['contacts'])
@@ -52,7 +102,7 @@ const ContactsPage: Page<SinglePageProps> = () => {
           boxShadow: baseTheme.shadows.low,
         }}
       >
-        {t('contacts')}
+        <List>{Contacts()}</List>
       </Flex>
     </>
   )
