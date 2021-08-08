@@ -33,12 +33,17 @@ const Contacts = () => {
     contactNodesArray.push(
       link ? (
         <>
-          <Link href={link} target="_blank" sx={{ textDecoration: 'none' }}>
+          <Link
+            mb="s"
+            href={link}
+            target="_blank"
+            sx={{ textDecoration: 'none' }}
+          >
             <HoverableText>
               <Text
                 color="complementaryDark"
                 fontWeight="bold"
-                mr="xs"
+                mr="s"
                 inlineBlock
               >
                 {contactName}:
@@ -49,7 +54,13 @@ const Contacts = () => {
         </>
       ) : (
         <>
-          <Text color="complementaryDark" fontWeight="bold" mr="xs" inlineBlock>
+          <Text
+            mb="s"
+            color="complementaryDark"
+            fontWeight="bold"
+            mr="s"
+            inlineBlock
+          >
             {contactName}:
           </Text>
           {value}
@@ -102,7 +113,9 @@ const ContactsPage: Page<SinglePageProps> = () => {
           boxShadow: baseTheme.shadows.low,
         }}
       >
-        <List>{Contacts()}</List>
+        <List sx={{ margin: 'auto' }} width="fit-content">
+          {Contacts()}
+        </List>
       </Flex>
     </>
   )
