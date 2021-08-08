@@ -22,74 +22,86 @@ import { SelfAvatar } from '@/components'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
-const SelfAvatarWithMotion = () => {
-  const SelfAvatarXDesktop = baseTheme.space.xxl
-  const SelfAvatarYDesktop = baseTheme.space.xxxl
-  const SelfAvatarXMobile = baseTheme.space.xxxl
-  const SelfAvatarYMobile = baseTheme.space.m
-
-  return (
-    <MediaContextProvider>
-      <Media greaterThanOrEqual="tablet">
-        <Link href="/" passHref>
-          <motion.a
-            className="selfAvatar"
-            layoutId="selfAvatar"
-            style={{
-              height: 'fit-content',
-              position: 'absolute',
-              left: `-${SelfAvatarXDesktop}px`,
-              top: `-${SelfAvatarYDesktop}px`,
-            }}
-            initial={{
-              scale: 0.5,
-            }}
-          >
-            <SelfAvatar mx="auto" />
-          </motion.a>
-        </Link>
-      </Media>
-      <Media lessThan="tablet">
-        <Link href="/" passHref>
-          <motion.a
-            className="selfAvatar"
-            layoutId="selfAvatar"
-            style={{
-              height: 'fit-content',
-              position: 'absolute',
-              left: `${SelfAvatarXMobile}px`,
-              top: `-${SelfAvatarYMobile}px`,
-            }}
-            initial={{
-              scale: 0.5,
-            }}
-          >
-            <SelfAvatar mx="auto" />
-          </motion.a>
-        </Link>
-      </Media>
-      <Media lessThan="mobile">
-        <Link href="/" passHref>
-          <motion.a
-            className="selfAvatar"
-            layoutId="selfAvatar"
-            style={{
-              height: 'fit-content',
-              position: 'absolute',
-              left: `${SelfAvatarXMobile}px`,
-              top: `-${SelfAvatarYMobile}px`,
-            }}
-            initial={{
-              scale: 0.4,
-            }}
-          >
-            <SelfAvatar mx="auto" />
-          </motion.a>
-        </Link>
-      </Media>
-    </MediaContextProvider>
-  )
-}
+const SelfAvatarWithMotion = () => (
+  <MediaContextProvider>
+    <Media greaterThanOrEqual="tablet">
+      <Link href="/" passHref>
+        <motion.a
+          className="selfAvatar"
+          layoutId="selfAvatar"
+          style={{
+            height: 'fit-content',
+            position: 'absolute',
+            left: `-${baseTheme.space.xxl}px`,
+            top: `-${baseTheme.space.xxxl}px`,
+          }}
+          initial={{
+            scale: 0.5,
+          }}
+        >
+          <SelfAvatar mx="auto" />
+        </motion.a>
+      </Link>
+    </Media>
+    <Media lessThan="tablet">
+      <Link href="/" passHref>
+        <motion.a
+          className="selfAvatar"
+          layoutId="selfAvatar"
+          style={{
+            height: 'fit-content',
+            position: 'absolute',
+            left: `${baseTheme.space.xxxl}px`,
+            top: `-${baseTheme.space.m}px`,
+          }}
+          initial={{
+            scale: 0.5,
+          }}
+        >
+          <SelfAvatar mx="auto" />
+        </motion.a>
+      </Link>
+    </Media>
+    <Media lessThan="mobilePlus">
+      <Link href="/" passHref>
+        <motion.a
+          className="selfAvatar"
+          layoutId="selfAvatar"
+          style={{
+            height: 'fit-content',
+            position: 'absolute',
+            left: `${baseTheme.space.xl}px`,
+            top: `-${baseTheme.space.m}px`,
+          }}
+          initial={{
+            scale: 0.4,
+          }}
+        >
+          <SelfAvatar mx="auto" />
+        </motion.a>
+      </Link>
+    </Media>
+    <Media lessThan="mobile">
+      <Link href="/" passHref>
+        <motion.a
+          className="selfAvatar"
+          layoutId="selfAvatar"
+          style={{
+            height: 'fit-content',
+            position: 'absolute',
+            left: `-${baseTheme.space.s}px`,
+            top: `-${baseTheme.space.m}px`,
+          }}
+          initial={{
+            scale: 0.4,
+          }}
+        >
+          <SelfAvatar mx="auto" />
+        </motion.a>
+      </Link>
+    </Media>
+  </MediaContextProvider>
+)
 
 const Greeting = () => {
   const { t } = useTranslation(['introduction'])
