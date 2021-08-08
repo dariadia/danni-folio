@@ -16,7 +16,11 @@ const StyledHeader = styled('header')<{ controlsShown?: boolean }>`
   text-transform: capitalize;
 `
 
-const ButtonWithMotion = () => {
+type ButtonProps = {
+  isContentsPage: boolean
+}
+
+const ButtonWithMotion: React.FC<ButtonProps> = isContentsPage => {
   const ButtonXDesktop = baseTheme.space.xl
   const ButtonXMobile = baseTheme.space.s
   const ButtonY = baseTheme.space.xxl
@@ -24,7 +28,7 @@ const ButtonWithMotion = () => {
   return (
     <MediaContextProvider>
       <Media greaterThanOrEqual="tablet">
-        <Link href="/" passHref>
+        <Link href={isContentsPage ? '/' : '/contents'} passHref>
           <motion.a
             style={{
               textDecoration: 'none',
@@ -71,6 +75,7 @@ export const Header: React.FC = () => {
   const [controlsShown, toggleControls] = useState(false)
   const router = useRouter()
   const isIndexPage = router.route === '/'
+  const isContentsPage = router.route.includes('contents')
 
   return (
     <StyledHeader onClick={() => toggleControls(!controlsShown)}>
@@ -89,7 +94,7 @@ export const Header: React.FC = () => {
       <Link href="/" locale="ru">
         <a>RU</a>
       </Link>
-      {!isIndexPage && <ButtonWithMotion />}
+      {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
     </StyledHeader>
   )
 }
