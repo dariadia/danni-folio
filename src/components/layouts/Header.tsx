@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/dist/client/router'
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -68,6 +69,8 @@ const ButtonWithMotion = () => {
 
 export const Header: React.FC = () => {
   const [controlsShown, toggleControls] = useState(false)
+  const router = useRouter()
+  const isIndexPage = router.route === '/'
 
   return (
     <StyledHeader onClick={() => toggleControls(!controlsShown)}>
@@ -86,7 +89,7 @@ export const Header: React.FC = () => {
       <Link href="/" locale="ru">
         <a>RU</a>
       </Link>
-      <ButtonWithMotion />
+      {!isIndexPage && <ButtonWithMotion />}
     </StyledHeader>
   )
 }
