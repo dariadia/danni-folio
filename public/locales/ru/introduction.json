@@ -1,8 +1,8 @@
 {
-  "greeting": "Привет!\nЯ Даня 👋🏽",
-  "welcome": "И это моё портфолио 🍀",
-  "look_around": "Чувствуй себя как дома 👀",
-  "intro_heading": "Что ж за <italic>фолио</italic> такое...? 🐲",
+  "greeting": "Привет!\nЯ Даня\u00A0👋🏽",
+  "welcome": "И это моё портфолио\u00A0🍀",
+  "look_around": "Чувствуй себя как дома\u00A0👀",
+  "intro_heading": "Что ж за <italic>фолио</italic> такое...?\u00A0🐲",
   "folio": "🟢 фо́лио [ˈfolʲɪo]",
   "folio_link": "https://ru.wiktionary.org/wiki/фолио",
   "folio_definition_one": "✅ устар. то же, что ин-фолио; формат издания в ½ долю листа, получаемый фальцовкой в один сгиб.",
