@@ -36,28 +36,27 @@ const Contacts = () => {
 
     contactNodesArray.push(
       link ? (
-        <>
-          <Link
-            mb="s"
-            href={link}
-            target="_blank"
-            sx={{ textDecoration: 'none' }}
-          >
-            <HoverableText>
-              <Text
-                color="complementaryDark"
-                fontWeight="bold"
-                mr="s"
-                inlineBlock
-              >
-                {contactName}:
-              </Text>
-              {value}
-            </HoverableText>
-          </Link>
-        </>
+        <Link
+          key={contact}
+          mb="s"
+          href={link}
+          target="_blank"
+          sx={{ textDecoration: 'none' }}
+        >
+          <HoverableText>
+            <Text
+              color="complementaryDark"
+              fontWeight="bold"
+              mr="s"
+              inlineBlock
+            >
+              {contactName}:
+            </Text>
+            {value}
+          </HoverableText>
+        </Link>
       ) : (
-        <>
+        <Text key={contact}>
           <Text
             mb="s"
             color="complementaryDark"
@@ -68,7 +67,7 @@ const Contacts = () => {
             {contactName}:
           </Text>
           {value}
-        </>
+        </Text>
       ),
     )
   }
