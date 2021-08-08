@@ -25,13 +25,13 @@ import {
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const Contacts = () => {
-  const { t } = useTranslation(['contacts'])
+  const { t } = useTranslation(['contacts', 'common'])
   const contactNodesArray = []
 
   for (const contact in CONTACTS) {
-    const { link, value, translationKey } = CONTACTS[contact]
+    const { link, value, translationKey, hintKey } = CONTACTS[contact]
     const contactName = translationKey
-      ? t(translationKey)
+      ? t(`contacts:${translationKey}`)
       : contact.toLowerCase()
 
     contactNodesArray.push(
@@ -52,7 +52,7 @@ const Contacts = () => {
             >
               {contactName}:
             </Text>
-            {value}
+            {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}
           </HoverableText>
         </Link>
       ) : (
@@ -66,7 +66,7 @@ const Contacts = () => {
           >
             {contactName}:
           </Text>
-          {value}
+          {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}
         </Text>
       ),
     )
@@ -132,7 +132,7 @@ const ContactsPage: Page<SinglePageProps> = () => {
                 {t('contacts')}
               </HeadingH3>
             </Media>
-          </MediaContextProvider>{' '}
+          </MediaContextProvider>
         </motion.div>
       </Flex>
       <Flex
