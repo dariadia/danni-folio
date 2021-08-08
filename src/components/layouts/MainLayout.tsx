@@ -16,9 +16,10 @@ const getGridSx = ({
   isIndexPage: boolean
 }) => {
   const baseProps = {
-    maxHeight: `calc((100% - ${baseTheme.space.xxl}px))`,
-    minHeight: '94vh',
+    maxHeight: `calc((100% - ${baseTheme.space.xxl * 2}px))`,
+    minHeight: '90vh',
     boxShadow: baseTheme.shadows.bookLight,
+    position: 'relative',
   }
   const BOOK_TWO_PAGES_WIDTH = `calc(100% - ${baseTheme.space.xxl}px)`
   const BOOK_TWO_PAGES = 'repeat(2, 1fr)'
@@ -46,17 +47,18 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
       <Header />
       <MediaContextProvider>
-        <Media greaterThanOrEqual="tablet">
+        <Media greaterThanOrEqual="desktop">
           <Grid
             m="auto"
-            p="l"
+            py="xl"
+            px="xxl"
             bg="white"
             sx={getGridSx({ isIndexPage, isDesktop: true })}
           >
             {children}
           </Grid>
         </Media>
-        <Media lessThan="tablet">
+        <Media lessThan="desktop">
           <Grid
             m="auto"
             p="l"

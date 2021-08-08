@@ -23,7 +23,7 @@ const HomePage: Page<SinglePageProps> = () => {
           layoutId="navButton"
           initial={{ scale: 0.9 }}
           whileHover={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.9, filter: 'brightness(0.8)' }}
         >
           <ClickMeButton />
         </motion.a>
