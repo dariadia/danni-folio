@@ -9,15 +9,19 @@ import { MediaContextProvider, Media } from 'utils/media'
 
 import {
   Flex,
+  Box,
+  Text,
   baseTheme,
   HeadingH2,
   HeadingH3,
   List,
   ThemeType,
+  Details,
 } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
+import { Avatar } from '@/components'
 
 const AboutPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['common', 'about'])
@@ -98,30 +102,40 @@ const AboutPage: Page<SinglePageProps> = () => {
           </motion.div>
         </motion.div>
       </Flex>
-      <Flex
+      <Box
         as="section"
-        pr="s"
-        py="s"
+        p="xxxl"
         sx={{
-          flexDirection: 'column',
-          justifyContent: 'center',
           boxShadow: baseTheme.shadows.low,
         }}
       >
         <motion.div
           className="contactsContent"
           layoutId="contactsContent"
-          style={{ margin: 'auto', width: 'fit-content' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, x: baseTheme.space.s }}
           transition={{ delay: delayContents }}
         >
           <List>
-            <span>hello</span>
-            <span>world</span>
+            <Details
+              withMarker={{ closed: '🧑🏽‍💻', open: '🦹🏽' }}
+              summary={<Text>{t('about:professional')}</Text>}
+            >
+              <Avatar size="elephant">
+                <img src="assets/photo-me.png" alt={t('about:photo')} />
+              </Avatar>
+            </Details>
+            <Details
+              withMarker={{ closed: '👩🏽‍🦰', open: '🧘🏽' }}
+              summary={t('about:personal')}
+            >
+              <Avatar size="elephant">
+                <img src="assets/photo-me-yoga.png" alt={t('about:photo')} />
+              </Avatar>
+            </Details>
           </List>
         </motion.div>
-      </Flex>
+      </Box>
     </>
   )
 }
