@@ -22,6 +22,7 @@ export const GoToMainButton: React.FC<ConstrainedBoxProps> = () => {
       sx={{
         borderRadius: baseTheme.radii.m,
         textTransform: 'uppercase',
+        minWidth: `${baseTheme.space.elephant * 4}px`,
         maxWidth: `${baseTheme.space.dinosaur * 2}px`,
       }}
     >

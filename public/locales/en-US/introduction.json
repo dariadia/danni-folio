@@ -1,8 +1,8 @@
 {
-  "greeting": "Hey!\nI'm Danni 👋🏽",
-  "welcome": "Welcome to my portfolio 🍀",
-  "look_around": "Take a look around 👀",
-  "intro_heading": "So, what's a <italic>folio</italic>...? 🐲",
+  "greeting": "Hey!\nI'm Danni\u00A0👋🏽",
+  "welcome": "Welcome to my portfolio\u00A0🍀",
+  "look_around": "Take a look around\u00A0👀",
+  "intro_heading": "So, what's a <italic>folio</italic>...?\u00A0🐲",
   "folio": "🟢 folio /ˈfəʊlɪəʊ/",
   "folio_link": "https://languages.oup.com/google-dictionary-en/",
   "folio_definition_one": "✅ an individual leaf of paper or parchment, either loose as one of a series or forming part of a bound volume, which is numbered on the recto or front side only.",
