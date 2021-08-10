@@ -1,3 +1,23 @@
 {
-  "image": "Pixelgröße Bild von Danni"
+  "image": "Pixelgröße Bild von Danni",
+  "photo": "Foto von Danni",
+  "personal": "persönlich",
+  "professional": "professionell",
+  "experience": "Erfahrung",
+  "career": "Karriere",
+  "title": "Titel",
+  "current_job": "aktueller Job",
+  "customer_support": "Kundendiensttechniker",
+  "junior_developer": "junior frontend developer",
+  "developer": "frontend developer",
+  "education": "Bildung",
+  "school": "Schule",
+  "university": "Universität",
+  "HSE": "die\u00A0Nationale Forschungsuniversität für Wirtschaft",
+  "further_education": "Weiterbildung",
+  "grants": "Stipendien und Auszeichnungen",
+  "presidential_grant": "das\u00A0Forschungsstipendium des\u00A0Präsidenten der\u00A0Russischen Föderation",
+  "languages": "Ich spreche",
+  "driving_licence": "Führerschein",
+  "nonbinary": "nichtbinär"
 }
