@@ -18,6 +18,7 @@ import {
   ThemeType,
   Details,
   HoverableText,
+  Link,
 } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
 import { Avatar } from '@/components'
@@ -176,63 +177,80 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       </Avatar>
       <Text
         bg="complementaryDark"
+        mb="s"
         sx={{ textTransform: 'capitalize', textAlign: 'center' }}
         as="h4"
       >
         {t('about:career')}
       </Text>
-      {ABOUT_ME.CARRER.map(job => {
-        const { translationKey, start, finish } = job
-        return (
-          <Flex key={translationKey} my="m" justifyContent="space-between">
-            <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
-              {t(`about:${translationKey}`)}
-            </Text>
-            <Text ml="xl" textAlign="right">
-              {new Date(start).toLocaleDateString(locale)}–
-              {finish ? (
-                new Date(finish).toLocaleDateString(locale)
-              ) : (
-                <Text color="accentDark" fontWeight="bold" inlineBlock>
-                  {t(`common:now`)}
-                </Text>
-              )}
-            </Text>
-          </Flex>
-        )
-      })}
+      <Flex flexDirection="column-reverse">
+        {ABOUT_ME.CARRER.map(job => {
+          const { translationKey, start, finish } = job
+          return (
+            <Flex key={translationKey} my="s" justifyContent="space-between">
+              <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+                {t(`about:${translationKey}`)}
+              </Text>
+              <Text ml="xl" textAlign="right">
+                {new Date(start).toLocaleDateString(locale)}–
+                {finish ? (
+                  new Date(finish).toLocaleDateString(locale)
+                ) : (
+                  <Text color="accentDark" fontWeight="bold" inlineBlock>
+                    {t(`common:now`)}
+                  </Text>
+                )}
+              </Text>
+            </Flex>
+          )
+        })}
+      </Flex>
       <Text
         mt="l"
+        mb="s"
         bg="complementaryDark"
         sx={{ textTransform: 'capitalize', textAlign: 'center' }}
         as="h4"
       >
         {t('about:education')}
       </Text>
-      <EducationItem
-        {...{
-          name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
-            EDUCATION.SCHOOL.value
-          }`,
-          locale,
-          start: EDUCATION.SCHOOL.start,
-          finish: EDUCATION.SCHOOL.finish,
-          location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
-            `locations:${EDUCATION.SCHOOL.countryKey}`,
-          )}`,
-        }}
-      />
-      <EducationItem
-        {...{
-          name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
-          locale,
-          start: EDUCATION.UNIVERSITY.start,
-          finish: EDUCATION.UNIVERSITY.finish,
-          location: `${t(`locations:${EDUCATION.UNIVERSITY.locationKey}`)}, ${t(
-            `locations:${EDUCATION.UNIVERSITY.countryKey}`,
-          )}`,
-        }}
-      />
+      <Flex flexDirection="column-reverse">
+        <EducationItem
+          {...{
+            name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
+              EDUCATION.SCHOOL.value
+            }`,
+            locale,
+            start: EDUCATION.SCHOOL.start,
+            finish: EDUCATION.SCHOOL.finish,
+            location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
+              `locations:${EDUCATION.SCHOOL.countryKey}`,
+            )}`,
+          }}
+        />
+        <EducationItem
+          {...{
+            name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
+            locale,
+            start: EDUCATION.UNIVERSITY.start,
+            finish: EDUCATION.UNIVERSITY.finish,
+            link: EDUCATION.UNIVERSITY.link,
+            location: `${t(
+              `locations:${EDUCATION.UNIVERSITY.locationKey}`,
+            )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
+          }}
+        />
+        <EducationItem
+          {...{
+            name: EDUCATION.FURTHER_EDUCATION.value,
+            locale,
+            start: EDUCATION.FURTHER_EDUCATION.start,
+            finish: EDUCATION.FURTHER_EDUCATION.finish,
+            link: EDUCATION.FURTHER_EDUCATION.link,
+            location: 'online',
+          }}
+        />
+      </Flex>
     </Box>
   )
 }
@@ -242,19 +260,31 @@ const EducationItem = ({
   locale,
   start,
   finish,
+  link,
   location,
 }: {
   name: string
   locale: Locale
   start: string
   finish: string
+  link?: string
   location?: string
 }) => (
-  <Flex my="m" justifyContent="space-between">
+  <Flex my="s" justifyContent="space-between">
     <Box>
-      <Text sx={{ fontWeight: 'bold' }} inlineBlock>
-        {name}
-      </Text>
+      {link ? (
+        <Link
+          href={link}
+          sx={{ textDecoration: 'none', fontWeight: 'bold' }}
+          inlineBlock
+        >
+          <HoverableText>{name}</HoverableText>
+        </Link>
+      ) : (
+        <Text sx={{ fontWeight: 'bold' }} inlineBlock>
+          {name}
+        </Text>
+      )}
       {location && <Text>{location}</Text>}
     </Box>
     <Text ml="xl" textAlign="right">
