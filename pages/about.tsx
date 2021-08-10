@@ -180,11 +180,14 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       {ABOUT_ME.CARRER.map(job => {
         const { translationKey, start, finish } = job
         return (
-          <Flex key={translationKey} justifyContent="space-between">
-            <Text sx={{ textTransform: 'capitalize' }}>
+          <Flex key={translationKey} my="m" justifyContent="space-between">
+            <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
               {t(`about:${translationKey}`)}
             </Text>
-            <Text>
+            <Text
+              maxWidth={`${baseTheme.space.elephant + baseTheme.space.xxxl}px`}
+              textAlign="right"
+            >
               {new Date(start).toLocaleDateString(locale)}–
               {finish ? (
                 new Date(finish).toLocaleDateString(locale)
