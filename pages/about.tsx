@@ -184,10 +184,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
             <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
               {t(`about:${translationKey}`)}
             </Text>
-            <Text
-              maxWidth={`${baseTheme.space.elephant + baseTheme.space.xxxl}px`}
-              textAlign="right"
-            >
+            <Text ml="xl" textAlign="right">
               {new Date(start).toLocaleDateString(locale)}–
               {finish ? (
                 new Date(finish).toLocaleDateString(locale)
