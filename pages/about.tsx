@@ -17,15 +17,20 @@ import {
   List,
   ThemeType,
   Details,
+  HoverableText,
 } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
-
-import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 import { Avatar } from '@/components'
 
-const AboutPage: Page<SinglePageProps> = () => {
+import { ABOUT_ME } from 'constants/aboutMe'
+
+import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
+
+const AboutPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common', 'about'])
+
   const theme = useContext(ThemeContext) as ThemeType
+
   const delayHeading = baseTheme.durations.s / 1000
   const delayPixelMeImage = baseTheme.durations.xl / 1000
   const delayContents = baseTheme.durations.l / 1000
@@ -119,24 +124,92 @@ const AboutPage: Page<SinglePageProps> = () => {
           <List>
             <Details
               withMarker={{ closed: '🧑🏽‍💻', open: '🦹🏽' }}
-              summary={<Text>{t('about:professional')}</Text>}
+              summary={
+                <HoverableText inlineBlock>
+                  <HeadingH3
+                    sx={{
+                      textTransform: 'uppercase',
+                      fontSize: `${baseTheme.space.xl}px`,
+                    }}
+                  >
+                    {t('about:professional')}
+                  </HeadingH3>
+                </HoverableText>
+              }
             >
-              <Avatar size="elephant">
-                <img src="assets/photo-me.png" alt={t('about:photo')} />
-              </Avatar>
+              {locale && <ProfessionalDetails locale={locale} />}
             </Details>
             <Details
               withMarker={{ closed: '👩🏽‍🦰', open: '🧘🏽' }}
-              summary={t('about:personal')}
+              summary={
+                <HoverableText inlineBlock>
+                  <HeadingH3
+                    sx={{
+                      textTransform: 'uppercase',
+                      fontSize: `${baseTheme.space.xl}px`,
+                    }}
+                  >
+                    {t('about:personal')}
+                  </HeadingH3>
+                </HoverableText>
+              }
             >
-              <Avatar size="elephant">
-                <img src="assets/photo-me-yoga.png" alt={t('about:photo')} />
-              </Avatar>
+              {locale && <PersonalDetails locale={locale} />}
             </Details>
           </List>
         </motion.div>
       </Box>
     </>
+  )
+}
+
+const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
+  const { t } = useTranslation(['common', 'about', 'locations', 'languages'])
+  return (
+    <Box p="m">
+      <Avatar mx="auto" mb="l" size="elephant">
+        <img src="assets/photo-me.png" alt={t('about:photo')} />
+      </Avatar>
+      <Text
+        bg="complementaryDark"
+        sx={{ textTransform: 'capitalize', textAlign: 'center' }}
+        as="h4"
+      >
+        {t('about:career')}
+      </Text>
+      {ABOUT_ME.CARRER.map(job => {
+        const { translationKey, start, finish } = job
+        return (
+          <Flex key={translationKey} justifyContent="space-between">
+            <Text sx={{ textTransform: 'capitalize' }}>
+              {t(`about:${translationKey}`)}
+            </Text>
+            <Text>
+              {new Date(start).toLocaleDateString(locale)}–
+              {finish ? (
+                new Date(finish).toLocaleDateString(locale)
+              ) : (
+                <Text color="accentDark" fontWeight="bold" inlineBlock>
+                  {t(`common:now`)}
+                </Text>
+              )}
+            </Text>
+          </Flex>
+        )
+      })}
+    </Box>
+  )
+}
+
+const PersonalDetails = ({ locale }: { locale: Locale }) => {
+  const { t } = useTranslation(['about', 'locations'])
+  return (
+    <Box p="m">
+      <Avatar mx="auto" size="elephant">
+        <img src="assets/photo-me-yoga.png" alt={t('about:photo')} />
+      </Avatar>
+      <Text>{locale}</Text>
+    </Box>
   )
 }
 
@@ -152,7 +225,12 @@ export async function getStaticProps({
   return {
     props: {
       locale,
-      ...(await serverSideTranslations(locale, ['common', 'about'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'about',
+        'locations',
+        'languages',
+      ])),
     },
   }
 }
