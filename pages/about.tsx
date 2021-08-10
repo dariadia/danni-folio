@@ -39,76 +39,75 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
 
   return (
     <>
-      <Flex
-        pl="s"
-        pr="xxl"
-        py="m"
-        sx={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-          boxShadow: baseTheme.shadows.low,
-        }}
-      >
-        <motion.div
-          className="contactsHeading"
-          layoutId="contactsHeading"
-          style={{ width: 'fit-content', margin: 'auto' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: delayHeading }}
+      <Box pl="s" pr="xxl" py="m" elevation="low">
+        <Flex
+          height="80vh"
+          sx={{
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
         >
-          <MediaContextProvider>
-            <Media greaterThanOrEqual="tablet">
-              <HeadingH2
-                as="h1"
-                kind="serif"
-                m="auto"
-                px="l"
-                color="accentDark"
-                width="fit-content"
-                sx={{
-                  textTransform: 'capitalize',
-                  borderBottom: `2px solid ${theme.colours.complementaryDark}`,
-                }}
-              >
-                {t('common:about')}
-              </HeadingH2>
-            </Media>
-            <Media lessThan="tablet">
-              <HeadingH3
-                as="h1"
-                kind="serif"
-                ml="m"
-                px="s"
-                color="accentDark"
-                sx={{
-                  textTransform: 'capitalize',
-                  borderBottom: `2px solid ${theme.colours.complementaryDark}`,
-                }}
-              >
-                {t('common:about')}
-              </HeadingH3>
-            </Media>
-          </MediaContextProvider>
           <motion.div
-            className="pixelMe"
-            layoutId="pixelMe"
-            style={{
-              width: 'fit-content',
-              margin: `${baseTheme.space.xxxl}px auto`,
-            }}
+            className="contactsHeading"
+            layoutId="contactsHeading"
+            style={{ width: 'fit-content', margin: 'auto' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: delayPixelMeImage }}
+            transition={{ delay: delayHeading }}
           >
-            <img
-              height={`${baseTheme.space.elephant}px`}
-              src="/assets/pixel-me.png"
-              alt={t('about:image')}
-            />
+            <MediaContextProvider>
+              <Media greaterThanOrEqual="tablet">
+                <HeadingH2
+                  as="h1"
+                  kind="serif"
+                  m="auto"
+                  px="l"
+                  color="accentDark"
+                  width="fit-content"
+                  sx={{
+                    textTransform: 'capitalize',
+                    borderBottom: `2px solid ${theme.colours.complementaryDark}`,
+                  }}
+                >
+                  {t('common:about')}
+                </HeadingH2>
+              </Media>
+              <Media lessThan="tablet">
+                <HeadingH3
+                  as="h1"
+                  kind="serif"
+                  ml="m"
+                  px="s"
+                  color="accentDark"
+                  sx={{
+                    textTransform: 'capitalize',
+                    borderBottom: `2px solid ${theme.colours.complementaryDark}`,
+                  }}
+                >
+                  {t('common:about')}
+                </HeadingH3>
+              </Media>
+            </MediaContextProvider>
+            <motion.div
+              className="pixelMe"
+              layoutId="pixelMe"
+              style={{
+                width: 'fit-content',
+                margin: `${baseTheme.space.xxxl}px auto`,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: delayPixelMeImage }}
+            >
+              <img
+                height={`${baseTheme.space.elephant}px`}
+                src="/assets/pixel-me.png"
+                alt={t('about:image')}
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </Flex>
+        </Flex>
+      </Box>
       <Box
         as="section"
         p="xxxl"
@@ -141,6 +140,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
             >
               {locale && <ProfessionalDetails locale={locale} />}
             </Details>
+            <Box mb="xxl" />
             <Details
               withMarker={{ closed: '👩🏽‍🦰', open: '🧘🏽' }}
               summary={
@@ -171,7 +171,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
   const EDUCATION = ABOUT_ME.EDUCATION
 
   return (
-    <Box p="m">
+    <Box p="m" mb="xl">
       <Avatar mx="auto" mb="l" size="elephant">
         <img src="assets/photo-me.png" alt={t('about:photo')} />
       </Avatar>
@@ -251,6 +251,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           }}
         />
       </Flex>
+      <Box mt="l" mb="s" bg="complementaryDark" height="0.5rem" />
     </Box>
   )
 }
