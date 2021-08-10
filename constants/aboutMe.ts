@@ -21,17 +21,18 @@ export const ABOUT_ME = {
   CARRER: [
     {
       translationKey: 'customer_support',
-      start: '16.06.2019',
-      finish: '25.02.2020',
+      start: '06.16.2019',
+      finish: '02.25.2020',
     },
     {
       translationKey: 'junior_developer',
-      start: '25.02.2020',
-      finish: '16.02.2021',
+      start: '02.25.2020',
+      finish: '02.16.2021',
     },
     {
       translationKey: 'developer',
-      start: '16.02.2021',
+      start: '02.16.2021',
+      finish: '',
     },
   ],
   GRANTS: { translationKey: 'presidential_grant' },
