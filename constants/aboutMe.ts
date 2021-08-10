@@ -24,7 +24,7 @@ export const ABOUT_ME = {
       countryKey: 'russia',
     },
     FURTHER_EDUCATION: {
-      value: 'GeekBrains: Mail.Ru Group',
+      value: 'GeekBrains University: Mail.Ru Group',
       link: 'https://gb.ru',
       translationKey: 'further_education',
       start: '12.15.2018',
