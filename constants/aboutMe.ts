@@ -7,15 +7,24 @@ export const ABOUT_ME = {
   },
   ZODIAC: { translationKey: 'zodiac' },
   EDUCATION: {
-    SCHOOL: { translationKey: 'school', value: '№120' },
+    SCHOOL: {
+      translationKey: 'school',
+      value: '№120',
+      start: '09.01.2004',
+      finish: '07.01.2015',
+    },
     UNIVERSITY: {
       translationKey: 'HSE',
       link: 'https://www.hse.ru/',
+      start: '09.01.2015',
+      finish: '07.01.2019',
     },
     FURTHER_EDUCATION: {
       value: 'GeekBrains: Mail.Ru Group',
       link: 'https://gb.ru',
       translationKey: 'further_education',
+      start: '12.15.2018',
+      finish: '12.30.2020',
     },
   },
   CARRER: [
