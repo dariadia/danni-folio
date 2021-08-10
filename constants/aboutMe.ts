@@ -12,12 +12,16 @@ export const ABOUT_ME = {
       value: '№120',
       start: '09.01.2004',
       finish: '07.01.2015',
+      locationKey: 'samara',
+      countryKey: 'russia',
     },
     UNIVERSITY: {
       translationKey: 'HSE',
       link: 'https://www.hse.ru/',
       start: '09.01.2015',
       finish: '07.01.2019',
+      locationKey: 'moscow',
+      countryKey: 'russia',
     },
     FURTHER_EDUCATION: {
       value: 'GeekBrains: Mail.Ru Group',
