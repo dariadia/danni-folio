@@ -23,6 +23,7 @@ import { MainLayout } from '@/components/layouts'
 import { Avatar } from '@/components'
 
 import { ABOUT_ME } from 'constants/aboutMe'
+import { DATE_OPTIONS } from 'constants/dates'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
@@ -165,6 +166,9 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
 
 const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
   const { t } = useTranslation(['common', 'about', 'locations', 'languages'])
+
+  const EDUCATION = ABOUT_ME.EDUCATION
+
   return (
     <Box p="m">
       <Avatar mx="auto" mb="l" size="elephant">
@@ -197,9 +201,45 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           </Flex>
         )
       })}
+      <Text
+        mt="l"
+        bg="complementaryDark"
+        sx={{ textTransform: 'capitalize', textAlign: 'center' }}
+        as="h4"
+      >
+        {t('about:education')}
+      </Text>
+      <EducationItem
+        {...{
+          name: t(`about:${EDUCATION.SCHOOL.translationKey}`),
+          locale,
+          start: EDUCATION.SCHOOL.start,
+          finish: EDUCATION.SCHOOL.finish,
+        }}
+      />
     </Box>
   )
 }
+
+const EducationItem = ({
+  name,
+  locale,
+  start,
+  finish,
+}: {
+  name: string
+  locale: Locale
+  start: string
+  finish: string
+}) => (
+  <Flex my="m" justifyContent="space-between">
+    <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>{name}</Text>
+    <Text ml="xl" textAlign="right">
+      {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
+      {new Date(finish).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}
+    </Text>
+  </Flex>
+)
 
 const PersonalDetails = ({ locale }: { locale: Locale }) => {
   const { t } = useTranslation(['about', 'locations'])
