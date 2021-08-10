@@ -211,10 +211,26 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       </Text>
       <EducationItem
         {...{
-          name: t(`about:${EDUCATION.SCHOOL.translationKey}`),
+          name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
+            EDUCATION.SCHOOL.value
+          }`,
           locale,
           start: EDUCATION.SCHOOL.start,
           finish: EDUCATION.SCHOOL.finish,
+          location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
+            `locations:${EDUCATION.SCHOOL.countryKey}`,
+          )}`,
+        }}
+      />
+      <EducationItem
+        {...{
+          name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
+          locale,
+          start: EDUCATION.UNIVERSITY.start,
+          finish: EDUCATION.UNIVERSITY.finish,
+          location: `${t(`locations:${EDUCATION.UNIVERSITY.locationKey}`)}, ${t(
+            `locations:${EDUCATION.UNIVERSITY.countryKey}`,
+          )}`,
         }}
       />
     </Box>
@@ -226,14 +242,21 @@ const EducationItem = ({
   locale,
   start,
   finish,
+  location,
 }: {
   name: string
   locale: Locale
   start: string
   finish: string
+  location?: string
 }) => (
   <Flex my="m" justifyContent="space-between">
-    <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>{name}</Text>
+    <Box>
+      <Text sx={{ fontWeight: 'bold' }} inlineBlock>
+        {name}
+      </Text>
+      {location && <Text>{location}</Text>}
+    </Box>
     <Text ml="xl" textAlign="right">
       {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
       {new Date(finish).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}
