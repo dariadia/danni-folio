@@ -185,11 +185,20 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       </Text>
       <Flex flexDirection="column-reverse">
         {ABOUT_ME.CARRER.map(job => {
-          const { translationKey, start, finish } = job
+          const { translationKey, start, finish, company, link } = job
           return (
             <Flex key={translationKey} my="s" justifyContent="space-between">
               <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
                 {t(`about:${translationKey}`)}
+                {link ? (
+                  <Link href={link} target="_blank">
+                    <HoverableText sx={{ fontWeight: 'normal' }}>
+                      {company}
+                    </HoverableText>
+                  </Link>
+                ) : (
+                  <Text>{company}</Text>
+                )}
               </Text>
               <Text ml="xl" textAlign="right">
                 {new Date(start).toLocaleDateString(locale)}–
@@ -275,6 +284,7 @@ const EducationItem = ({
     <Box>
       {link ? (
         <Link
+          target="_blank"
           href={link}
           sx={{ textDecoration: 'none', fontWeight: 'bold' }}
           inlineBlock

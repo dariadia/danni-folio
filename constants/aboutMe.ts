@@ -34,16 +34,22 @@ export const ABOUT_ME = {
   CARRER: [
     {
       translationKey: 'customer_support',
+      company: 'Bookmate',
+      link: 'https://bookmate.com/',
       start: '06.16.2019',
       finish: '02.25.2020',
     },
     {
       translationKey: 'junior_developer',
+      company: 'Bookmate',
+      link: 'https://bookmate.com/',
       start: '02.25.2020',
       finish: '02.16.2021',
     },
     {
       translationKey: 'developer',
+      company: 'Bookmate',
+      link: 'https://bookmate.com/',
       start: '02.16.2021',
       finish: '',
     },
