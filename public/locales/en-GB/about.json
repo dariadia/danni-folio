@@ -1,3 +1,17 @@
 {
-  "image": "pixel image of Danni"
+  "image": "pixel image of Danni",
+  "photo": "photo of Danni",
+  "personal": "personal",
+  "professional": "professional",
+  "experience": "experience",
+  "career": "career",
+  "title": "title",
+  "current_job": "current job",
+  "education": "education",
+  "school": "school",
+  "university": "university",
+  "HSE": "the National Research University Higher School of Economics",
+  "grants": "grants and awards",
+  "languages": "I speak",
+  "driving_licence": "driving licence"
 }
