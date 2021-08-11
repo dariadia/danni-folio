@@ -194,7 +194,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
         <img src="assets/photo-me.png" alt={t('about:photo')} />
       </Avatar>
       <HeadingInBox text={t('about:career')} textTransform />
-      <Flex mb="m" flexDirection="column-reverse">
+      <List sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
         {ABOUT_ME.CAREER.map(job => {
           const { translationKey, start, finish, company, link } = job
           return (
@@ -224,9 +224,10 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
             </Flex>
           )
         })}
-      </Flex>
+      </List>
+      <Box mb="m" />
       <HeadingInBox text={t('about:education')} textTransform />
-      <Flex flexDirection="column-reverse">
+      <List sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
         <EducationItem
           {...{
             name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
@@ -262,7 +263,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
             location: 'online',
           }}
         />
-      </Flex>
+      </List>
       <Box mt="l" mb="s" bg="complementaryDark" height="0.5rem" />
     </Box>
   )
