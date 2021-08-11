@@ -41,7 +41,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
     <>
       <Box pl="s" pr="xxl" py="m" elevation="low">
         <Flex
-          height="80vh"
+          minHeight="70vh"
           sx={{
             flexDirection: 'column',
             justifyContent: 'center',
@@ -403,51 +403,81 @@ const BottomDivider: React.FC = () => (
 const SkillsDetails = () => {
   const { t } = useTranslation(['about', 'languages'])
   return (
-    <Box p="m">
-      <HeadingInBox text={t('about:technical')} textTransform />
-      <List
-        display="grid"
-        sx={{
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gridColumnGap: `${baseTheme.space.xl}px`,
-          gridRowGap: `${baseTheme.space.s}px`,
-        }}
-      >
-        {getAllSkills()}
-      </List>
-      <Box mb="m" />
-      <HeadingInBox text={t('about:languages')} />
-      <List>
-        {ABOUT_ME.LANGUAGES.map(language => (
-          <Text my="m" mx="auto" key={language.translationKey}>
-            {language.emoji}{' '}
-            <Text mr="s" fontWeight="bold" inlineBlock>
-              {t(`languages:${language.translationKey}`)}
-            </Text>
-            {language.level ? (
-              <>
-                <Text
-                  mr="s"
-                  fontWeight="bold"
-                  color="complementaryDark"
-                  inlineBlock
-                >
-                  {language.level}
-                </Text>
-                <Text mr="m" inlineBlock>
-                  {t(`about:${language.levelKey}`)}
-                </Text>
-              </>
-            ) : (
-              <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+    <MediaContextProvider>
+      <Media greaterThanOrEqual="tablet">
+        <Box p="m">
+          <HeadingInBox text={t('about:technical')} textTransform />
+          <List
+            display="grid"
+            sx={{
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridColumnGap: `${baseTheme.space.xl}px`,
+              gridRowGap: `${baseTheme.space.s}px`,
+            }}
+          >
+            {getAllSkills()}
+          </List>
+          <Box mb="m" />
+          <HeadingInBox text={t('about:languages')} />
+          <LanguagesList />
+          <BottomDivider />
+        </Box>
+      </Media>
+      <Media lessThan="tablet">
+        <Box py="m">
+          <HeadingInBox text={t('about:technical')} textTransform />
+          <List
+            display="grid"
+            sx={{
+              gridTemplateColumns: '1fr',
+
+              gridRowGap: `${baseTheme.space.s}px`,
+            }}
+          >
+            {getAllSkills()}
+          </List>
+        </Box>
+        <Box mb="m" />
+        <HeadingInBox text={t('about:languages')} />
+        <LanguagesList />
+        <BottomDivider />
+      </Media>
+    </MediaContextProvider>
+  )
+}
+
+const LanguagesList = () => {
+  const { t } = useTranslation(['about', 'languages'])
+  return (
+    <List>
+      {ABOUT_ME.LANGUAGES.map(language => (
+        <Text my="m" mx="auto" key={language.translationKey}>
+          {language.emoji}{' '}
+          <Text mr="s" fontWeight="bold" inlineBlock>
+            {t(`languages:${language.translationKey}`)}
+          </Text>
+          {language.level ? (
+            <>
+              <Text
+                mr="s"
+                fontWeight="bold"
+                color="complementaryDark"
+                inlineBlock
+              >
+                {language.level}
+              </Text>
+              <Text mr="m" inlineBlock>
                 {t(`about:${language.levelKey}`)}
               </Text>
-            )}
-          </Text>
-        ))}
-      </List>
-      <BottomDivider />
-    </Box>
+            </>
+          ) : (
+            <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+              {t(`about:${language.levelKey}`)}
+            </Text>
+          )}
+        </Text>
+      ))}
+    </List>
   )
 }
 
