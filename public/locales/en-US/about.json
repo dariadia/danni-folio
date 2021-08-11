@@ -3,10 +3,10 @@
   "photo": "photo of Danni",
   "personal": "personal",
   "professional": "professional",
-  "experience": "experience",
+  "skills": "skills",
+  "technical": "technical",
   "career": "career",
   "title": "title",
-  "current_job": "current job",
   "customer_support": "customer support engineer",
   "junior_developer": "junior frontend developer",
   "developer": "frontend developer",
@@ -17,7 +17,7 @@
   "further_education": "further education",
   "grants": "grants and awards",
   "presidential_grant": "Russian Federation Presidential research grant",
-  "languages": "I speak",
+  "languages": "I speak...",
   "driving_licence": "driving licence",
   "nonbinary": "non-binary"
 }
