@@ -217,7 +217,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
                 {finish ? (
                   new Date(finish).toLocaleDateString(locale)
                 ) : (
-                  <Text color="accentDark" fontWeight="bold" inlineBlock>
+                  <Text color="complementaryDark" fontWeight="bold" inlineBlock>
                     {t(`common:now`)}
                   </Text>
                 )}
