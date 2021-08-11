@@ -110,7 +110,8 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
       </Box>
       <Box
         as="section"
-        p="xxxl"
+        py="xxxl"
+        px="xl"
         sx={{
           boxShadow: baseTheme.shadows.low,
         }}
@@ -350,12 +351,12 @@ const SkillsDetails = () => {
                   {language.level}
                 </Text>
                 <Text mr="m" inlineBlock>
-                  {t(`languages:${language.levelKey}`)}
+                  {t(`about:${language.levelKey}`)}
                 </Text>
               </>
             ) : (
               <Text fontWeight="bold" color="complementaryDark" inlineBlock>
-                {t(`languages:${language.levelKey}`)}
+                {t(`about:${language.levelKey}`)}
               </Text>
             )}
           </Text>
