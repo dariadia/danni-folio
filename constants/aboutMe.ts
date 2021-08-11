@@ -36,6 +36,7 @@ type Language = {
   readonly translationKey: string
   readonly level?: string
   readonly levelKey: string
+  readonly emoji?: string
 }
 
 export const ABOUT_ME: AboutMe = {
@@ -94,10 +95,20 @@ export const ABOUT_ME: AboutMe = {
   ],
   GRANTS: { translationKey: 'presidential_grant', start: '01.01.2016' },
   LANGUAGES: [
-    { translationKey: 'english', level: 'C2', levelKey: 'master' },
-    { translationKey: 'russian', levelKey: 'native' },
-    { translationKey: 'german', level: 'B1', levelKey: 'intermediate' },
-    { translationKey: 'danish', level: 'A1', levelKey: 'beginner' },
+    { translationKey: 'english', level: 'C2', levelKey: 'master', emoji: '🇬🇧' },
+    { translationKey: 'russian', levelKey: 'native', emoji: '🇷🇺' },
+    {
+      translationKey: 'german',
+      level: 'B1',
+      levelKey: 'intermediate',
+      emoji: '🇩🇪',
+    },
+    {
+      translationKey: 'danish',
+      level: 'A1',
+      levelKey: 'beginner',
+      emoji: '🇩🇰',
+    },
   ],
   PERSONAL: { translationKey: 'nonbinary' },
   DRIVING: { translationKey: 'driving_licence' },

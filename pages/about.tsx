@@ -348,6 +348,7 @@ const SkillsDetails = () => {
       <List>
         {ABOUT_ME.LANGUAGES.map(language => (
           <Text my="m" mx="auto" key={language.translationKey}>
+            {language.emoji}{' '}
             <Text mr="s" fontWeight="bold" inlineBlock>
               {t(`languages:${language.translationKey}`)}
             </Text>
