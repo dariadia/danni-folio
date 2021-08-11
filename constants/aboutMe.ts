@@ -1,6 +1,44 @@
 const BIRTHDAY = '06.06.1997'
 
-export const ABOUT_ME = {
+type AboutMe = {
+  readonly BIRTHDAY: AboutMeFact
+  readonly AGE: AboutMeFact
+  readonly ZODIAC: AboutMeFact
+  readonly EDUCATION: {
+    [key: string]: AboutMeEvent
+  }
+  readonly CAREER: readonly Job[]
+  readonly GRANTS: AboutMeEvent
+  readonly LANGUAGES: readonly Language[]
+  readonly PERSONAL: AboutMeFact
+  readonly DRIVING: AboutMeFact
+}
+
+interface AboutMeFact {
+  readonly value?: string | number
+  readonly translationKey?: string
+  readonly extra?: string
+}
+
+interface AboutMeEvent extends AboutMeFact {
+  readonly start: string
+  readonly finish?: string
+  readonly locationKey?: string
+  readonly countryKey?: string
+  readonly link?: string
+}
+
+interface Job extends AboutMeEvent {
+  readonly company: string
+}
+
+type Language = {
+  readonly translationKey: string
+  readonly level?: string
+  readonly levelKey?: string
+}
+
+export const ABOUT_ME: AboutMe = {
   BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },
   AGE: {
     value: new Date().getFullYear() - new Date(BIRTHDAY).getFullYear(),
@@ -31,7 +69,7 @@ export const ABOUT_ME = {
       finish: '12.30.2020',
     },
   },
-  CARRER: [
+  CAREER: [
     {
       translationKey: 'customer_support',
       company: 'Bookmate',
@@ -54,8 +92,13 @@ export const ABOUT_ME = {
       finish: '',
     },
   ],
-  GRANTS: { translationKey: 'presidential_grant' },
-  LANGUAGES: { translationKey: 'languages' },
+  GRANTS: { translationKey: 'presidential_grant', start: '01.01.2016' },
+  LANGUAGES: [
+    { translationKey: 'english', level: 'C2' },
+    { translationKey: 'russian', levelKey: 'native' },
+    { translationKey: 'german', level: 'B1' },
+    { translationKey: 'danish', level: 'A1' },
+  ],
   PERSONAL: { translationKey: 'nonbinary' },
   DRIVING: { translationKey: 'driving_licence' },
 } as const
