@@ -10,7 +10,7 @@ type AboutMe = {
   readonly CAREER: readonly Job[]
   readonly GRANTS: AboutMeEvent
   readonly LANGUAGES: readonly Language[]
-  readonly PERSONAL: AboutMeFact
+  readonly PERSONAL: readonly AboutMeFact[]
   readonly DRIVING: AboutMeFact
 }
 
@@ -18,6 +18,7 @@ interface AboutMeFact {
   readonly value?: string | number
   readonly translationKey?: string
   readonly extra?: string
+  readonly link?: string
 }
 
 interface AboutMeEvent extends AboutMeFact {
@@ -44,7 +45,7 @@ export const ABOUT_ME: AboutMe = {
   AGE: {
     value: new Date().getFullYear() - new Date(BIRTHDAY).getFullYear(),
   },
-  ZODIAC: { translationKey: 'zodiac' },
+  ZODIAC: { value: 'gemini', extra: 'leo' },
   EDUCATION: {
     SCHOOL: {
       translationKey: 'school',
@@ -110,7 +111,14 @@ export const ABOUT_ME: AboutMe = {
       emoji: '🇩🇰',
     },
   ],
-  PERSONAL: { translationKey: 'nonbinary' },
+  PERSONAL: [
+    {
+      translationKey: 'wiccan',
+      link: 'https://www.history.com/topics/religion/wicca/',
+    },
+    { translationKey: 'nonbinary' },
+    { translationKey: 'vegetarian' },
+  ],
   DRIVING: { translationKey: 'driving_licence' },
 } as const
 

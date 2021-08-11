@@ -139,7 +139,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
                 </HoverableText>
               }
             >
-              {locale && <SkillsDetails />}
+              <SkillsDetails />
             </Details>
             <Box mb="xxl" />
             <Details
@@ -175,7 +175,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
                 </HoverableText>
               }
             >
-              {locale && <PersonalDetails locale={locale} />}
+              <PersonalDetails />
             </Details>
           </List>
         </motion.div>
@@ -315,14 +315,72 @@ const EducationItem = ({
   </Flex>
 )
 
-const PersonalDetails = ({ locale }: { locale: Locale }) => {
-  const { t } = useTranslation(['about', 'locations'])
+const PersonalDetails = () => {
+  const { t } = useTranslation(['about'])
   return (
-    <Box p="m">
+    <Box sx={{ textAlign: 'center' }} p="m">
       <Avatar mx="auto" size="elephant">
         <img src="assets/photo-me-yoga.png" alt={t('about:photo')} />
       </Avatar>
-      <Text>{locale}</Text>
+      <BottomDivider />
+      <List
+        liSx={{
+          marginTop: `${baseTheme.space.m}px`,
+          marginBottom: `${baseTheme.space.m}px`,
+        }}
+      >
+        <Text>
+          <Text
+            color="complementaryDark"
+            fontWeight="bold"
+            mr="s"
+            sx={{ textTransform: 'capitalize' }}
+            inlineBlock
+          >
+            {t('birthday')}:
+          </Text>
+          <Text mr="s" inlineBlock>
+            {ABOUT_ME.BIRTHDAY.value}:
+          </Text>
+          <Text inlineBlock>{ABOUT_ME.BIRTHDAY.extra}</Text>
+        </Text>
+        <Text fontWeight="bold">
+          <Text mr="s" inlineBlock>
+            {ABOUT_ME.AGE.value}
+          </Text>
+          <Text inlineBlock>{t('years_old')}</Text>
+        </Text>
+        <Text>
+          <Text mr="s" color="complementaryDark" inlineBlock>
+            <Text my="s" mr="s" fontWeight="bold">
+              ☀️{t(ABOUT_ME.ZODIAC.value as string)}
+            </Text>
+            <Text my="s" mr="s" fontWeight="bold">
+              🌙 {t(ABOUT_ME.ZODIAC.value as string)}
+            </Text>
+            <Text mr="xs" fontWeight="bold" inlineBlock>
+              AC {t(ABOUT_ME.ZODIAC.extra as string)}
+            </Text>
+          </Text>
+        </Text>
+        {ABOUT_ME.PERSONAL.map(fact =>
+          fact.link ? (
+            <Link
+              href={fact.link}
+              target="_blank"
+              my="s"
+              key={fact.translationKey}
+            >
+              <HoverableText>{t(fact.translationKey as string)}</HoverableText>
+            </Link>
+          ) : (
+            <Text my="s" key={fact.translationKey}>
+              {t(fact.translationKey as string)}
+            </Text>
+          ),
+        )}
+        <Text my="s">{t(ABOUT_ME.DRIVING.translationKey as string)}</Text>
+      </List>
       <BottomDivider />
     </Box>
   )
