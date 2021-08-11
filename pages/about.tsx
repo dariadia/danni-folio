@@ -193,9 +193,9 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       <Avatar mx="auto" mb="l" size="elephant">
         <img src="assets/photo-me.png" alt={t('about:photo')} />
       </Avatar>
-      <HeadingInBox text={t('about:career')} />
+      <HeadingInBox text={t('about:career')} textTransform />
       <Flex mb="m" flexDirection="column-reverse">
-        {ABOUT_ME.CARRER.map(job => {
+        {ABOUT_ME.CAREER.map(job => {
           const { translationKey, start, finish, company, link } = job
           return (
             <Flex key={translationKey} my="s" justifyContent="space-between">
@@ -225,7 +225,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           )
         })}
       </Flex>
-      <HeadingInBox text={t('about:education')} />
+      <HeadingInBox text={t('about:education')} textTransform />
       <Flex flexDirection="column-reverse">
         <EducationItem
           {...{
@@ -254,7 +254,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
         />
         <EducationItem
           {...{
-            name: EDUCATION.FURTHER_EDUCATION.value,
+            name: EDUCATION.FURTHER_EDUCATION.value as string,
             locale,
             start: EDUCATION.FURTHER_EDUCATION.start,
             finish: EDUCATION.FURTHER_EDUCATION.finish,
@@ -279,7 +279,7 @@ const EducationItem = ({
   name: string
   locale: Locale
   start: string
-  finish: string
+  finish?: string
   link?: string
   location?: string
 }) => (
@@ -303,7 +303,8 @@ const EducationItem = ({
     </Box>
     <Text ml="xl" textAlign="right">
       {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
-      {new Date(finish).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}
+      {finish &&
+        new Date(finish).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}
     </Text>
   </Flex>
 )
@@ -321,20 +322,39 @@ const PersonalDetails = ({ locale }: { locale: Locale }) => {
 }
 
 const SkillsDetails = () => {
-  const { t } = useTranslation(['about'])
+  const { t } = useTranslation(['about', 'languages'])
   return (
     <Box p="m">
-      <HeadingInBox text={t('technical')} />
-      <HeadingInBox text={t('languages')} />
+      <HeadingInBox text={t('about:technical')} textTransform />
+      {ABOUT_ME.LANGUAGES.map(language => (
+        <Box key={language.translationKey}>
+          <Text>{t(`${language.translationKey}`)}</Text>
+          {language.levelKey ? (
+            <Text>{t(`${language.levelKey}`)}</Text>
+          ) : (
+            <Text>{language.level}</Text>
+          )}
+        </Box>
+      ))}
+      <HeadingInBox text={t('about:languages')} />
     </Box>
   )
 }
 
-const HeadingInBox = ({ text }: { text: string }) => (
+const HeadingInBox = ({
+  text,
+  textTransform,
+}: {
+  text: string
+  textTransform?: boolean
+}) => (
   <Text
     bg="complementaryDark"
     mb="s"
-    sx={{ textTransform: 'capitalize', textAlign: 'center' }}
+    sx={{
+      textTransform: textTransform ? 'capitalize' : 'none',
+      textAlign: 'center',
+    }}
     as="h4"
   >
     {text}
