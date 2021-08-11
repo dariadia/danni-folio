@@ -23,5 +23,10 @@
   "master": "near native / fluent",
   "native": "native speaker",
   "driving_licence": "driving licence",
-  "nonbinary": "non-binary"
+  "nonbinary": "non-binary",
+  "vegetarian": "vegetarian",
+  "birthday": "birthday",
+  "years_old": "years old",
+  "gemini": "Gemini",
+  "leo": "Leo"
 }
