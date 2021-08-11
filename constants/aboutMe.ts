@@ -102,3 +102,49 @@ export const ABOUT_ME: AboutMe = {
   PERSONAL: { translationKey: 'nonbinary' },
   DRIVING: { translationKey: 'driving_licence' },
 } as const
+
+type Skills = {
+  [key: string]: {
+    variants: readonly string[]
+    emoji?: string
+  }
+}
+
+export const SKILLS: Skills = {
+  JavaScript: {
+    variants: ['React.JS', 'Next.JS', 'TypeScript', 'Node.JS'],
+    emoji: '🟨',
+  },
+  'React Tools': {
+    variants: ['Redux', 'SWR', 'React Select', 'i18next'],
+    emoji: '🌐',
+  },
+  HTML: {
+    variants: ['HTML5'],
+    emoji: '🧱',
+  },
+  CSS: {
+    variants: ['SCSS', 'SASS', 'Stylus'],
+    emoji: '🎨',
+  },
+  Tools: {
+    variants: ['ESLint', 'Babel', 'Webpack', 'Gulp'],
+    emoji: '🛠',
+  },
+  Testing: {
+    variants: ['Jest', 'Cypress'],
+    emoji: '🧪',
+  },
+  Extra: {
+    variants: [
+      'Hugo',
+      'Go',
+      'MySQL',
+      'PostgreSQL',
+      'Jenkins',
+      'Figma',
+      'Adobe Photoshop',
+    ],
+    emoji: '🟣',
+  },
+} as const
