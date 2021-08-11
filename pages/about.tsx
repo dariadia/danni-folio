@@ -343,6 +343,7 @@ const SkillsDetails = () => {
       >
         {getAllSkills()}
       </List>
+      <Box mb="m" />
       <HeadingInBox text={t('about:languages')} />
       <List>
         {ABOUT_ME.LANGUAGES.map(language => (
@@ -388,11 +389,21 @@ const getAllSkills = () => {
           {skill}
         </Text>
         <List>
-          {skillVariants.map(variant => (
-            <Text my="s" key={variant}>
-              {SKILLS[skill].emoji} {variant}
-            </Text>
-          ))}
+          {skillVariants.map(variant => {
+            const { name, link } = variant
+            return (
+              <Text my="s" key={name}>
+                {SKILLS[skill].emoji}{' '}
+                {link ? (
+                  <Link href={link} target="_blank" inlineBlock>
+                    <HoverableText>{name}</HoverableText>
+                  </Link>
+                ) : (
+                  <Text inlineBlock>{name}</Text>
+                )}
+              </Text>
+            )
+          })}
         </List>
       </Box>,
     )
