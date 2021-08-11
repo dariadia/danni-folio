@@ -124,6 +124,24 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
         >
           <List>
             <Details
+              withMarker={{ closed: '👋🏽', open: '🙌🏽' }}
+              summary={
+                <HoverableText inlineBlock>
+                  <HeadingH3
+                    sx={{
+                      textTransform: 'uppercase',
+                      fontSize: `${baseTheme.space.xl}px`,
+                    }}
+                  >
+                    {t('about:skills')}
+                  </HeadingH3>
+                </HoverableText>
+              }
+            >
+              {locale && <SkillsDetails />}
+            </Details>
+            <Box mb="xxl" />
+            <Details
               withMarker={{ closed: '🧑🏽‍💻', open: '🦹🏽' }}
               summary={
                 <HoverableText inlineBlock>
@@ -175,15 +193,8 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       <Avatar mx="auto" mb="l" size="elephant">
         <img src="assets/photo-me.png" alt={t('about:photo')} />
       </Avatar>
-      <Text
-        bg="complementaryDark"
-        mb="s"
-        sx={{ textTransform: 'capitalize', textAlign: 'center' }}
-        as="h4"
-      >
-        {t('about:career')}
-      </Text>
-      <Flex flexDirection="column-reverse">
+      <HeadingInBox text={t('about:career')} />
+      <Flex mb="m" flexDirection="column-reverse">
         {ABOUT_ME.CARRER.map(job => {
           const { translationKey, start, finish, company, link } = job
           return (
@@ -214,15 +225,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           )
         })}
       </Flex>
-      <Text
-        mt="l"
-        mb="s"
-        bg="complementaryDark"
-        sx={{ textTransform: 'capitalize', textAlign: 'center' }}
-        as="h4"
-      >
-        {t('about:education')}
-      </Text>
+      <HeadingInBox text={t('about:education')} />
       <Flex flexDirection="column-reverse">
         <EducationItem
           {...{
@@ -316,6 +319,27 @@ const PersonalDetails = ({ locale }: { locale: Locale }) => {
     </Box>
   )
 }
+
+const SkillsDetails = () => {
+  const { t } = useTranslation(['about'])
+  return (
+    <Box p="m">
+      <HeadingInBox text={t('technical')} />
+      <HeadingInBox text={t('languages')} />
+    </Box>
+  )
+}
+
+const HeadingInBox = ({ text }: { text: string }) => (
+  <Text
+    bg="complementaryDark"
+    mb="s"
+    sx={{ textTransform: 'capitalize', textAlign: 'center' }}
+    as="h4"
+  >
+    {text}
+  </Text>
+)
 
 AboutPage.Layout = ({ children, ...props }) => (
   <MainLayout {...props}>{children}</MainLayout>
