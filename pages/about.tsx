@@ -204,7 +204,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
                 {t(`about:${translationKey}`)}
                 {link ? (
                   <Link href={link} target="_blank">
-                    <HoverableText sx={{ fontWeight: 'normal' }}>
+                    <HoverableText color="complementaryDark">
                       {company}
                     </HoverableText>
                   </Link>
@@ -301,7 +301,11 @@ const EducationItem = ({
           {name}
         </Text>
       )}
-      {location && <Text>{location}</Text>}
+      {location && (
+        <Text sx={{ fontWeight: 'bold' }} color="complementaryDark">
+          {location}
+        </Text>
+      )}
     </Box>
     <Text ml="xl" textAlign="right">
       {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
