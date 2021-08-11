@@ -29,7 +29,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
   return (
     <MediaContextProvider>
       <Media greaterThanOrEqual="tablet">
-        <Link href={isContentsPage ? '/' : CONTENTS} passHref>
+        <Link href={isContentsPage ? '/' : `/${CONTENTS}`} passHref>
           <motion.a
             style={{
               textDecoration: 'none',
@@ -49,7 +49,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
         </Link>
       </Media>
       <Media lessThan="tablet">
-        <Link href={isContentsPage ? '/' : CONTENTS} passHref>
+        <Link href={isContentsPage ? '/' : `/${CONTENTS}`} passHref>
           <motion.a
             style={{
               textDecoration: 'none',

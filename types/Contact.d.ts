@@ -1,6 +1,7 @@
 export interface Contact {
   translationKey?: string
-  value?: string
+  value?: string | number
+  extra?: string
   link?: string
   hintKey?: string
 }

@@ -11,7 +11,7 @@ export const GoToMainButton: React.FC<ConstrainedBoxProps> = () => {
 
   return (
     <Button
-      activeColor="complementaryLight"
+      activeColour="complementaryLight"
       bg="complementaryLight"
       color="white"
       p="m"

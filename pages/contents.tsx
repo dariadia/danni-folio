@@ -20,6 +20,8 @@ import {
 import { MainLayout } from '@/components/layouts'
 import { SelfAvatar } from '@/components'
 
+import { ABOUT, CONTACTS } from 'constants/locations'
+
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
 const SelfAvatarWithMotion = () => (
@@ -32,7 +34,7 @@ const SelfAvatarWithMotion = () => (
           style={{
             height: 'fit-content',
             position: 'absolute',
-            left: `-${baseTheme.space.xxl}px`,
+            left: `-${baseTheme.space.s}px`,
             top: `-${baseTheme.space.xxxl}px`,
           }}
           initial={{
@@ -106,7 +108,7 @@ const SelfAvatarWithMotion = () => (
 const Greeting = () => {
   const { t } = useTranslation(['introduction'])
 
-  const GreetingX = baseTheme.space.elephant * 2
+  const GreetingX = baseTheme.space.dinosaur * 1.1
 
   return (
     <MediaContextProvider>
@@ -146,7 +148,7 @@ const IntroSection = () => {
   return (
     <MediaContextProvider>
       <Media greaterThanOrEqual="tablet">
-        <Box px="s" mt="xxxl" as="section">
+        <Box px="xl" mt="xxxl" as="section">
           <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
@@ -245,36 +247,43 @@ const IntroSection = () => {
   )
 }
 
-const ContentsPage: Page<SinglePageProps> = () => (
-  <>
-    <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
-      <SelfAvatarWithMotion />
-      <Greeting />
-      <IntroSection />
-    </Box>
-    <Flex
-      as="section"
-      pl="xl"
-      pr="s"
-      py="s"
-      flexDirection="column"
-      justifyContent="center"
-      sx={{ boxShadow: baseTheme.shadows.low, textAlign: 'center' }}
-    >
-      <HeadingH3 as="h2" my="m" color="complementaryDark">
-        Contents
-      </HeadingH3>
-      <List liSx={{ margin: `${baseTheme.space.m}px` }}>
-        <Link href="#" passHref>
-          <HoverableText variant="bodyMd">Some page........ 1</HoverableText>
-        </Link>
-        <Link href="#" passHref>
-          <HoverableText variant="bodyMd">Some page......... 2</HoverableText>
-        </Link>
-      </List>
-    </Flex>
-  </>
-)
+const ContentsPage: Page<SinglePageProps> = () => {
+  const { t } = useTranslation(['common'])
+  return (
+    <>
+      <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
+        <SelfAvatarWithMotion />
+        <Greeting />
+        <IntroSection />
+      </Box>
+      <Flex
+        as="section"
+        pl="xl"
+        pr="s"
+        py="s"
+        flexDirection="column"
+        justifyContent="center"
+        sx={{ boxShadow: baseTheme.shadows.low, textAlign: 'center' }}
+      >
+        <HeadingH3 as="h2" my="m" color="complementaryDark">
+          Contents
+        </HeadingH3>
+        <List liSx={{ margin: `${baseTheme.space.m}px` }}>
+          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
+            <Link href={ABOUT} passHref>
+              <HoverableText variant="bodyMd">{t('about')}</HoverableText>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
+            <Link href={CONTACTS} passHref>
+              <HoverableText variant="bodyMd">{t('contacts')}</HoverableText>
+            </Link>
+          </motion.div>
+        </List>
+      </Flex>
+    </>
+  )
+}
 
 ContentsPage.Layout = ({ children, ...props }) => (
   <MainLayout {...props}>{children}</MainLayout>
