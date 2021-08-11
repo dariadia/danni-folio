@@ -18,6 +18,10 @@
   "grants": "grants and awards",
   "presidential_grant": "Russian Federation Presidential research grant",
   "languages": "I speak...",
+  "beginner": "beginner",
+  "intermediate": "intermediate",
+  "master": "near native / fluent",
+  "native": "native speaker",
   "driving_licence": "driving licence",
   "nonbinary": "non-binary"
 }
