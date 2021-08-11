@@ -11,7 +11,7 @@ type AboutMe = {
   readonly GRANTS: AboutMeEvent
   readonly LANGUAGES: readonly Language[]
   readonly PERSONAL: readonly AboutMeFact[]
-  readonly DRIVING: AboutMeFact
+  readonly HOBBIES: readonly AboutMeFact[]
 }
 
 interface AboutMeFact {
@@ -19,6 +19,7 @@ interface AboutMeFact {
   readonly translationKey?: string
   readonly extra?: string
   readonly link?: string
+  readonly emoji?: string
 }
 
 interface AboutMeEvent extends AboutMeFact {
@@ -115,11 +116,22 @@ export const ABOUT_ME: AboutMe = {
     {
       translationKey: 'wiccan',
       link: 'https://www.history.com/topics/religion/wicca/',
+      emoji: '🔮',
     },
-    { translationKey: 'nonbinary' },
-    { translationKey: 'vegetarian' },
+    { translationKey: 'nonbinary', emoji: '🏳️‍🌈' },
+    { translationKey: 'vegetarian', emoji: '🥦' },
+    { translationKey: 'driving_licence', emoji: '🚗' },
   ],
-  DRIVING: { translationKey: 'driving_licence' },
+  HOBBIES: [
+    { translationKey: 'astrology', emoji: '🌌' },
+    { translationKey: 'bake', emoji: '🥨' },
+    { translationKey: 'algorithms', emoji: '🧮' },
+    { translationKey: 'craft', emoji: '🧶' },
+    { translationKey: 'archery', emoji: '🏹' },
+    { translationKey: 'yoga', emoji: '🧘🏽' },
+    { translationKey: 'read', emoji: '📚' },
+    { translationKey: 'write_fiction', emoji: '✍🏽' },
+  ],
 } as const
 
 type Skills = {

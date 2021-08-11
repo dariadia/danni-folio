@@ -350,7 +350,7 @@ const PersonalDetails = () => {
           </Text>
           <Text inlineBlock>{t('years_old')}</Text>
         </Text>
-        <Text>
+        <Text pb="m">
           <Text mr="s" color="complementaryDark" inlineBlock>
             <Text my="s" mr="s" fontWeight="bold">
               ☀️{t(ABOUT_ME.ZODIAC.value as string)}
@@ -363,23 +363,33 @@ const PersonalDetails = () => {
             </Text>
           </Text>
         </Text>
-        {ABOUT_ME.PERSONAL.map(fact =>
-          fact.link ? (
-            <Link
-              href={fact.link}
-              target="_blank"
-              my="s"
-              key={fact.translationKey}
-            >
-              <HoverableText>{t(fact.translationKey as string)}</HoverableText>
+        {ABOUT_ME.PERSONAL.map(fact => {
+          const { link, translationKey, emoji } = fact
+          return link ? (
+            <Link href={link} target="_blank" my="s" key={translationKey}>
+              <HoverableText>
+                {t(translationKey as string)} {emoji}
+              </HoverableText>
             </Link>
           ) : (
-            <Text my="s" key={fact.translationKey}>
-              {t(fact.translationKey as string)}
+            <Text my="s" key={translationKey}>
+              {t(translationKey as string)} {emoji}
             </Text>
-          ),
-        )}
-        <Text my="s">{t(ABOUT_ME.DRIVING.translationKey as string)}</Text>
+          )
+        })}
+        <Text
+          color="complementaryDark"
+          sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}
+          pt="m"
+        >
+          {t('hobbies')}
+        </Text>
+        {ABOUT_ME.HOBBIES.map(hobby => (
+          <Text my="s" key={hobby.translationKey}>
+            {hobby.emoji}
+            {t(hobby.translationKey as string)}
+          </Text>
+        ))}
       </List>
       <BottomDivider />
     </Box>
