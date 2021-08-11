@@ -23,7 +23,7 @@ import {
 import { MainLayout } from '@/components/layouts'
 import { Avatar } from '@/components'
 
-import { ABOUT_ME } from 'constants/aboutMe'
+import { ABOUT_ME, SKILLS } from 'constants/aboutMe'
 import { DATE_OPTIONS } from 'constants/dates'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
@@ -333,6 +333,16 @@ const SkillsDetails = () => {
   return (
     <Box p="m">
       <HeadingInBox text={t('about:technical')} textTransform />
+      <List
+        display="grid"
+        sx={{
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gridColumnGap: `${baseTheme.space.xl}px`,
+          gridRowGap: `${baseTheme.space.s}px`,
+        }}
+      >
+        {getAllSkills()}
+      </List>
       <HeadingInBox text={t('about:languages')} />
       <List>
         {ABOUT_ME.LANGUAGES.map(language => (
@@ -365,6 +375,30 @@ const SkillsDetails = () => {
       <BottomDivider />
     </Box>
   )
+}
+
+const getAllSkills = () => {
+  const skillNodesArray = []
+
+  for (const skill in SKILLS) {
+    const skillVariants = SKILLS[skill].variants
+    skillNodesArray.push(
+      <Box px="l" key={skill} my="m">
+        <Text color="complementaryDark" fontWeight="bold" inlineBlock>
+          {skill}
+        </Text>
+        <List>
+          {skillVariants.map(variant => (
+            <Text my="s" key={variant}>
+              {SKILLS[skill].emoji} {variant}
+            </Text>
+          ))}
+        </List>
+      </Box>,
+    )
+  }
+
+  return skillNodesArray
 }
 
 const HeadingInBox = ({
