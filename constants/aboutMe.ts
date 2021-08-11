@@ -105,45 +105,73 @@ export const ABOUT_ME: AboutMe = {
 
 type Skills = {
   [key: string]: {
-    variants: readonly string[]
+    variants: readonly Skill[]
     emoji?: string
   }
 }
 
+type Skill = {
+  name: string
+  link: string
+}
+
 export const SKILLS: Skills = {
   JavaScript: {
-    variants: ['React.JS', 'Next.JS', 'TypeScript', 'Node.JS'],
+    variants: [
+      { name: 'React.JS', link: 'https://reactjs.org/' },
+      { name: 'Next.JS', link: 'https://nextjs.org/' },
+      { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
+      { name: 'Node.JS', link: 'https://nodejs.org/' },
+    ],
     emoji: '🟨',
   },
   'React Tools': {
-    variants: ['Redux', 'SWR', 'React Select', 'i18next'],
+    variants: [
+      { name: 'Redux', link: 'https://redux.js.org/' },
+      { name: 'SWR', link: 'https://swr.vercel.app/' },
+      { name: 'Styled', link: 'https://styled-components.com/' },
+      { name: 'React Select', link: 'https://react-select.com/' },
+      { name: 'i18next', link: 'https://www.i18next.com/' },
+    ],
     emoji: '🌐',
   },
   HTML: {
-    variants: ['HTML5'],
+    variants: [{ name: 'HTML5', link: 'https://html.spec.whatwg.org/' }],
     emoji: '🧱',
   },
   CSS: {
-    variants: ['SCSS', 'SASS', 'Stylus'],
+    variants: [
+      { name: 'SCSS', link: 'https://sass-lang.com/' },
+      { name: 'SASS', link: 'https://sass-lang.com/' },
+      { name: 'Stylus', link: 'https://stylus-lang.com/' },
+    ],
     emoji: '🎨',
   },
   Tools: {
-    variants: ['ESLint', 'Babel', 'Webpack', 'Gulp'],
+    variants: [
+      { name: 'ESLint', link: 'https://eslint.org/' },
+      { name: 'Babel', link: 'https://babeljs.io/' },
+      { name: 'Webpack', link: 'https://webpack.js.org/' },
+      { name: 'Gulp', link: 'https://gulpjs.com/' },
+    ],
     emoji: '🛠',
   },
   Testing: {
-    variants: ['Jest', 'Cypress'],
+    variants: [
+      { name: 'Jest', link: 'https://jestjs.io/' },
+      { name: 'Cypress', link: 'https://www.cypress.io/' },
+    ],
     emoji: '🧪',
   },
   Extra: {
     variants: [
-      'Hugo',
-      'Go',
-      'MySQL',
-      'PostgreSQL',
-      'Jenkins',
-      'Figma',
-      'Adobe Photoshop',
+      { name: 'Hugo', link: 'https://gohugo.io/' },
+      { name: 'Go', link: 'https://golang.org/' },
+      { name: 'MySQL', link: 'https://www.mysql.com/' },
+      { name: 'PostgreSQL', link: 'https://www.postgresql.org/' },
+      { name: 'Jenkins', link: 'https://www.jenkins.io/' },
+      { name: 'Figma', link: 'https://www.figma.com/' },
+      { name: 'Photoshop', link: 'https://www.photoshop.com/' },
     ],
     emoji: '🟣',
   },
