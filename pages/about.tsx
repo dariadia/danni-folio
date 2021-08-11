@@ -194,7 +194,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
         <img src="assets/photo-me.png" alt={t('about:photo')} />
       </Avatar>
       <HeadingInBox text={t('about:career')} textTransform />
-      <List sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
+      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
         {ABOUT_ME.CAREER.map(job => {
           const { translationKey, start, finish, company, link } = job
           return (
@@ -227,7 +227,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       </List>
       <Box mb="m" />
       <HeadingInBox text={t('about:education')} textTransform />
-      <List sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
+      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
         <EducationItem
           {...{
             name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
@@ -264,7 +264,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           }}
         />
       </List>
-      <Box mt="l" mb="s" bg="complementaryDark" height="0.5rem" />
+      <BottomDivider />
     </Box>
   )
 }
@@ -318,26 +318,50 @@ const PersonalDetails = ({ locale }: { locale: Locale }) => {
         <img src="assets/photo-me-yoga.png" alt={t('about:photo')} />
       </Avatar>
       <Text>{locale}</Text>
+      <BottomDivider />
     </Box>
   )
 }
+
+const BottomDivider: React.FC = () => (
+  <Box mt="l" mb="s" bg="complementaryDark" height="0.5rem" />
+)
 
 const SkillsDetails = () => {
   const { t } = useTranslation(['about', 'languages'])
   return (
     <Box p="m">
       <HeadingInBox text={t('about:technical')} textTransform />
-      {ABOUT_ME.LANGUAGES.map(language => (
-        <Box key={language.translationKey}>
-          <Text>{t(`${language.translationKey}`)}</Text>
-          {language.levelKey ? (
-            <Text>{t(`${language.levelKey}`)}</Text>
-          ) : (
-            <Text>{language.level}</Text>
-          )}
-        </Box>
-      ))}
       <HeadingInBox text={t('about:languages')} />
+      <List>
+        {ABOUT_ME.LANGUAGES.map(language => (
+          <Text my="m" mx="auto" key={language.translationKey}>
+            <Text mr="s" fontWeight="bold" inlineBlock>
+              {t(`languages:${language.translationKey}`)}
+            </Text>
+            {language.level ? (
+              <>
+                <Text
+                  mr="s"
+                  fontWeight="bold"
+                  color="complementaryDark"
+                  inlineBlock
+                >
+                  {language.level}
+                </Text>
+                <Text mr="m" inlineBlock>
+                  {t(`languages:${language.levelKey}`)}
+                </Text>
+              </>
+            ) : (
+              <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+                {t(`languages:${language.levelKey}`)}
+              </Text>
+            )}
+          </Text>
+        ))}
+      </List>
+      <BottomDivider />
     </Box>
   )
 }
