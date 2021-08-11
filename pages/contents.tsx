@@ -34,7 +34,7 @@ const SelfAvatarWithMotion = () => (
           style={{
             height: 'fit-content',
             position: 'absolute',
-            left: `-${baseTheme.space.xxl}px`,
+            left: `-${baseTheme.space.s}px`,
             top: `-${baseTheme.space.xxxl}px`,
           }}
           initial={{
@@ -108,7 +108,7 @@ const SelfAvatarWithMotion = () => (
 const Greeting = () => {
   const { t } = useTranslation(['introduction'])
 
-  const GreetingX = baseTheme.space.elephant * 2
+  const GreetingX = baseTheme.space.dinosaur * 1.1
 
   return (
     <MediaContextProvider>
@@ -148,7 +148,7 @@ const IntroSection = () => {
   return (
     <MediaContextProvider>
       <Media greaterThanOrEqual="tablet">
-        <Box px="s" mt="xxxl" as="section">
+        <Box px="xl" mt="xxxl" as="section">
           <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
