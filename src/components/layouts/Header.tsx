@@ -10,7 +10,15 @@ import { MediaContextProvider, Media } from 'utils/media'
 import { CONTENTS } from 'constants/locations'
 
 import Link from 'next/link'
-import { baseTheme, Text, Box, Button, ThemeType } from 'danni-s-design-system'
+import {
+  baseTheme,
+  Text,
+  Box,
+  Button,
+  ThemeType,
+  List,
+  Flex,
+} from 'danni-s-design-system'
 import { GoToMainButton } from '..'
 
 import { LanguageAvailable, LANGUAGES } from 'constants/languages'
@@ -87,7 +95,6 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
 }
 
 const StyledLanguageButton = styled(Button).attrs({
-  m: 'xs',
   border: '1px solid accentLightest',
   borderOnHover: 'accentDark',
   bg: 'accentDark',
@@ -106,11 +113,43 @@ const StyledLanguageButton = styled(Button).attrs({
 const LanguageButton = ({ locale }: { locale: Locale }) => {
   const theme = useContext(ThemeContext) as ThemeType
   return (
-    <Link href="" locale={locale}>
-      <StyledLanguageButton theme={theme}>{locale}</StyledLanguageButton>
-    </Link>
+    <>
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="tablet">
+          <Link href="" locale={locale} passHref>
+            <StyledLanguageButton m="xs" theme={theme}>
+              {locale}
+            </StyledLanguageButton>
+          </Link>
+        </Media>
+        <Media lessThan="tablet">
+          <Link href="" locale={locale} passHref>
+            <StyledLanguageButton p="m" mr="l" theme={theme}>
+              {locale}
+            </StyledLanguageButton>
+          </Link>
+        </Media>
+      </MediaContextProvider>
+    </>
   )
 }
+
+const AvailableLocalesList = ({
+  locales,
+  currentLocale,
+}: {
+  locales: Locale[]
+  currentLocale: Locale
+}) => (
+  <List direction="row">
+    {locales.map(
+      locale =>
+        locale !== currentLocale && (
+          <LanguageButton key={locale} locale={locale} />
+        ),
+    )}
+  </List>
+)
 
 export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
   const { t } = useTranslation(['languages', 'common'])
@@ -143,37 +182,43 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
     <StyledHeader
       onClick={() => toggleLanguageControls(!languageControlsShown)}
     >
-      {languageControlsShown ? (
-        <Box mx="m">
-          <Text mr="xs" color="accentLightest" inlineBlock>
-            {t('common:language_detected')}{' '}
-            <Text fontWeight="bold" inlineBlock>
-              {currentLanguage}
-            </Text>
-            ?
-          </Text>
-          <Text mr="xs" color="accentLightest" inlineBlock>
-            {t('common:languages_available')}
-          </Text>
-          {locales.map(
-            locale =>
-              locale !== currentLocale && (
-                <LanguageButton key={locale} locale={locale} />
-              ),
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="tablet">
+          {languageControlsShown ? (
+            <Flex mx="m" alignItems="center">
+              <Text mr="xs" color="accentLightest" inlineBlock>
+                {t('common:language_detected')}{' '}
+                <Text fontWeight="bold" inlineBlock>
+                  {currentLanguage}
+                </Text>
+                ?
+              </Text>
+              <Text mr="xs" color="accentLightest" inlineBlock>
+                {t('common:languages_available')}
+              </Text>
+              <AvailableLocalesList {...{ locales, currentLocale }} />
+            </Flex>
+          ) : (
+            !loading && <AvailableLocalesList {...{ locales, currentLocale }} />
           )}
-        </Box>
-      ) : (
-        !loading && (
-          <Box mx="m">
-            {locales.map(
-              locale =>
-                locale !== currentLocale && (
-                  <LanguageButton key={locale} locale={locale} />
-                ),
-            )}
-          </Box>
-        )
-      )}
+        </Media>
+        <Media lessThan="tablet">
+          {languageControlsShown ? (
+            <Box m="m">
+              <Text mr="xs" mb="m" color="accentLightest" inlineBlock>
+                {t('common:language_detected')}{' '}
+                <Text fontWeight="bold" inlineBlock>
+                  {currentLanguage}
+                </Text>
+                ? {t('common:languages_available')}
+              </Text>
+              <AvailableLocalesList {...{ locales, currentLocale }} />
+            </Box>
+          ) : (
+            !loading && <AvailableLocalesList {...{ locales, currentLocale }} />
+          )}
+        </Media>
+      </MediaContextProvider>
       {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
     </StyledHeader>
   )
