@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { useRouter } from 'next/dist/client/router'
+import Router, { useRouter } from 'next/dist/client/router'
 import { MediaContextProvider, Media } from 'utils/media'
 
-import { Grid, Box, baseTheme } from 'danni-s-design-system'
+import { Grid, Box, baseTheme, Loader } from 'danni-s-design-system'
 import { Header, Footer } from '.'
 
 import { Layout, Locale } from 'types'
@@ -41,6 +41,20 @@ const getGridSx = ({
 
 export const MainLayout: React.FC<Layout> = ({ children }) => {
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
+  const startLoading = () => setLoading(true)
+  const stopLoading = () => setLoading(false)
+
+  useEffect(() => {
+    Router.events.on('routeChangeStart', startLoading)
+    Router.events.on('routeChangeComplete', stopLoading)
+    return () => {
+      Router.events.off('routeChangeStart', startLoading)
+      Router.events.off('routeChangeComplete', stopLoading)
+    }
+  }, [])
+
   const isIndexPage = router.route === '/'
 
   const { locale, locales } = router
@@ -59,7 +73,19 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
             bg="white"
             sx={getGridSx({ isIndexPage, isDesktop: true })}
           >
-            {children}
+            {loading && !isIndexPage ? (
+              <Loader
+                color="accentDark"
+                sx={{
+                  position: 'absolute',
+                  left: `calc(50% - ${baseTheme.space.elephant}px)`,
+                  top: `calc(50% - ${baseTheme.space.elephant}px)`,
+                  zIndex: baseTheme.zIndices.above,
+                }}
+              />
+            ) : (
+              children
+            )}
           </Grid>
         </Media>
         <Media lessThan="desktop">
@@ -69,7 +95,19 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
             bg="white"
             sx={getGridSx({ isIndexPage, isDesktop: false })}
           >
-            {children}
+            {loading && !isIndexPage ? (
+              <Loader
+                color="accentDark"
+                sx={{
+                  position: 'absolute',
+                  left: `calc(50% - ${baseTheme.space.xxxl}px)`,
+                  top: `calc(50% - ${baseTheme.space.elephant}px)`,
+                  zIndex: baseTheme.zIndices.above,
+                }}
+              />
+            ) : (
+              children
+            )}
           </Grid>
         </Media>
       </MediaContextProvider>
