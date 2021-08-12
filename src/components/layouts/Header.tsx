@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useRouter } from 'next/dist/client/router'
 import { useTranslation } from 'next-i18next'
 
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
 import { MediaContextProvider, Media } from 'utils/media'
 import { CONTENTS } from 'constants/locations'
 
 import Link from 'next/link'
-import { baseTheme, Text, Box } from 'danni-s-design-system'
+import { baseTheme, Text, Box, Button, ThemeType } from 'danni-s-design-system'
 import { GoToMainButton } from '..'
 
 import { LanguageAvailable, LANGUAGES } from 'constants/languages'
@@ -85,11 +85,31 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
   )
 }
 
-const LanguageButton = ({ locale }: { locale: Locale }) => (
-  <Link href="/" locale={locale}>
-    <a>{locale}</a>
-  </Link>
-)
+const StyledLanguageButton = styled(Button).attrs({
+  m: 'xs',
+  border: '1px solid accentLightest',
+  borderOnHover: 'accentDark',
+  bg: 'accentDark',
+  color: 'accentLightest',
+  activeColour: 'accentLightest',
+  transition: 'slow',
+  inlineBlock: true,
+})`
+  text-transform: uppercase;
+  &:focus {
+    color: ${({ theme }) => theme.colours.accentLightest};
+    background: ${({ theme }) => theme.colours.complementaryLight};
+  }
+`
+
+const LanguageButton = ({ locale }: { locale: Locale }) => {
+  const theme = useContext(ThemeContext) as ThemeType
+  return (
+    <Link href="" locale={locale}>
+      <StyledLanguageButton theme={theme}>{locale}</StyledLanguageButton>
+    </Link>
+  )
+}
 
 export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
   const { t } = useTranslation(['languages', 'common'])
@@ -110,19 +130,25 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
     >
       {languageControlsShown && (
         <Box mx="m">
-          <Text color="accentLightest" inlineBlock>
+          <Text mr="xs" color="accentLightest" inlineBlock>
             {t('common:language_detected')}{' '}
             <Text fontWeight="bold" inlineBlock>
               {currentLanguage}
             </Text>
             ?
           </Text>
-          {locales.map(locale => (
-            <LanguageButton key={locale} locale={locale} />
-          ))}
-          {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
+          <Text mr="xs" color="accentLightest" inlineBlock>
+            {t('common:languages_available')}
+          </Text>
+          {locales.map(
+            locale =>
+              locale !== currentLocale && (
+                <LanguageButton key={locale} locale={locale} />
+              ),
+          )}
         </Box>
       )}
+      {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
     </StyledHeader>
   )
 }
