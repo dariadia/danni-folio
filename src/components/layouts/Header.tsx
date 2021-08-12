@@ -18,6 +18,7 @@ import {
   List,
   Flex,
   Popup,
+  Box,
 } from 'danni-s-design-system'
 import { GoToMainButton } from '..'
 
@@ -126,7 +127,12 @@ const LanguageButton = ({ locale }: { locale: Locale }) => {
         </Media>
         <Media lessThan="tablet">
           <Link href="" locale={locale} passHref>
-            <StyledLanguageButton p="m" mr="l" theme={theme}>
+            <StyledLanguageButton
+              my="l"
+              p="xl"
+              fontSize={`${baseTheme.space.xxl}px`}
+              theme={theme}
+            >
               {locale}
             </StyledLanguageButton>
           </Link>
@@ -143,14 +149,28 @@ const AvailableLocalesList = ({
   locales: Locale[]
   currentLocale: Locale
 }) => (
-  <List direction="row">
-    {locales.map(
-      locale =>
-        locale !== currentLocale && (
-          <LanguageButton key={locale} locale={locale} />
-        ),
-    )}
-  </List>
+  <MediaContextProvider>
+    <Media greaterThanOrEqual="tablet">
+      <List direction="row">
+        {locales.map(
+          locale =>
+            locale !== currentLocale && (
+              <LanguageButton key={locale} locale={locale} />
+            ),
+        )}
+      </List>
+    </Media>
+    <Media lessThan="tablet">
+      <List liSx={{ margin: 'auto', width: 'fit-content' }}>
+        {locales.map(
+          locale =>
+            locale !== currentLocale && (
+              <LanguageButton key={locale} locale={locale} />
+            ),
+        )}
+      </List>
+    </Media>
+  </MediaContextProvider>
 )
 
 export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
@@ -222,9 +242,21 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
             </Text>
           ) : (
             !loading && (
-              <Popup>
-                <AvailableLocalesList {...{ locales, currentLocale }} />
-              </Popup>
+              <>
+                <Box
+                  mx="m"
+                  height={`${baseTheme.space.elephant - baseTheme.space.s}px`}
+                />
+                <Popup height="100vh" p="xl">
+                  <Flex
+                    justifyContent="center"
+                    alignItems="center"
+                    height="100%"
+                  >
+                    <AvailableLocalesList {...{ locales, currentLocale }} />
+                  </Flex>
+                </Popup>
+              </>
             )
           )}
         </Media>
