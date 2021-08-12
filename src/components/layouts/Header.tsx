@@ -13,11 +13,11 @@ import Link from 'next/link'
 import {
   baseTheme,
   Text,
-  Box,
   Button,
   ThemeType,
   List,
   Flex,
+  Popup,
 } from 'danni-s-design-system'
 import { GoToMainButton } from '..'
 
@@ -46,7 +46,8 @@ type HeaderProps = {
 const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
   const ButtonXDesktop = baseTheme.space.xl
   const ButtonXMobile = baseTheme.space.s
-  const ButtonY = baseTheme.space.xxl
+  const ButtonYDesktop = baseTheme.space.xxl
+  const ButtonYMobile = 0
 
   return (
     <MediaContextProvider>
@@ -59,7 +60,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
               position: 'absolute',
               zIndex: baseTheme.zIndices.above,
               right: `-${ButtonXDesktop}px`,
-              top: `-${ButtonY}px`,
+              top: `-${ButtonYDesktop}px`,
             }}
             layoutId="navButton"
             initial={{ scale: 0.47 }}
@@ -77,9 +78,10 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
               textDecoration: 'none',
               height: 'fit-content',
               position: 'absolute',
+              marginTop: `${baseTheme.space.m}px`,
               zIndex: baseTheme.zIndices.above,
               right: `${ButtonXMobile}px`,
-              top: `-${ButtonY}px`,
+              top: `-${ButtonYMobile}px`,
             }}
             layoutId="navButton"
             initial={{ scale: 0.47 }}
@@ -204,18 +206,26 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
         </Media>
         <Media lessThan="tablet">
           {languageControlsShown ? (
-            <Box m="m">
-              <Text mr="xs" mb="m" color="accentLightest" inlineBlock>
-                {t('common:language_detected')}{' '}
-                <Text fontWeight="bold" inlineBlock>
-                  {currentLanguage}
-                </Text>
-                ? {t('common:languages_available')}
+            <Text mx="m" my="xxl" color="accentLightest" inlineBlock>
+              {t('common:language_detected')}{' '}
+              <Text fontWeight="bold" inlineBlock>
+                {currentLanguage}
               </Text>
-              <AvailableLocalesList {...{ locales, currentLocale }} />
-            </Box>
+              ?
+              <Text
+                ml="xs"
+                sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+                inlineBlock
+              >
+                {t('common:change')}
+              </Text>
+            </Text>
           ) : (
-            !loading && <AvailableLocalesList {...{ locales, currentLocale }} />
+            !loading && (
+              <Popup>
+                <AvailableLocalesList {...{ locales, currentLocale }} />
+              </Popup>
+            )
           )}
         </Media>
       </MediaContextProvider>
