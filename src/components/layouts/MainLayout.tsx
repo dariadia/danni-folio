@@ -17,7 +17,7 @@ const getGridSx = ({
 }) => {
   const baseProps = {
     maxHeight: `calc((100% - ${baseTheme.space.xxl * 2}px))`,
-    minHeight: '90vh',
+    minHeight: '86vh',
     boxShadow: baseTheme.shadows.bookLight,
     position: 'relative',
   }

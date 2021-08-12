@@ -6,7 +6,7 @@ import { baseTheme, HeadingH3, Button } from 'danni-s-design-system'
 
 import type { ConstrainedBoxProps } from 'danni-s-design-system'
 
-export const GoToMainButton: React.FC<ConstrainedBoxProps> = () => {
+export const GoToMainButton: React.FC<ConstrainedBoxProps> = ({ my }) => {
   const { t } = useTranslation(['common'])
 
   return (
@@ -15,7 +15,7 @@ export const GoToMainButton: React.FC<ConstrainedBoxProps> = () => {
       bg="complementaryLight"
       color="white"
       p="m"
-      my="l"
+      my={my}
       mx="auto"
       textAlign="center"
       transition="slow"
