@@ -1,45 +1,6 @@
+import { AboutMe } from 'types'
+
 const BIRTHDAY = '06.06.1997'
-
-type AboutMe = {
-  readonly BIRTHDAY: AboutMeFact
-  readonly AGE: AboutMeFact
-  readonly ZODIAC: AboutMeFact
-  readonly EDUCATION: {
-    [key: string]: AboutMeEvent
-  }
-  readonly CAREER: readonly Job[]
-  readonly GRANTS: AboutMeEvent
-  readonly LANGUAGES: readonly Language[]
-  readonly PERSONAL: readonly AboutMeFact[]
-  readonly HOBBIES: readonly AboutMeFact[]
-}
-
-interface AboutMeFact {
-  readonly value?: string | number
-  readonly translationKey?: string
-  readonly extra?: string
-  readonly link?: string
-  readonly emoji?: string
-}
-
-interface AboutMeEvent extends AboutMeFact {
-  readonly start: string
-  readonly finish?: string
-  readonly locationKey?: string
-  readonly countryKey?: string
-  readonly link?: string
-}
-
-interface Job extends AboutMeEvent {
-  readonly company: string
-}
-
-type Language = {
-  readonly translationKey: string
-  readonly level?: string
-  readonly levelKey: string
-  readonly emoji?: string
-}
 
 export const ABOUT_ME: AboutMe = {
   BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },
