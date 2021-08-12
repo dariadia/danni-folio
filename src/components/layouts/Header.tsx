@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+
 import { useRouter } from 'next/dist/client/router'
+import { useTranslation } from 'next-i18next'
+
 import styled from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -7,18 +10,28 @@ import { MediaContextProvider, Media } from 'utils/media'
 import { CONTENTS } from 'constants/locations'
 
 import Link from 'next/link'
-import { baseTheme, Box } from 'danni-s-design-system'
+import { baseTheme, Text, Box } from 'danni-s-design-system'
 import { GoToMainButton } from '..'
 
-const StyledHeader = styled('header')<{ controlsShown?: boolean }>`
+import { LanguageAvailable, LANGUAGES } from 'constants/languages'
+
+import { Locale } from 'types'
+
+const StyledHeader = styled('header')`
+  display: flex;
+  align-items: center;
   position: relative;
-  min-height: ${baseTheme.space.xxl}px;
+  min-height: ${baseTheme.space.xxxl}px;
   text-decoration: none;
-  text-transform: capitalize;
 `
 
 type ButtonProps = {
   isContentsPage: boolean
+}
+
+type HeaderProps = {
+  currentLocale: Locale
+  locales: Locale[]
 }
 
 const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
@@ -72,30 +85,44 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
   )
 }
 
-export const Header: React.FC = () => {
-  const [controlsShown, toggleControls] = useState(false)
+const LanguageButton = ({ locale }: { locale: Locale }) => (
+  <Link href="/" locale={locale}>
+    <a>{locale}</a>
+  </Link>
+)
+
+export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
+  const { t } = useTranslation(['languages', 'common'])
+
+  const [languageControlsShown, toggleLanguageControls] = useState(true)
+
   const router = useRouter()
   const isIndexPage = router.route === '/'
   const isContentsPage = router.route.includes(CONTENTS)
 
+  const currentLanguage = t(
+    `languages:${LANGUAGES[currentLocale as LanguageAvailable]}` as string,
+  )
+
   return (
-    <StyledHeader onClick={() => toggleControls(!controlsShown)}>
-      <Link href="/" locale="en-GB">
-        <a>en-GB</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="en-US">
-        <a>en-US</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="de">
-        <a>DE</a>
-      </Link>
-      <Box mr="s" inlineBlock />
-      <Link href="/" locale="ru">
-        <a>RU</a>
-      </Link>
-      {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
+    <StyledHeader
+      onClick={() => toggleLanguageControls(!languageControlsShown)}
+    >
+      {languageControlsShown && (
+        <Box mx="m">
+          <Text color="accentLightest" inlineBlock>
+            {t('common:language_detected')}{' '}
+            <Text fontWeight="bold" inlineBlock>
+              {currentLanguage}
+            </Text>
+            ?
+          </Text>
+          {locales.map(locale => (
+            <LanguageButton key={locale} locale={locale} />
+          ))}
+          {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
+        </Box>
+      )}
     </StyledHeader>
   )
 }
