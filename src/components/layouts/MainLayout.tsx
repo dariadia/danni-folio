@@ -6,7 +6,7 @@ import { MediaContextProvider, Media } from 'utils/media'
 import { Grid, Box, baseTheme } from 'danni-s-design-system'
 import { Header, Footer } from '.'
 
-import { Layout } from 'types'
+import { Layout, Locale } from 'types'
 
 const getGridSx = ({
   isDesktop,
@@ -43,9 +43,13 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
   const router = useRouter()
   const isIndexPage = router.route === '/'
 
+  const { locale, locales } = router
+
   return (
     <Box bg="darkest" sx={{ maxHeight: 'fit-content', minHeight: '100vh' }}>
-      <Header />
+      <Header
+        {...{ currentLocale: locale as Locale, locales: locales as Locale[] }}
+      />
       <MediaContextProvider>
         <Media greaterThanOrEqual="desktop">
           <Grid
