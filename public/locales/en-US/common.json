@@ -4,5 +4,7 @@
   "contacts": "Write to me!",
   "you_are_here": "you're here",
   "about": "About me",
-  "now": "now"
+  "now": "now",
+  "language_detected": "We see you prefer",
+  "languages_available": "You can also see the pages in"
 }

@@ -1,5 +1,7 @@
 {
   "english": "English",
+  "british": "British English",
+  "american": "American English",
   "german": "German",
   "russian": "Russian",
   "danish": "Danish"
