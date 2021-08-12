@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
-import { useRouter } from 'next/dist/client/router'
+import Router, { useRouter } from 'next/dist/client/router'
 import { useTranslation } from 'next-i18next'
 
 import styled, { ThemeContext } from 'styled-components'
@@ -18,6 +18,7 @@ import { LanguageAvailable, LANGUAGES } from 'constants/languages'
 import { Locale } from 'types'
 
 const StyledHeader = styled('header')`
+  cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
@@ -117,6 +118,20 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
   const [languageControlsShown, toggleLanguageControls] = useState(true)
 
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
+  const startLoading = () => setLoading(true)
+  const stopLoading = () => setLoading(false)
+
+  useEffect(() => {
+    Router.events.on('routeChangeStart', startLoading)
+    Router.events.on('routeChangeComplete', stopLoading)
+    return () => {
+      Router.events.off('routeChangeStart', startLoading)
+      Router.events.off('routeChangeComplete', stopLoading)
+    }
+  }, [])
+
   const isIndexPage = router.route === '/'
   const isContentsPage = router.route.includes(CONTENTS)
 
@@ -128,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
     <StyledHeader
       onClick={() => toggleLanguageControls(!languageControlsShown)}
     >
-      {languageControlsShown && (
+      {languageControlsShown ? (
         <Box mx="m">
           <Text mr="xs" color="accentLightest" inlineBlock>
             {t('common:language_detected')}{' '}
@@ -147,6 +162,17 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
               ),
           )}
         </Box>
+      ) : (
+        !loading && (
+          <Box mx="m">
+            {locales.map(
+              locale =>
+                locale !== currentLocale && (
+                  <LanguageButton key={locale} locale={locale} />
+                ),
+            )}
+          </Box>
+        )
       )}
       {!isIndexPage && <ButtonWithMotion isContentsPage={isContentsPage} />}
     </StyledHeader>
