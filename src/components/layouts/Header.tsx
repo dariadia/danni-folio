@@ -68,7 +68,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
             whileHover={{ scale: 0.5 }}
             whileTap={{ scale: 0.4, filter: 'brightness(0.8)' }}
           >
-            <GoToMainButton />
+            <GoToMainButton my="l" />
           </motion.a>
         </Link>
       </Media>
@@ -79,7 +79,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
               textDecoration: 'none',
               height: 'fit-content',
               position: 'absolute',
-              marginTop: `${baseTheme.space.m}px`,
+              marginTop: `${baseTheme.space.xxxl}px`,
               zIndex: baseTheme.zIndices.above,
               right: `${ButtonXMobile}px`,
               top: `-${ButtonYMobile}px`,
