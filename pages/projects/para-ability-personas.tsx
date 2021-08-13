@@ -1,11 +1,27 @@
 import React from 'react'
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
+import { usePersonasAPI } from '@/hooks/use-api'
+import { PERSONAS } from 'constants/apis'
+
+import { MainLayout } from '@/components/layouts'
+import { List } from 'danni-s-design-system'
+
+import type {
+  Locale,
+  Page,
+  SinglePage as SinglePageProps,
+  Personas,
+  Persona,
+} from 'types'
 
 const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
-  return <>hello world</>
+  let { data: personas } = usePersonasAPI({
+    url: PERSONAS,
+  })
+  personas = personas as Personas
+
+  return <List>{personas.map((persona: Persona) => persona.name)}</List>
 }
 
 export async function getStaticProps({
@@ -20,5 +36,9 @@ export async function getStaticProps({
     },
   }
 }
+
+ParaAbilityPersonasPage.Layout = ({ children, ...props }) => (
+  <MainLayout {...props}>{children}</MainLayout>
+)
 
 export default ParaAbilityPersonasPage
