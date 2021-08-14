@@ -15,12 +15,18 @@ import {
   HoverableText,
   List,
   Text,
+  Link as ExternalLink,
 } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
 import { SelfAvatar } from '@/components'
 
-import { ABOUT, CONTACTS } from 'constants/locations'
+import {
+  ABOUT,
+  CONTACTS,
+  PARA_ABILITY_PERSONAS,
+  PERSONAS_APP_ISSUES,
+} from 'constants/locations'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
@@ -270,14 +276,31 @@ const ContentsPage: Page<SinglePageProps> = () => {
         </HeadingH3>
         <List liSx={{ margin: `${baseTheme.space.m}px` }}>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={ABOUT} passHref>
+            <Link href={`/${ABOUT}`} passHref>
               <HoverableText variant="bodyMd">{t('about')}</HoverableText>
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={CONTACTS} passHref>
+            <Link href={`/${CONTACTS}`} passHref>
               <HoverableText variant="bodyMd">{t('contacts')}</HoverableText>
             </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
+            <Link href={`/${PARA_ABILITY_PERSONAS}`} passHref>
+              <HoverableText variant="bodyMd">
+                {t('personas_project')} 🚀 [WIP]
+              </HoverableText>
+            </Link>
+            <ExternalLink href={PERSONAS_APP_ISSUES} target="_blank">
+              <HoverableText
+                fontWeight="bold"
+                color="complementaryLight"
+                activeColour="complementaryDark"
+                variant="bodyMd"
+              >
+                ➠ {t('help_wanted')}
+              </HoverableText>
+            </ExternalLink>
           </motion.div>
         </List>
       </Flex>
