@@ -5,7 +5,8 @@ import { usePersonasAPI } from '@/hooks/use-api'
 import { PERSONAS } from 'constants/apis'
 
 import { MainLayout } from '@/components/layouts'
-import { List } from 'danni-s-design-system'
+import { List, Box, Loader } from 'danni-s-design-system'
+import { PersonaCard } from '@/components'
 
 import type {
   Locale,
@@ -16,12 +17,22 @@ import type {
 } from 'types'
 
 const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
-  let { data: personas } = usePersonasAPI({
+  // eslint-disable-next-line prefer-const
+  let { data: personas, error } = usePersonasAPI({
     url: PERSONAS,
   })
   personas = personas as Personas
 
-  return <List>{personas.map((persona: Persona) => persona.name)}</List>
+  if (!personas) return <Loader />
+  if (error) return <Box>⚠️</Box>
+
+  return (
+    <List>
+      {personas.map((persona: Persona) => (
+        <PersonaCard key={persona.id} persona={persona} />
+      ))}
+    </List>
+  )
 }
 
 export async function getStaticProps({

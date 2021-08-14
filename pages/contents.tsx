@@ -253,7 +253,7 @@ const IntroSection = () => {
   )
 }
 
-const ContentsPage: Page<SinglePageProps> = () => {
+const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common'])
   return (
     <>
@@ -288,10 +288,11 @@ const ContentsPage: Page<SinglePageProps> = () => {
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
             <Link href={`/${PARA_ABILITY_PERSONAS}`} passHref>
               <HoverableText variant="bodyMd">
-                {t('personas_project')} 🚀 [WIP]
+                {t('personas_project')} 🚀 [WIP] <br />{' '}
+                {locale !== 'en-GB' && locale !== 'en-US' && t('only_english')}
               </HoverableText>
             </Link>
-            <ExternalLink href={PERSONAS_APP_ISSUES} target="_blank">
+            <ExternalLink mt="s" href={PERSONAS_APP_ISSUES} target="_blank">
               <HoverableText
                 fontWeight="bold"
                 color="complementaryLight"
