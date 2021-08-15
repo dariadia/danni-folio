@@ -9,4 +9,6 @@ export interface RequestOptions {
 
 export type RequestOption = keyof RequestOptions
 
-export type OptionsType = Partial<Configuration<unknown, any, Fetcher<unknown>>>
+export type OptionsType = Partial<
+  Configuration<unknown, unknown, Fetcher<unknown>>
+>
