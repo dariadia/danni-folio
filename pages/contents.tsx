@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -18,10 +18,11 @@ import {
   Text,
   Link as ExternalLink,
   ThemeType,
+  Popup,
 } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
-import { SelfAvatar } from '@/components'
+import { SelfAvatar, ParaAbilityProjectDescription } from '@/components'
 
 import {
   ABOUT,
@@ -257,9 +258,22 @@ const IntroSection = () => {
 
 const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common'])
+
   const theme = useContext(ThemeContext) as ThemeType
+
+  const [personasDescShown, showPersonasDesc] = useState(false)
+
   return (
     <>
+      {personasDescShown && (
+        <Popup
+          as="section"
+          height="100%"
+          onClose={() => showPersonasDesc(!personasDescShown)}
+        >
+          <ParaAbilityProjectDescription />
+        </Popup>
+      )}
       <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
         <SelfAvatarWithMotion />
         <Greeting />
@@ -318,6 +332,15 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
                 ➠ {t('help_wanted')}
               </HoverableText>
             </ExternalLink>
+            <HoverableText
+              onClick={() => showPersonasDesc(!personasDescShown)}
+              mt="s"
+              fontWeight="bold"
+              color="complementaryDark"
+              variant="bodyMd"
+            >
+              ➠ {t('about_project')}
+            </HoverableText>
           </motion.div>
         </List>
       </Flex>

@@ -95,6 +95,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
         </Popup>
       )}
       <Box
+        as="article"
         my="xxxl"
         mx="auto"
         textAlign="center"
