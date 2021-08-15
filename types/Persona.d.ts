@@ -4,6 +4,7 @@ export interface Persona {
   id: string
   persona_name: string
   para_ability: string
+  emoji?: string
 }
 
 export type Personas = Persona[]
