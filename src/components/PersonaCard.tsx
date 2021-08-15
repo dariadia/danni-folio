@@ -95,8 +95,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
         </Popup>
       )}
       <Box
-        mt="m"
-        mb="xxxl"
+        my="xxxl"
         mx="auto"
         textAlign="center"
         minWidth={`${baseTheme.space.elephant}px`}
