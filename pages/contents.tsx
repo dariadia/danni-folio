@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
 import { useTranslation, Trans } from 'next-i18next'
@@ -16,6 +17,7 @@ import {
   List,
   Text,
   Link as ExternalLink,
+  ThemeType,
 } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
@@ -155,7 +157,7 @@ const IntroSection = () => {
     <MediaContextProvider>
       <Media greaterThanOrEqual="tablet">
         <Box px="xl" mt="xxxl" as="section">
-          <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
+          <HeadingH3 as="h2" sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
               components={{ italic: <i /> }}
@@ -203,7 +205,7 @@ const IntroSection = () => {
       </Media>
       <Media lessThan="tablet">
         <Box px="s" mt="xxxl" as="section">
-          <HeadingH3 sx={{ fontSize: baseTheme.space.xl }}>
+          <HeadingH3 as="h2" sx={{ fontSize: baseTheme.space.xl }}>
             <Trans
               i18nKey="introduction:intro_heading"
               components={{ italic: <i /> }}
@@ -255,6 +257,7 @@ const IntroSection = () => {
 
 const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common'])
+  const theme = useContext(ThemeContext) as ThemeType
   return (
     <>
       <Box px="s" py="m" sx={{ boxShadow: baseTheme.shadows.low }}>
@@ -285,6 +288,19 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
               <HoverableText variant="bodyMd">{t('contacts')}</HoverableText>
             </Link>
           </motion.div>
+          <HeadingH3
+            mt="xxxl"
+            mb="xl"
+            py="s"
+            sx={{
+              fontSize: `${baseTheme.space.xl}px`,
+              borderTop: `2px dashed ${theme.colours.complementaryDark}`,
+              borderBottom: `2px dashed ${theme.colours.complementaryDark}`,
+            }}
+            color="complementaryDark"
+          >
+            {t('projects')}
+          </HeadingH3>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
             <Link href={`/${PARA_ABILITY_PERSONAS}`} passHref>
               <HoverableText variant="bodyMd">
