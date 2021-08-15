@@ -2,7 +2,8 @@ import React from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { usePersonasAPI } from '@/hooks/use-api'
-import { PERSONAS } from 'constants/apis'
+import { PARA_ABILITIES, PERSONAS } from 'constants/apis'
+import { matchByKey } from 'utils/foreign-key-match'
 
 import { MainLayout } from '@/components/layouts'
 import { List, Box, Loader } from 'danni-s-design-system'
@@ -12,23 +13,33 @@ import type {
   Locale,
   Page,
   SinglePage as SinglePageProps,
+  PersonaWithParaAbilityDescription,
   Personas,
-  Persona,
+  ParaAbilities,
 } from 'types'
 
 const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
-  // eslint-disable-next-line prefer-const
-  let { data: personas, error } = usePersonasAPI({
+  const { data: personas, error: personasFetchError } = usePersonasAPI({
     url: PERSONAS,
   })
-  personas = personas as Personas
+  const {
+    data: paraAbilities,
+    error: paraAbilitiesFetchError,
+  } = usePersonasAPI({
+    url: PARA_ABILITIES,
+  })
 
-  if (!personas) return <Loader />
-  if (error) return <Box>⚠️</Box>
+  if (!personas || !paraAbilities) return <Loader />
+  if (personasFetchError || paraAbilitiesFetchError) return <Box>⚠️</Box>
+
+  const common = matchByKey({
+    personas: personas as Personas,
+    paraAbilities: paraAbilities as ParaAbilities,
+  })
 
   return (
     <List>
-      {personas.map((persona: Persona) => (
+      {common.map((persona: PersonaWithParaAbilityDescription) => (
         <PersonaCard key={persona.id} persona={persona} />
       ))}
     </List>
