@@ -261,7 +261,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
 
   const theme = useContext(ThemeContext) as ThemeType
 
-  const [personasDescShown, showPersonasDesc] = useState(false)
+  const [personasDescShown, togglePersonasDesc] = useState(false)
 
   return (
     <>
@@ -269,7 +269,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
         <Popup
           as="section"
           height="100%"
-          onClose={() => showPersonasDesc(!personasDescShown)}
+          onClose={() => togglePersonasDesc(!personasDescShown)}
         >
           <ParaAbilityProjectDescription />
         </Popup>
@@ -333,7 +333,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
               </HoverableText>
             </ExternalLink>
             <HoverableText
-              onClick={() => showPersonasDesc(!personasDescShown)}
+              onClick={() => togglePersonasDesc(!personasDescShown)}
               mt="s"
               fontWeight="bold"
               color="complementaryDark"
