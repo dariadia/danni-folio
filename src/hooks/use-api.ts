@@ -25,11 +25,11 @@ export const usePersonasAPI = ({
   requestParams,
 }: {
   url: string
-  fetcher?: Fetcher<any>
+  fetcher?: Fetcher<unknown>
   options?: OptionsType
   requestParams?: RequestOptions
-}): SWRResponse<any, any> => {
+}): SWRResponse<unknown, unknown> => {
   const apiUrl = `${PERSONAS_APP}api/${buildRequestUrl(url, requestParams)}`
-  const apiFetcher = (fetcher || getDefaultFetcher(apiUrl)) as Fetcher<any>
+  const apiFetcher = (fetcher || getDefaultFetcher(apiUrl)) as Fetcher<unknown>
   return useSWR(apiUrl, apiFetcher, options)
 }
