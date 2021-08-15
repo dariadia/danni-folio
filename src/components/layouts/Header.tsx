@@ -214,7 +214,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
             <Flex mx="m" alignItems="center">
               <Text mr="xs" color="accentLightest" inlineBlock>
                 {t('common:language_detected')}{' '}
-                <Text fontWeight="bold" inlineBlock>
+                <Text bold inlineBlock>
                   {currentLanguage}
                 </Text>
                 ?
@@ -232,13 +232,14 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
           {languageControlsShown ? (
             <Text mx="m" my="xxl" color="accentLightest" inlineBlock>
               {t('common:language_detected')}{' '}
-              <Text fontWeight="bold" inlineBlock>
+              <Text bold inlineBlock>
                 {currentLanguage}
               </Text>
               ?
               <Text
+                bold
                 ml="xs"
-                sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+                sx={{ textTransform: 'uppercase' }}
                 inlineBlock
               >
                 {t('common:change')}

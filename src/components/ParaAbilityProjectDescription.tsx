@@ -22,7 +22,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
         👩‍👩‍👧‍👦{' '}
         <Link href={PERSONAS_APP_PROJECT}>
           <HoverableText
-            fontWeight="bold"
+            bold
             color="accentDark"
             activeColour="complementaryDark"
             sx={{ textDecoration: 'none' }}
@@ -35,7 +35,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
         is a project showcased on 🌿
         <Link href="/">
           <HoverableText
-            fontWeight="bold"
+            bold
             color="accentDark"
             activeColour="complementaryDark"
             sx={{ textDecoration: 'none' }}
@@ -64,7 +64,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
             target="_blank"
           >
             <HoverableText
-              fontWeight="bold"
+              bold
               color="accentDark"
               activeColour="complementaryDark"
               sx={{ textDecoration: 'none' }}
@@ -83,7 +83,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
             target="_blank"
           >
             <HoverableText
-              fontWeight="bold"
+              bold
               color="accentDark"
               activeColour="complementaryDark"
               sx={{ textDecoration: 'none' }}
@@ -100,7 +100,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
             target="_blank"
           >
             <HoverableText
-              fontWeight="bold"
+              bold
               color="accentDark"
               activeColour="complementaryDark"
               sx={{ textDecoration: 'none' }}
@@ -172,7 +172,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
           know them, and then receive advice on how to make your own project a
           better place for this person. ⭐️ Imagine your new friend scrolling
           through your pages. Nagivating, taking in the information presented.
-          <Text inlineBlock mx="m" fontWeight="bold" color="complementaryDark">
+          <Text inlineBlock mx="m" bold color="complementaryDark">
             Can they...?
           </Text>
         </Text>
@@ -180,7 +180,7 @@ export const ParaAbilityProjectDescription: React.FC = () => (
     </Box>
     <ExternalLink href={CONTACTS.GITHUB.link} target="_blank" inlineBlock>
       <HoverableText
-        fontWeight="bold"
+        bold
         color="accentDark"
         activeColour="complementaryDark"
         sx={{ textDecoration: 'none' }}
