@@ -1,21 +1,19 @@
+import {
+  ParaAbilities,
+  Personas,
+  PersonaWithParaAbilityDescription,
+} from 'types'
+
 export const matchByKey = ({
-  itemsOne,
-  itemsTwo,
-  key,
+  personas,
+  paraAbilities,
 }: {
-  itemsOne: Record<string, unknown>[]
-  itemsTwo: Record<string, unknown>[]
-  key: string
-}): Record<string, unknown>[] => {
-  const common = []
-  for (let item = 0; item < itemsOne.length; item++) {
-    for (let unit = 0; unit < itemsTwo.length; unit++) {
-      if (unit[key as keyof typeof unit] === item[key as keyof typeof item]) {
-        common.push({ ...itemsTwo[unit], ...itemsOne[item] })
-      }
-      break
-    }
-  }
-  console.log(common)
-  return common
+  personas: Personas
+  paraAbilities: ParaAbilities
+}): PersonaWithParaAbilityDescription[] => {
+  return personas.map(({ para_ability, ...rest }) => ({
+    para_ability,
+    ...rest,
+    ...paraAbilities.filter(({ name }) => name === para_ability)[0],
+  })) as PersonaWithParaAbilityDescription[]
 }
