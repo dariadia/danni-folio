@@ -1,14 +1,23 @@
 import React from 'react'
 import { Trans, useTranslation } from 'next-i18next'
 
-import { baseTheme, Box, HeadingH3, Text, List } from 'danni-s-design-system'
+import {
+  baseTheme,
+  Box,
+  HeadingH3,
+  Text,
+  List,
+  Link,
+  HoverableText,
+} from 'danni-s-design-system'
 import {
   ABOUT_ME,
   BOOKMATE_ACCOUNT_DATE,
   CURRENT_YEAR,
+  JOB_PROJECTS,
 } from 'constants/aboutMe'
 
-import { Locale } from 'types'
+import { Locale, Project } from 'types'
 
 type JobDescriptionCardProps = {
   isJobPopupShown: {
@@ -33,9 +42,7 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
         <Trans
           i18nKey="about:bookmate_is"
           components={{
-            green: (
-              <Text color="complementaryDark" fontWeight="bold" inlineBlock />
-            ),
+            green: <Text color="complementaryDark" bold inlineBlock />,
           }}
         />
       </Box>
@@ -45,7 +52,7 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
         <CustomerSupportDescription locale={locale} />
       )}
       <Box mt="xxxl" as="article">
-        <Text fontWeight="bold" mr="xs" inlineBlock>
+        <Text bold mr="xs" inlineBlock>
           P.s.
         </Text>
         <Trans
@@ -54,7 +61,7 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
             italic: <i />,
           }}
         />
-        <Text color="accentDark" fontWeight="bold" ml="xs" inlineBlock>
+        <Text color="accentDark" bold ml="xs" inlineBlock>
           {CURRENT_YEAR - BOOKMATE_ACCOUNT_DATE.getFullYear()} {t('years_old')}{' '}
           😲
         </Text>
@@ -83,12 +90,12 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
       >
         {t(translationKey as string)}
       </HeadingH3>
-      <Text fontWeight="bold" color="complementaryDark">
+      <Text bold color="complementaryDark">
         {new Date(start).toLocaleDateString(locale)}–
         {finish ? (
           new Date(finish).toLocaleDateString(locale)
         ) : (
-          <Text color="complementaryDark" fontWeight="bold" inlineBlock>
+          <Text color="complementaryDark" bold inlineBlock>
             {t(`common:now`)}
           </Text>
         )}
@@ -114,7 +121,7 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
             <Text key={key}>
               📩 {t('lead_correspondence')}{' '}
               <i>
-                <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+                <Text bold color="complementaryDark" inlineBlock>
                   {t('usually')}
                 </Text>{' '}
                 {t('bugs')}
@@ -150,7 +157,7 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
               green: (
                 <Text
                   color="complementaryDark"
-                  fontWeight="bold"
+                  bold
                   fontStyle="italic"
                   inlineBlock
                 />
@@ -175,10 +182,86 @@ const CUSTOMER_SUPPORT_DUTIES = [
 
 const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
   const { t } = useTranslation('about')
+  const { translationKey, finish } = ABOUT_ME.CAREER[2]
+  const { start } = ABOUT_ME.CAREER[1]
+
   return (
     <Box as="article">
-      {t('use_app')}
-      {locale}
+      <HeadingH3
+        mb="s"
+        sx={{
+          textTransform: 'capitalize',
+          fontSize: `${baseTheme.space.xl}px`,
+        }}
+        as="h4"
+      >
+        {t(translationKey as string)}
+      </HeadingH3>
+      <Text bold color="complementaryDark">
+        {new Date(start).toLocaleDateString(locale)}–
+        {finish ? (
+          new Date(finish).toLocaleDateString(locale)
+        ) : (
+          <Text color="complementaryDark" bold inlineBlock>
+            {t(`common:now`)}
+          </Text>
+        )}
+      </Text>
+      <HeadingH3
+        mt="m"
+        mb="s"
+        sx={{
+          fontSize: `${baseTheme.space.l}px`,
+        }}
+        as="h5"
+      >
+        ⚙️ {t('responsibilities_present')}
+      </HeadingH3>
+      <HeadingH3
+        mt="l"
+        mb="s"
+        sx={{
+          fontSize: `${baseTheme.space.l}px`,
+        }}
+        as="h6"
+      >
+        🎤 {t('solo_projects')}
+      </HeadingH3>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.xl}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
+        {JOB_PROJECTS.SOLO.map(project => (
+          <SoloProject project={project} />
+        ))}
+      </List>
+      <HeadingH3
+        mt="m"
+        mb="s"
+        sx={{
+          fontSize: `${baseTheme.space.l}px`,
+        }}
+        as="h6"
+      >
+        🎳 {t('team_projects')}
+      </HeadingH3>
+    </Box>
+  )
+}
+
+const SoloProject = ({ project }: { project: Project }) => {
+  const { emoji, name, link, stack, created, whatIDo, proudOf } = project
+
+  return (
+    <Box>
+      <Link href={link} target="_blank">
+        <HoverableText bold color="accentDark" activeColour="complementaryDark">
+          {emoji} {name}
+          {console.log(stack, created, whatIDo, proudOf)}
+        </HoverableText>
+      </Link>
     </Box>
   )
 }
