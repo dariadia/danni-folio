@@ -4,13 +4,12 @@ import { useTranslation } from 'next-i18next'
 import { HoverableText, Text, Link, Flex } from 'danni-s-design-system'
 
 import { CONTACTS } from 'constants/contacts'
+import { CURRENT_YEAR } from 'constants/aboutMe'
 
 const TTO = 2021
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation(['common'])
-
-  const currentYear = new Date().getFullYear()
 
   return (
     <Flex mx="xl" p="m" justifyContent="flex-end">
@@ -27,7 +26,7 @@ export const Footer: React.FC = () => {
           </HoverableText>
         </Link>
         <Text color="accentLightest" ml="s" inlineBlock>
-          2021{currentYear !== TTO && ` – ${currentYear}`}.
+          2021{CURRENT_YEAR !== TTO && ` – ${CURRENT_YEAR}`}.
         </Text>
       </Text>
       <Link
