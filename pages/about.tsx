@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -19,9 +19,10 @@ import {
   Details,
   HoverableText,
   Link,
+  Popup,
 } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
-import { Avatar } from '@/components'
+import { Avatar, JobDescriptionCard } from '@/components'
 
 import { ABOUT_ME, SKILLS } from 'constants/aboutMe'
 import { DATE_OPTIONS } from 'constants/dates'
@@ -187,86 +188,116 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
 const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
   const { t } = useTranslation(['common', 'about', 'locations', 'languages'])
 
+  const initialJobPopupsState = {
+    customerSupport: false,
+    frontendDeveloper: false,
+  }
+
+  const [isJobPopupShown, toggleJobPopup] = useState(initialJobPopupsState)
+
   const EDUCATION = ABOUT_ME.EDUCATION
 
   return (
-    <Box p="m" mb="xl">
-      <Avatar mx="auto" mb="l" size="elephant">
-        <img src="assets/photo-me.png" alt={t('about:photo')} />
-      </Avatar>
-      <HeadingInBox text={t('about:career')} textTransform />
-      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-        {ABOUT_ME.CAREER.map(job => {
-          const { translationKey, start, finish, company, link } = job
-          return (
-            <Flex key={translationKey} my="s" justifyContent="space-between">
-              <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
-                {t(`about:${translationKey}`)}
-                {link ? (
-                  <Link href={link} target="_blank">
-                    <HoverableText color="complementaryDark">
-                      {company}
-                    </HoverableText>
-                  </Link>
-                ) : (
-                  <Text>{company}</Text>
-                )}
-              </Text>
-              <Text ml="xl" textAlign="right">
-                {new Date(start).toLocaleDateString(locale)}–
-                {finish ? (
-                  new Date(finish).toLocaleDateString(locale)
-                ) : (
-                  <Text color="complementaryDark" fontWeight="bold" inlineBlock>
-                    {t(`common:now`)}
-                  </Text>
-                )}
-              </Text>
-            </Flex>
-          )
-        })}
-      </List>
-      <Box mb="m" />
-      <HeadingInBox text={t('about:education')} textTransform />
-      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-        <EducationItem
-          {...{
-            name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
-              EDUCATION.SCHOOL.value
-            }`,
-            locale,
-            start: EDUCATION.SCHOOL.start,
-            finish: EDUCATION.SCHOOL.finish,
-            location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
-              `locations:${EDUCATION.SCHOOL.countryKey}`,
-            )}`,
-          }}
-        />
-        <EducationItem
-          {...{
-            name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
-            locale,
-            start: EDUCATION.UNIVERSITY.start,
-            finish: EDUCATION.UNIVERSITY.finish,
-            link: EDUCATION.UNIVERSITY.link,
-            location: `${t(
-              `locations:${EDUCATION.UNIVERSITY.locationKey}`,
-            )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
-          }}
-        />
-        <EducationItem
-          {...{
-            name: EDUCATION.FURTHER_EDUCATION.value as string,
-            locale,
-            start: EDUCATION.FURTHER_EDUCATION.start,
-            finish: EDUCATION.FURTHER_EDUCATION.finish,
-            link: EDUCATION.FURTHER_EDUCATION.link,
-            location: 'online',
-          }}
-        />
-      </List>
-      <BottomDivider />
-    </Box>
+    <>
+      {(isJobPopupShown.customerSupport ||
+        isJobPopupShown.frontendDeveloper) && (
+        <Popup onClose={() => toggleJobPopup(initialJobPopupsState)}>
+          <JobDescriptionCard {...{ isJobPopupShown, locale }} />
+        </Popup>
+      )}
+      <Box p="m" mb="xl">
+        <Avatar mx="auto" mb="l" size="elephant">
+          <img src="assets/photo-me.png" alt={t('about:photo')} />
+        </Avatar>
+        <HeadingInBox text={t('about:career')} textTransform />
+        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+          {ABOUT_ME.CAREER.map(job => {
+            const { translationKey, start, finish, company, link } = job
+            return (
+              <Flex key={translationKey} my="s" justifyContent="space-between">
+                <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+                  <HoverableText
+                    onClick={() =>
+                      toggleJobPopup({
+                        ...initialJobPopupsState,
+                        [translationKey === 'customer_support'
+                          ? 'customerSupport'
+                          : 'frontendDeveloper']: true,
+                      })
+                    }
+                  >
+                    ➠ {t(`about:${translationKey}`)}
+                  </HoverableText>
+                  {link ? (
+                    <Link href={link} target="_blank">
+                      <HoverableText color="complementaryDark">
+                        {company}
+                      </HoverableText>
+                    </Link>
+                  ) : (
+                    <Text>{company}</Text>
+                  )}
+                </Text>
+                <Text ml="xl" textAlign="right">
+                  {new Date(start).toLocaleDateString(locale)}–
+                  {finish ? (
+                    new Date(finish).toLocaleDateString(locale)
+                  ) : (
+                    <Text
+                      color="complementaryDark"
+                      fontWeight="bold"
+                      inlineBlock
+                    >
+                      {t(`common:now`)}
+                    </Text>
+                  )}
+                </Text>
+              </Flex>
+            )
+          })}
+        </List>
+        <Box mb="m" />
+        <HeadingInBox text={t('about:education')} textTransform />
+        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+          <EducationItem
+            {...{
+              name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
+                EDUCATION.SCHOOL.value
+              }`,
+              locale,
+              start: EDUCATION.SCHOOL.start,
+              finish: EDUCATION.SCHOOL.finish,
+              location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
+                `locations:${EDUCATION.SCHOOL.countryKey}`,
+              )}`,
+            }}
+          />
+          <EducationItem
+            {...{
+              name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
+              locale,
+              start: EDUCATION.UNIVERSITY.start,
+              finish: EDUCATION.UNIVERSITY.finish,
+              link: EDUCATION.UNIVERSITY.link,
+              location: `${t(
+                `locations:${EDUCATION.UNIVERSITY.locationKey}`,
+              )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
+            }}
+          />
+          <EducationItem
+            {...{
+              name: EDUCATION.FURTHER_EDUCATION.value as string,
+              locale,
+              start: EDUCATION.FURTHER_EDUCATION.start,
+              finish: EDUCATION.FURTHER_EDUCATION.finish,
+              link: EDUCATION.FURTHER_EDUCATION.link,
+              location: 'online',
+            }}
+          />
+        </List>
+        <BottomDivider />
+      </Box>
+    </>
   )
 }
 
