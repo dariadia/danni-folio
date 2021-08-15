@@ -1,4 +1,4 @@
-import { AboutMe } from 'types'
+import { AboutMe, Skills } from 'types'
 
 const BIRTHDAY = '06.06.1997'
 
@@ -95,18 +95,6 @@ export const ABOUT_ME: AboutMe = {
   ],
 } as const
 
-type Skills = {
-  [key: string]: {
-    variants: readonly Skill[]
-    emoji?: string
-  }
-}
-
-type Skill = {
-  name: string
-  link: string
-}
-
 export const SKILLS: Skills = {
   JavaScript: {
     variants: [
@@ -168,3 +156,7 @@ export const SKILLS: Skills = {
     emoji: '🟣',
   },
 } as const
+
+export const BOOKMATE_ACCOUNT_DATE = new Date('03.21.2014')
+
+export const CURRENT_YEAR = new Date().getFullYear()
