@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { usePersonasAPI } from '@/hooks/use-api'
 import { PARA_ABILITIES, PERSONAS } from 'constants/apis'
+
 import { matchByKey } from 'utils/foreign-key-match'
+import { MediaContextProvider, Media } from 'utils/media'
 
 import { MainLayout } from '@/components/layouts'
-import { List, Box, Loader } from 'danni-s-design-system'
-import { PersonaCard } from '@/components'
+import { List, Box, Loader, HoverableText, Popup } from 'danni-s-design-system'
+import { ParaAbilityProjectDescription, PersonaCard } from '@/components'
 
 import type {
   Locale,
@@ -29,6 +32,10 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
     url: PARA_ABILITIES,
   })
 
+  const { t } = useTranslation(['common'])
+
+  const [personasDescShown, showPersonasDesc] = useState(false)
+
   if (!personas || !paraAbilities) return <Loader />
   if (personasFetchError || paraAbilitiesFetchError) return <Box>⚠️</Box>
 
@@ -38,11 +45,36 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
   })
 
   return (
-    <List as="section">
-      {common.map((persona: PersonaWithParaAbilityDescription) => (
-        <PersonaCard key={persona.id} persona={persona} />
-      ))}
-    </List>
+    <>
+      {personasDescShown && (
+        <Popup
+          as="section"
+          height="100%"
+          onClose={() => showPersonasDesc(!personasDescShown)}
+        >
+          <ParaAbilityProjectDescription />
+        </Popup>
+      )}
+      <MediaContextProvider>
+        <Media lessThan="tablet">
+          <Box mb="xxxl"></Box>
+        </Media>
+      </MediaContextProvider>
+      <List as="section">
+        <HoverableText
+          onClick={() => showPersonasDesc(!personasDescShown)}
+          mt="s"
+          fontWeight="bold"
+          color="complementaryDark"
+          variant="bodyMd"
+        >
+          ➠ {t('about_project')}
+        </HoverableText>
+        {common.map((persona: PersonaWithParaAbilityDescription) => (
+          <PersonaCard key={persona.id} persona={persona} />
+        ))}
+      </List>
+    </>
   )
 }
 
