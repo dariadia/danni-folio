@@ -2,6 +2,7 @@ import React, { ComponentType } from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 
+import { useTranslation } from 'next-i18next'
 import { AnimateSharedLayout } from 'framer-motion'
 import { appWithTranslation } from 'next-i18next'
 
@@ -23,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
     white-space: pre-line;
     -webkit-font-smoothing: antialiased;
   }
+  body {
+    background: ${theme.colours.accentDark};
+  }
 `
 
 type ApplicationProps = AppProps & {
@@ -31,18 +35,25 @@ type ApplicationProps = AppProps & {
 
 const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
   const Layout: ComponentType = Component.Layout || React.Fragment
+  const { t } = useTranslation('common')
 
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{t('folio')}</title>
+        <meta name="description" content={t('meta_description')} />
       </Head>
       <AnimateSharedLayout>
         <ThemeProvider theme={theme}>
-          <Layout {...pageProps}>
+          {Component.Layout ? (
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          ) : (
             <Component {...pageProps} />
-          </Layout>
+          )}
         </ThemeProvider>
       </AnimateSharedLayout>
       <GlobalStyle />

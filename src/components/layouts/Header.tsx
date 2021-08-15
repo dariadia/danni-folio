@@ -52,7 +52,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
 
   return (
     <MediaContextProvider>
-      <Media greaterThanOrEqual="tablet">
+      <Media greaterThanOrEqual="desktop">
         <Link href={isContentsPage ? '/' : `/${CONTENTS}`} passHref>
           <motion.a
             style={{
@@ -72,7 +72,7 @@ const ButtonWithMotion: React.FC<ButtonProps> = ({ isContentsPage }) => {
           </motion.a>
         </Link>
       </Media>
-      <Media lessThan="tablet">
+      <Media lessThan="desktop">
         <Link href={isContentsPage ? '/' : `/${CONTENTS}`} passHref>
           <motion.a
             style={{
@@ -118,23 +118,27 @@ const LanguageButton = ({ locale }: { locale: Locale }) => {
   return (
     <>
       <MediaContextProvider>
-        <Media greaterThanOrEqual="tablet">
-          <Link href="" locale={locale} passHref>
-            <StyledLanguageButton m="xs" theme={theme}>
-              {locale}
-            </StyledLanguageButton>
+        <Media greaterThanOrEqual="desktop">
+          <Link href="" locale={locale}>
+            <Box>
+              <StyledLanguageButton m="xs" theme={theme}>
+                {locale}
+              </StyledLanguageButton>
+            </Box>
           </Link>
         </Media>
-        <Media lessThan="tablet">
-          <Link href="" locale={locale} passHref>
-            <StyledLanguageButton
-              my="l"
-              p="xl"
-              fontSize={`${baseTheme.space.xxl}px`}
-              theme={theme}
-            >
-              {locale}
-            </StyledLanguageButton>
+        <Media lessThan="desktop">
+          <Link href="" locale={locale}>
+            <Box>
+              <StyledLanguageButton
+                my="l"
+                p="xl"
+                fontSize={`${baseTheme.space.xxl}px`}
+                theme={theme}
+              >
+                {locale}
+              </StyledLanguageButton>
+            </Box>
           </Link>
         </Media>
       </MediaContextProvider>
@@ -150,7 +154,7 @@ const AvailableLocalesList = ({
   currentLocale: Locale
 }) => (
   <MediaContextProvider>
-    <Media greaterThanOrEqual="tablet">
+    <Media greaterThanOrEqual="desktop">
       <List direction="row">
         {locales.map(
           locale =>
@@ -160,7 +164,7 @@ const AvailableLocalesList = ({
         )}
       </List>
     </Media>
-    <Media lessThan="tablet">
+    <Media lessThan="desktop">
       <List liSx={{ margin: 'auto', width: 'fit-content' }}>
         {locales.map(
           locale =>
@@ -205,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
       onClick={() => toggleLanguageControls(!languageControlsShown)}
     >
       <MediaContextProvider>
-        <Media greaterThanOrEqual="tablet">
+        <Media greaterThanOrEqual="desktop">
           {languageControlsShown ? (
             <Flex mx="m" alignItems="center">
               <Text mr="xs" color="accentLightest" inlineBlock>
@@ -224,7 +228,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
             !loading && <AvailableLocalesList {...{ locales, currentLocale }} />
           )}
         </Media>
-        <Media lessThan="tablet">
+        <Media lessThan="desktop">
           {languageControlsShown ? (
             <Text mx="m" my="xxl" color="accentLightest" inlineBlock>
               {t('common:language_detected')}{' '}
