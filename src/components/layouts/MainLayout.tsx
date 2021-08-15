@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Router, { useRouter } from 'next/dist/client/router'
 import { MediaContextProvider, Media } from 'utils/media'
+import { PROJECTS } from 'constants/locations'
 
 import { Grid, Box, baseTheme, Loader } from 'danni-s-design-system'
 import { Header, Footer } from '.'
@@ -56,6 +57,7 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
   }, [])
 
   const isIndexPage = router.route === '/'
+  const isProjectPage = router.route.includes(PROJECTS)
 
   const { locale, locales } = router
 
@@ -71,7 +73,7 @@ export const MainLayout: React.FC<Layout> = ({ children }) => {
             py="xl"
             px="xxl"
             bg="white"
-            sx={getGridSx({ isIndexPage, isDesktop: true })}
+            sx={getGridSx({ isIndexPage, isDesktop: !isProjectPage })}
           >
             {loading && !isIndexPage ? (
               <Loader
