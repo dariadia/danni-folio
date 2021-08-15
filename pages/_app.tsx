@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
     white-space: pre-line;
     -webkit-font-smoothing: antialiased;
   }
+  body {
+    background: ${theme.colours.accentDark};
+  }
 `
 
 type ApplicationProps = AppProps & {
