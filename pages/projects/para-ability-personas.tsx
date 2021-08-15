@@ -38,7 +38,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
   })
 
   return (
-    <List>
+    <List as="section">
       {common.map((persona: PersonaWithParaAbilityDescription) => (
         <PersonaCard key={persona.id} persona={persona} />
       ))}

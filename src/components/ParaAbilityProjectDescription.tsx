@@ -51,7 +51,12 @@ export const ParaAbilityProjectDescription: React.FC = () => (
       <HeadingH3 mb="s" kind="serif" color="accentDark" as="h2">
         Inspired by:
       </HeadingH3>
-      <List liSx={{ marginLeft: `${baseTheme.space.l}px` }}>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.l}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
         <Text>
           <ExternalLink
             inlineBlock
@@ -116,7 +121,12 @@ export const ParaAbilityProjectDescription: React.FC = () => (
       <HeadingH3 mb="s" kind="serif" color="accentDark" as="h2">
         Including 🧑‍🦼
       </HeadingH3>
-      <List liSx={{ marginLeft: `${baseTheme.space.l}px` }}>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.l}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
         <Text>🩺 short info on the para-ability,</Text>
         <Text>🙋 general advice on how to approach the person,</Text>
         <Text>
@@ -128,12 +138,17 @@ export const ParaAbilityProjectDescription: React.FC = () => (
       <HeadingH3 mb="s" kind="serif" color="accentDark" as="h2">
         Presenting
       </HeadingH3>
-      <List liSx={{ marginLeft: `${baseTheme.space.l}px` }}>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.l}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
         <Text>🧏 persons with their own stories 🧑‍🦽</Text>
         <></>
       </List>
 
-      <HeadingH3 mt="l" mb="s" kind="serif" color="accentDark" as="h2">
+      <HeadingH3 mt="xxl" mb="s" kind="serif" color="accentDark" as="h2">
         🙋 Why ⁉️
       </HeadingH3>
       <HeadingH3
@@ -145,14 +160,21 @@ export const ParaAbilityProjectDescription: React.FC = () => (
       >
         Simply put:
       </HeadingH3>
-      <List liSx={{ marginLeft: `${baseTheme.space.l}px` }}>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.l}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
         <Text>personas feel real ✨</Text>
         <Text>
           You would meet a person who faces certain barriers. You would get to
           know them, and then receive advice on how to make your own project a
           better place for this person. ⭐️ Imagine your new friend scrolling
           through your pages. Nagivating, taking in the information presented.
-          Can they...?
+          <Text inlineBlock mx="m" fontWeight="bold" color="complementaryDark">
+            Can they...?
+          </Text>
         </Text>
       </List>
     </Box>

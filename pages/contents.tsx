@@ -268,7 +268,6 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
       {personasDescShown && (
         <Popup
           as="section"
-          sx={{ overflow: 'scroll' }}
           height="100%"
           onClose={() => showPersonasDesc(!personasDescShown)}
         >
