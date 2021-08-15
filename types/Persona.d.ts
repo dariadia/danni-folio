@@ -2,9 +2,8 @@ import { ParaAbility } from './ParaAbility'
 
 export interface Persona {
   id: string
-  name: string
+  persona_name: string
   para_ability: string
-  para_ability_id?: string
 }
 
 export type Personas = Persona[]
