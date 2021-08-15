@@ -34,7 +34,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
 
   const { t } = useTranslation(['common'])
 
-  const [personasDescShown, showPersonasDesc] = useState(false)
+  const [personasDescShown, togglePersonasDesc] = useState(false)
 
   if (!personas || !paraAbilities) return <Loader />
   if (personasFetchError || paraAbilitiesFetchError) return <Box>⚠️</Box>
@@ -50,7 +50,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
         <Popup
           as="section"
           height="100%"
-          onClose={() => showPersonasDesc(!personasDescShown)}
+          onClose={() => togglePersonasDesc(!personasDescShown)}
         >
           <ParaAbilityProjectDescription />
         </Popup>
@@ -62,7 +62,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
       </MediaContextProvider>
       <List as="section">
         <HoverableText
-          onClick={() => showPersonasDesc(!personasDescShown)}
+          onClick={() => togglePersonasDesc(!personasDescShown)}
           mt="s"
           fontWeight="bold"
           color="complementaryDark"
