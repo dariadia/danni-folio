@@ -64,7 +64,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
         <HoverableText
           onClick={() => togglePersonasDesc(!personasDescShown)}
           mt="s"
-          fontWeight="bold"
+          bold
           color="complementaryDark"
           variant="bodyMd"
         >

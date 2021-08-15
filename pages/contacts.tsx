@@ -44,12 +44,7 @@ const Contacts = () => {
           sx={{ textDecoration: 'none' }}
         >
           <HoverableText>
-            <Text
-              color="complementaryDark"
-              fontWeight="bold"
-              mr="s"
-              inlineBlock
-            >
+            <Text color="complementaryDark" bold mr="s" inlineBlock>
               {contactName}:
             </Text>
             {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}
@@ -57,13 +52,7 @@ const Contacts = () => {
         </Link>
       ) : (
         <Text key={contact}>
-          <Text
-            mb="s"
-            color="complementaryDark"
-            fontWeight="bold"
-            mr="s"
-            inlineBlock
-          >
+          <Text mb="s" color="complementaryDark" bold mr="s" inlineBlock>
             {contactName}:
           </Text>
           {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}

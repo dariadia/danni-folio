@@ -215,8 +215,9 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
             const { translationKey, start, finish, company, link } = job
             return (
               <Flex key={translationKey} my="s" justifyContent="space-between">
-                <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
+                <Text sx={{ textTransform: 'capitalize' }}>
                   <HoverableText
+                    bold
                     onClick={() =>
                       toggleJobPopup({
                         ...initialJobPopupsState,
@@ -230,12 +231,12 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
                   </HoverableText>
                   {link ? (
                     <Link href={link} target="_blank">
-                      <HoverableText color="complementaryDark">
+                      <HoverableText bold color="complementaryDark">
                         {company}
                       </HoverableText>
                     </Link>
                   ) : (
-                    <Text>{company}</Text>
+                    <Text bold>{company}</Text>
                   )}
                 </Text>
                 <Text ml="xl" textAlign="right">
@@ -243,11 +244,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
                   {finish ? (
                     new Date(finish).toLocaleDateString(locale)
                   ) : (
-                    <Text
-                      color="complementaryDark"
-                      fontWeight="bold"
-                      inlineBlock
-                    >
+                    <Text color="complementaryDark" bold inlineBlock>
                       {t(`common:now`)}
                     </Text>
                   )}
@@ -322,18 +319,19 @@ const EducationItem = ({
         <Link
           target="_blank"
           href={link}
-          sx={{ textDecoration: 'none', fontWeight: 'bold' }}
+          bold
+          sx={{ textDecoration: 'none' }}
           inlineBlock
         >
-          <HoverableText>{name}</HoverableText>
+          <HoverableText bold>{name}</HoverableText>
         </Link>
       ) : (
-        <Text sx={{ fontWeight: 'bold' }} inlineBlock>
+        <Text bold inlineBlock>
           {name}
         </Text>
       )}
       {location && (
-        <Text sx={{ fontWeight: 'bold' }} color="complementaryDark">
+        <Text bold color="complementaryDark">
           {location}
         </Text>
       )}
@@ -363,7 +361,7 @@ const PersonalDetails = () => {
         <Text>
           <Text
             color="complementaryDark"
-            fontWeight="bold"
+            bold
             mr="s"
             sx={{ textTransform: 'capitalize' }}
             inlineBlock
@@ -375,21 +373,23 @@ const PersonalDetails = () => {
           </Text>
           <Text inlineBlock>{ABOUT_ME.BIRTHDAY.extra}</Text>
         </Text>
-        <Text fontWeight="bold">
-          <Text mr="s" inlineBlock>
+        <Text>
+          <Text bold mr="s" inlineBlock>
             {ABOUT_ME.AGE.value}
           </Text>
-          <Text inlineBlock>{t('years_old')}</Text>
+          <Text bold inlineBlock>
+            {t('years_old')}
+          </Text>
         </Text>
         <Text pb="m">
           <Text mr="s" color="complementaryDark" inlineBlock>
-            <Text my="s" mr="s" fontWeight="bold">
+            <Text my="s" mr="s" bold>
               ☀️{t(ABOUT_ME.ZODIAC.value as string)}
             </Text>
-            <Text my="s" mr="s" fontWeight="bold">
+            <Text my="s" mr="s" bold>
               🌙 {t(ABOUT_ME.ZODIAC.value as string)}
             </Text>
-            <Text mr="xs" fontWeight="bold" inlineBlock>
+            <Text mr="xs" bold inlineBlock>
               AC {t(ABOUT_ME.ZODIAC.extra as string)}
             </Text>
           </Text>
@@ -410,7 +410,8 @@ const PersonalDetails = () => {
         })}
         <Text
           color="complementaryDark"
-          sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}
+          bold
+          sx={{ textTransform: 'uppercase' }}
           pt="m"
         >
           {t('hobbies')}
@@ -484,17 +485,12 @@ const LanguagesList = () => {
       {ABOUT_ME.LANGUAGES.map(language => (
         <Text my="m" mx="auto" key={language.translationKey}>
           {language.emoji}{' '}
-          <Text mr="s" fontWeight="bold" inlineBlock>
+          <Text mr="s" bold inlineBlock>
             {t(`languages:${language.translationKey}`)}
           </Text>
           {language.level ? (
             <>
-              <Text
-                mr="s"
-                fontWeight="bold"
-                color="complementaryDark"
-                inlineBlock
-              >
+              <Text mr="s" bold color="complementaryDark" inlineBlock>
                 {language.level}
               </Text>
               <Text mr="m" inlineBlock>
@@ -502,7 +498,7 @@ const LanguagesList = () => {
               </Text>
             </>
           ) : (
-            <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+            <Text bold color="complementaryDark" inlineBlock>
               {t(`about:${language.levelKey}`)}
             </Text>
           )}
@@ -519,7 +515,7 @@ const getAllSkills = () => {
     const skillVariants = SKILLS[skill].variants
     skillNodesArray.push(
       <Box px="l" key={skill} my="m">
-        <Text color="complementaryDark" fontWeight="bold" inlineBlock>
+        <Text color="complementaryDark" bold inlineBlock>
           {skill}
         </Text>
         <List>
