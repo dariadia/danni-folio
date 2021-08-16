@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import { Trans, useTranslation } from 'next-i18next'
 
 import {
@@ -9,6 +10,8 @@ import {
   List,
   Link,
   HoverableText,
+  ThemeType,
+  Colour,
 } from 'danni-s-design-system'
 import {
   ABOUT_ME,
@@ -182,6 +185,8 @@ const CUSTOMER_SUPPORT_DUTIES = [
 
 const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
   const { t } = useTranslation('about')
+  const theme = useContext(ThemeContext) as ThemeType
+
   const { translationKey, finish } = ABOUT_ME.CAREER[2]
   const { start } = ABOUT_ME.CAREER[1]
 
@@ -220,8 +225,11 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
       <HeadingH3
         mt="l"
         mb="s"
+        p="s"
         sx={{
           fontSize: `${baseTheme.space.l}px`,
+          borderBottom: `1px dashed ${theme.colours.accentDark}`,
+          borderTop: `1px dashed ${theme.colours.accentDark}`,
         }}
         as="h6"
       >
@@ -234,7 +242,13 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
         }}
       >
         {JOB_PROJECTS.SOLO.map(project => (
-          <SoloProject project={project} />
+          <SoloProject
+            {...{
+              project,
+              locale,
+              accentDark: theme.colours.accentDark as Colour,
+            }}
+          />
         ))}
       </List>
       <HeadingH3
@@ -251,17 +265,96 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
   )
 }
 
-const SoloProject = ({ project }: { project: Project }) => {
-  const { emoji, name, link, stack, created, whatIDo, proudOf } = project
+const SoloProject = ({
+  project,
+  locale,
+  accentDark,
+}: {
+  project: Project
+  locale: Locale
+  accentDark: Colour
+}) => {
+  const { t } = useTranslation('about')
+
+  const {
+    emoji,
+    name,
+    link,
+    stack,
+    created,
+    creator,
+    whatIDo,
+    proudOf,
+  } = project
 
   return (
-    <Box>
-      <Link href={link} target="_blank">
+    <Box my="m" pr="s" pb="m" sx={{ borderBottom: `1px solid ${accentDark}` }}>
+      <Link mb="xs" href={link} target="_blank">
         <HoverableText bold color="accentDark" activeColour="complementaryDark">
           {emoji} {name}
-          {console.log(stack, created, whatIDo, proudOf)}
         </HoverableText>
       </Link>
+      <Text mb="xs">{stack.join(', ')}</Text>
+      {created && (
+        <Text>
+          <Text mr="s" bold inlineBlock>
+            {t('created')} {creator && `(${t('by_me')})`}:
+          </Text>
+          {new Date(created).toLocaleDateString(locale)}
+        </Text>
+      )}
+      {(whatIDo || creator) && (
+        <>
+          <HeadingH3
+            mt="m"
+            mb="s"
+            sx={{
+              fontSize: `${baseTheme.space.m}px`,
+            }}
+            as="h6"
+          >
+            👋🏽 {t('responsibilities_present')}
+          </HeadingH3>
+          {whatIDo && (
+            <List>
+              {whatIDo.map(duty => (
+                <Text my="xs">{t(duty)}</Text>
+              ))}
+            </List>
+          )}
+          {creator && (
+            <Text color="complementaryDark" my="xs" bold>
+              {t('everything_from_scratch')}
+            </Text>
+          )}
+        </>
+      )}
+      {proudOf && (
+        <>
+          <HeadingH3
+            mt="m"
+            mb="s"
+            sx={{
+              fontSize: `${baseTheme.space.m}px`,
+            }}
+            as="h6"
+          >
+            🎉 {t('proud_of')}
+          </HeadingH3>
+          <List>
+            {proudOf.map(achievement => (
+              <Text my="xs">
+                <Trans
+                  i18nKey={`about:${achievement}`}
+                  components={{
+                    green: <Text color="complementaryDark" bold inlineBlock />,
+                  }}
+                />
+              </Text>
+            ))}
+          </List>
+        </>
+      )}
     </Box>
   )
 }
