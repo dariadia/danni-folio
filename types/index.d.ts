@@ -1,4 +1,5 @@
 export * from './Contact'
+export * from './Event'
 export * from './Locale'
 export * from './MeFact'
 export * from './Page'
