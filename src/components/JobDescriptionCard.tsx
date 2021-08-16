@@ -20,7 +20,7 @@ import {
   JOB_PROJECTS,
 } from 'constants/aboutMe'
 
-import { Locale, Project } from 'types'
+import type { Locale, Project } from 'types'
 
 type JobDescriptionCardProps = {
   isJobPopupShown: {
@@ -242,7 +242,7 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
         }}
       >
         {JOB_PROJECTS.SOLO.map(project => (
-          <SoloProject
+          <ProjectInformation
             {...{
               project,
               locale,
@@ -251,29 +251,49 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
           />
         ))}
       </List>
+      <Box mt="xxxl" mx="auto" textAlign="center">
+        🍀 🍀 🍀
+      </Box>
       <HeadingH3
-        mt="m"
+        mt="xxxl"
         mb="s"
+        p="s"
         sx={{
           fontSize: `${baseTheme.space.l}px`,
+          borderBottom: `1px dashed ${theme.colours.accentDark}`,
+          borderTop: `1px dashed ${theme.colours.accentDark}`,
         }}
         as="h6"
       >
         🎳 {t('team_projects')}
       </HeadingH3>
+      <List
+        liSx={{
+          marginLeft: `${baseTheme.space.xl}px`,
+          marginBottom: `${baseTheme.space.s}px`,
+        }}
+      >
+        {JOB_PROJECTS.TEAM.map(project => (
+          <ProjectInformation
+            {...{
+              project,
+              locale,
+              accentDark: theme.colours.accentDark as Colour,
+            }}
+          />
+        ))}
+      </List>
     </Box>
   )
 }
 
-const SoloProject = ({
-  project,
-  locale,
-  accentDark,
-}: {
+type ProjectProps = {
   project: Project
   locale: Locale
   accentDark: Colour
-}) => {
+}
+
+const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
   const { t } = useTranslation('about')
 
   const {
