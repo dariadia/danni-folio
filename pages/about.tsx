@@ -228,6 +228,15 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
                     }
                   >
                     ➠ {t(`about:${translationKey}`)}
+                    <Text
+                      mb="s"
+                      variant="bodySm"
+                      bold
+                      sx={{ textTransform: 'none' }}
+                      color="complementaryLight"
+                    >
+                      {t('about:click_to_open')}
+                    </Text>
                   </HoverableText>
                   {link ? (
                     <Link href={link} target="_blank">
