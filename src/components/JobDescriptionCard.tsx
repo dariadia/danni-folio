@@ -12,11 +12,14 @@ import {
   HoverableText,
   ThemeType,
   Colour,
+  Button,
 } from 'danni-s-design-system'
+
 import {
   ABOUT_ME,
   BOOKMATE_ACCOUNT_DATE,
   CURRENT_YEAR,
+  JOB_CARD,
   JOB_PROJECTS,
 } from 'constants/aboutMe'
 
@@ -38,6 +41,9 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
 
   return (
     <Box as="section">
+      <Button id={JOB_CARD} p="s" mb="m">
+        ⇚ {t('return')}
+      </Button>
       <Box as="article" mb="xxxl">
         <HeadingH3 mb="s" color="accentDark" kind="serif">
           {ABOUT_ME.CAREER[0].company}
@@ -243,6 +249,7 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
       >
         {JOB_PROJECTS.SOLO.map(project => (
           <ProjectInformation
+            key={project.name}
             {...{
               project,
               locale,
@@ -275,6 +282,7 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
       >
         {JOB_PROJECTS.TEAM.map(project => (
           <ProjectInformation
+            key={project.name}
             {...{
               project,
               locale,
@@ -309,11 +317,21 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
 
   return (
     <Box my="m" pr="s" pb="m" sx={{ borderBottom: `1px solid ${accentDark}` }}>
-      <Link mb="xs" href={link} target="_blank">
-        <HoverableText bold color="accentDark" activeColour="complementaryDark">
+      {link ? (
+        <Link mb="xs" href={link} target="_blank">
+          <HoverableText
+            bold
+            color="accentDark"
+            activeColour="complementaryDark"
+          >
+            {emoji} {name}
+          </HoverableText>
+        </Link>
+      ) : (
+        <Text mb="xs" bold>
           {emoji} {name}
-        </HoverableText>
-      </Link>
+        </Text>
+      )}
       <Text mb="xs">{stack.join(', ')}</Text>
       {created && (
         <Text>
@@ -338,7 +356,9 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
           {whatIDo && (
             <List>
               {whatIDo.map(duty => (
-                <Text my="xs">{t(duty)}</Text>
+                <Text key={duty} my="xs">
+                  {t(duty)}
+                </Text>
               ))}
             </List>
           )}
@@ -363,7 +383,7 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
           </HeadingH3>
           <List>
             {proudOf.map(achievement => (
-              <Text my="xs">
+              <Text key={achievement} my="xs">
                 <Trans
                   i18nKey={`about:${achievement}`}
                   components={{

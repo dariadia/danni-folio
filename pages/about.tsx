@@ -24,10 +24,10 @@ import {
 import { MainLayout } from '@/components/layouts'
 import { Avatar, JobDescriptionCard } from '@/components'
 
-import { ABOUT_ME, SKILLS } from 'constants/aboutMe'
+import { ABOUT_ME, JOB_CARD, SKILLS } from 'constants/aboutMe'
 import { DATE_OPTIONS } from 'constants/dates'
 
-import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
+import type { Locale, Page, SinglePage as SinglePageProps, Event } from 'types'
 
 const AboutPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common', 'about'])
@@ -197,11 +197,17 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
 
   const EDUCATION = ABOUT_ME.EDUCATION
 
+  const shouldTogglePopup = (event: Event) => {
+    if (event?.target?.id === JOB_CARD) {
+      toggleJobPopup(initialJobPopupsState)
+    }
+  }
+
   return (
     <>
       {(isJobPopupShown.customerSupport ||
         isJobPopupShown.frontendDeveloper) && (
-        <Popup onClose={() => toggleJobPopup(initialJobPopupsState)}>
+        <Popup onClose={event => shouldTogglePopup(event as Event)}>
           <JobDescriptionCard {...{ isJobPopupShown, locale }} />
         </Popup>
       )}
