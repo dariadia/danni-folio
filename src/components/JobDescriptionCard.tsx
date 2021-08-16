@@ -44,7 +44,7 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
       <Button id={JOB_CARD} p="s" mb="m">
         ⇚ {t('return')}
       </Button>
-      <Box as="article" mb="xxxl">
+      <Box as="article" mb="xxxl" pr="m">
         <HeadingH3 mb="s" color="accentDark" kind="serif">
           {ABOUT_ME.CAREER[0].company}
         </HeadingH3>
@@ -320,7 +320,7 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
   } = project
 
   return (
-    <Box my="m" pr="s" pb="m" sx={{ borderBottom: `1px solid ${accentDark}` }}>
+    <Box my="m" pr="xl" pb="m" sx={{ borderBottom: `1px solid ${accentDark}` }}>
       {link ? (
         <Link mb="xs" href={link} target="_blank">
           <HoverableText
