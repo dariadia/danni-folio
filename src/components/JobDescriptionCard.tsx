@@ -125,21 +125,17 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
           marginBottom: `${baseTheme.space.s}px`,
         }}
       >
-        {CUSTOMER_SUPPORT_DUTIES.map((key, index) =>
-          index === 0 ? (
-            <Text key={key}>
-              📩 {t('lead_correspondence')}{' '}
-              <i>
-                <Text bold color="complementaryDark" inlineBlock>
-                  {t('usually')}
-                </Text>{' '}
-                {t('bugs')}
-              </i>
-            </Text>
-          ) : (
-            <Text key={key}>👩🏽‍💻 {t(key)}</Text>
-          ),
-        )}
+        {CUSTOMER_SUPPORT_DUTIES.map(key => (
+          <Text key={key}>
+            👩🏽‍💻{' '}
+            <Trans
+              i18nKey={`about:${key}`}
+              components={{
+                green: <Text color="complementaryDark" bold inlineBlock />,
+              }}
+            />
+          </Text>
+        ))}
       </List>
       <HeadingH3
         mt="l"
@@ -174,7 +170,15 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
             }}
           />
         </Text>
-        <Text>🧑‍🏫 {t('use_app')}</Text>
+        <Text>
+          🧑‍🏫{' '}
+          <Trans
+            i18nKey="about:use_app"
+            components={{
+              green: <Text color="complementaryDark" bold inlineBlock />,
+            }}
+          />
+        </Text>
       </List>
     </Box>
   )
@@ -357,7 +361,14 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
             <List>
               {whatIDo.map(duty => (
                 <Text key={duty} my="xs">
-                  {t(duty)}
+                  <Trans
+                    i18nKey={`about:${duty}`}
+                    components={{
+                      green: (
+                        <Text color="complementaryDark" bold inlineBlock />
+                      ),
+                    }}
+                  />
                 </Text>
               ))}
             </List>
