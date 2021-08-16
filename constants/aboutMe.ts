@@ -2,6 +2,8 @@ import { AboutMe, JobProjects, Skills } from 'types'
 
 const BIRTHDAY = '06.06.1997'
 
+export const JOB_CARD = 'job-card'
+
 export const ABOUT_ME: AboutMe = {
   BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },
   AGE: {
@@ -203,10 +205,31 @@ export const JOB_PROJECTS: JobProjects = {
       whatIDo: ['monitor', 'interract'],
     },
   ],
-  // TEAM: [
-  //   { name: 'Bookmate' },
-  //   { name: 'Bookmate Web Reader', stack: ['React.JS', 'Stylus'] },
-  //   { name: 'Bookmate New Web' },
-  //   { name: 'Bookmate canvas', stack: ['JavaScript', 'HTML5: canvas'] },
-  // ],
+  TEAM: [
+    {
+      emoji: '📙',
+      name: 'Bookmate',
+      link: 'https://bookmate.com/',
+      stack: ['React.JS', 'TypeScript', 'Redux', 'Stylus'],
+      whatIDo: [],
+    },
+    {
+      emoji: '📖',
+      name: 'Bookmate Web Reader',
+      stack: ['React.JS', 'React Select', 'Stylus'],
+      whatIDo: [],
+    },
+    {
+      emoji: '🚀',
+      name: 'Bookmate New Web',
+      stack: ['Next.JS', 'SWR', 'Styled components'],
+      whatIDo: [],
+    },
+    {
+      emoji: '🎨',
+      name: 'Bookmate canvas',
+      stack: ['JavaScript', 'HTML5: canvas'],
+      whatIDo: [],
+    },
+  ],
 } as const
