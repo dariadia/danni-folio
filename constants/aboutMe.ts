@@ -1,6 +1,8 @@
-import { AboutMe } from 'types'
+import { AboutMe, JobProjects, Skills } from 'types'
 
 const BIRTHDAY = '06.06.1997'
+
+export const JOB_CARD = 'job-card'
 
 export const ABOUT_ME: AboutMe = {
   BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },
@@ -95,18 +97,6 @@ export const ABOUT_ME: AboutMe = {
   ],
 } as const
 
-type Skills = {
-  [key: string]: {
-    variants: readonly Skill[]
-    emoji?: string
-  }
-}
-
-type Skill = {
-  name: string
-  link: string
-}
-
 export const SKILLS: Skills = {
   JavaScript: {
     variants: [
@@ -167,4 +157,79 @@ export const SKILLS: Skills = {
     ],
     emoji: '🟣',
   },
+} as const
+
+export const BOOKMATE_ACCOUNT_DATE = new Date('03.21.2014')
+
+export const CURRENT_YEAR = new Date().getFullYear()
+
+export const JOB_PROJECTS: JobProjects = {
+  SOLO: [
+    {
+      emoji: '🇷🇺 ',
+      name: 'Bookmate Journal',
+      link: 'https://journal.bookmate.com/',
+      stack: ['Hugo', 'JavaScript', 'SCSS'],
+      created: '11.20.2019',
+      whatIDo: ['monitor', 'improve', 'interract'],
+      proudOf: ['WCAG', 'lighthouse', 'refactored', 'load'],
+    },
+    {
+      emoji: '🇷🇸',
+      name: 'Bookmate Zurnal',
+      link: 'https://zurnal.bookmate.com/',
+      stack: ['Hugo', 'JavaScript', 'SCSS'],
+      created: '04.03.2020',
+      creator: true,
+    },
+    {
+      emoji: '🇩🇰',
+      name: 'Bookmate Journal Denmark',
+      link: 'https://journal.bookmate.dk/',
+      stack: ['Hugo', 'JavaScript', 'SCSS'],
+      created: '02.27.2021',
+      creator: true,
+    },
+    {
+      emoji: '📚',
+      name: 'Individuum Books',
+      link: 'https://individuumbooks.ru/',
+      stack: ['Hugo', 'JavaScript', 'SCSS'],
+      whatIDo: ['monitor', 'interract'],
+    },
+    {
+      emoji: '🍿',
+      name: 'Popcorn Books',
+      link: 'https://popcornbooks.me/',
+      stack: ['Hugo', 'JavaScript', 'SCSS'],
+      whatIDo: ['monitor', 'interract'],
+    },
+  ],
+  TEAM: [
+    {
+      emoji: '📙',
+      name: 'Bookmate',
+      link: 'https://bookmate.com/',
+      stack: ['React.JS', 'TypeScript', 'Redux', 'Stylus'],
+      whatIDo: ['monitor', 'improve', 'add_features', 'refactor'],
+    },
+    {
+      emoji: '📖',
+      name: 'Bookmate Web Reader',
+      stack: ['React.JS', 'React Select', 'Stylus'],
+      whatIDo: ['improve_usability', 'add_features'],
+    },
+    {
+      emoji: '🚀',
+      name: 'Bookmate New Web',
+      stack: ['Next.JS', 'SWR', 'Styled components'],
+      whatIDo: ['create', 'sneak_WCAG'],
+    },
+    {
+      emoji: '🎨',
+      name: 'Bookmate canvas',
+      stack: ['JavaScript', 'HTML5: canvas'],
+      whatIDo: ['add_options'],
+    },
+  ],
 } as const

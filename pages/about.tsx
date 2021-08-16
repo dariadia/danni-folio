@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -19,14 +19,15 @@ import {
   Details,
   HoverableText,
   Link,
+  Popup,
 } from 'danni-s-design-system'
 import { MainLayout } from '@/components/layouts'
-import { Avatar } from '@/components'
+import { Avatar, JobDescriptionCard } from '@/components'
 
-import { ABOUT_ME, SKILLS } from 'constants/aboutMe'
+import { ABOUT_ME, JOB_CARD, SKILLS } from 'constants/aboutMe'
 import { DATE_OPTIONS } from 'constants/dates'
 
-import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
+import type { Locale, Page, SinglePage as SinglePageProps, Event } from 'types'
 
 const AboutPage: Page<SinglePageProps> = ({ locale }) => {
   const { t } = useTranslation(['common', 'about'])
@@ -187,86 +188,128 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
 const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
   const { t } = useTranslation(['common', 'about', 'locations', 'languages'])
 
+  const initialJobPopupsState = {
+    customerSupport: false,
+    frontendDeveloper: false,
+  }
+
+  const [isJobPopupShown, toggleJobPopup] = useState(initialJobPopupsState)
+
   const EDUCATION = ABOUT_ME.EDUCATION
 
+  const shouldTogglePopup = (event: Event) => {
+    if (event?.target?.id === JOB_CARD) {
+      toggleJobPopup(initialJobPopupsState)
+    }
+  }
+
   return (
-    <Box p="m" mb="xl">
-      <Avatar mx="auto" mb="l" size="elephant">
-        <img src="assets/photo-me.png" alt={t('about:photo')} />
-      </Avatar>
-      <HeadingInBox text={t('about:career')} textTransform />
-      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-        {ABOUT_ME.CAREER.map(job => {
-          const { translationKey, start, finish, company, link } = job
-          return (
-            <Flex key={translationKey} my="s" justifyContent="space-between">
-              <Text sx={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
-                {t(`about:${translationKey}`)}
-                {link ? (
-                  <Link href={link} target="_blank">
-                    <HoverableText color="complementaryDark">
-                      {company}
-                    </HoverableText>
-                  </Link>
-                ) : (
-                  <Text>{company}</Text>
-                )}
-              </Text>
-              <Text ml="xl" textAlign="right">
-                {new Date(start).toLocaleDateString(locale)}–
-                {finish ? (
-                  new Date(finish).toLocaleDateString(locale)
-                ) : (
-                  <Text color="complementaryDark" fontWeight="bold" inlineBlock>
-                    {t(`common:now`)}
-                  </Text>
-                )}
-              </Text>
-            </Flex>
-          )
-        })}
-      </List>
-      <Box mb="m" />
-      <HeadingInBox text={t('about:education')} textTransform />
-      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-        <EducationItem
-          {...{
-            name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
-              EDUCATION.SCHOOL.value
-            }`,
-            locale,
-            start: EDUCATION.SCHOOL.start,
-            finish: EDUCATION.SCHOOL.finish,
-            location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
-              `locations:${EDUCATION.SCHOOL.countryKey}`,
-            )}`,
-          }}
-        />
-        <EducationItem
-          {...{
-            name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
-            locale,
-            start: EDUCATION.UNIVERSITY.start,
-            finish: EDUCATION.UNIVERSITY.finish,
-            link: EDUCATION.UNIVERSITY.link,
-            location: `${t(
-              `locations:${EDUCATION.UNIVERSITY.locationKey}`,
-            )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
-          }}
-        />
-        <EducationItem
-          {...{
-            name: EDUCATION.FURTHER_EDUCATION.value as string,
-            locale,
-            start: EDUCATION.FURTHER_EDUCATION.start,
-            finish: EDUCATION.FURTHER_EDUCATION.finish,
-            link: EDUCATION.FURTHER_EDUCATION.link,
-            location: 'online',
-          }}
-        />
-      </List>
-      <BottomDivider />
-    </Box>
+    <>
+      {(isJobPopupShown.customerSupport ||
+        isJobPopupShown.frontendDeveloper) && (
+        <Popup onClose={event => shouldTogglePopup(event as Event)}>
+          <JobDescriptionCard {...{ isJobPopupShown, locale }} />
+        </Popup>
+      )}
+      <Box p="m" mb="xl">
+        <Avatar mx="auto" mb="l" size="elephant">
+          <img src="assets/photo-me.png" alt={t('about:photo')} />
+        </Avatar>
+        <HeadingInBox text={t('about:career')} textTransform />
+        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+          {ABOUT_ME.CAREER.map(job => {
+            const { translationKey, start, finish, company, link } = job
+            return (
+              <Flex key={translationKey} my="s" justifyContent="space-between">
+                <Text sx={{ textTransform: 'capitalize' }}>
+                  <HoverableText
+                    bold
+                    onClick={() =>
+                      toggleJobPopup({
+                        ...initialJobPopupsState,
+                        [translationKey === 'customer_support'
+                          ? 'customerSupport'
+                          : 'frontendDeveloper']: true,
+                      })
+                    }
+                  >
+                    ➠ {t(`about:${translationKey}`)}
+                    <Text
+                      mb="s"
+                      variant="bodySm"
+                      bold
+                      sx={{ textTransform: 'none' }}
+                      color="complementaryLight"
+                    >
+                      {t('about:click_to_open')}
+                    </Text>
+                  </HoverableText>
+                  {link ? (
+                    <Link href={link} target="_blank">
+                      <HoverableText bold color="complementaryDark">
+                        {company}
+                      </HoverableText>
+                    </Link>
+                  ) : (
+                    <Text bold>{company}</Text>
+                  )}
+                </Text>
+                <Text ml="xl" textAlign="right">
+                  {new Date(start).toLocaleDateString(locale)}–
+                  {finish ? (
+                    new Date(finish).toLocaleDateString(locale)
+                  ) : (
+                    <Text color="complementaryDark" bold inlineBlock>
+                      {t(`common:now`)}
+                    </Text>
+                  )}
+                </Text>
+              </Flex>
+            )
+          })}
+        </List>
+        <Box mb="m" />
+        <HeadingInBox text={t('about:education')} textTransform />
+        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+          <EducationItem
+            {...{
+              name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
+                EDUCATION.SCHOOL.value
+              }`,
+              locale,
+              start: EDUCATION.SCHOOL.start,
+              finish: EDUCATION.SCHOOL.finish,
+              location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
+                `locations:${EDUCATION.SCHOOL.countryKey}`,
+              )}`,
+            }}
+          />
+          <EducationItem
+            {...{
+              name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
+              locale,
+              start: EDUCATION.UNIVERSITY.start,
+              finish: EDUCATION.UNIVERSITY.finish,
+              link: EDUCATION.UNIVERSITY.link,
+              location: `${t(
+                `locations:${EDUCATION.UNIVERSITY.locationKey}`,
+              )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
+            }}
+          />
+          <EducationItem
+            {...{
+              name: EDUCATION.FURTHER_EDUCATION.value as string,
+              locale,
+              start: EDUCATION.FURTHER_EDUCATION.start,
+              finish: EDUCATION.FURTHER_EDUCATION.finish,
+              link: EDUCATION.FURTHER_EDUCATION.link,
+              location: 'online',
+            }}
+          />
+        </List>
+        <BottomDivider />
+      </Box>
+    </>
   )
 }
 
@@ -291,18 +334,19 @@ const EducationItem = ({
         <Link
           target="_blank"
           href={link}
-          sx={{ textDecoration: 'none', fontWeight: 'bold' }}
+          bold
+          sx={{ textDecoration: 'none' }}
           inlineBlock
         >
-          <HoverableText>{name}</HoverableText>
+          <HoverableText bold>{name}</HoverableText>
         </Link>
       ) : (
-        <Text sx={{ fontWeight: 'bold' }} inlineBlock>
+        <Text bold inlineBlock>
           {name}
         </Text>
       )}
       {location && (
-        <Text sx={{ fontWeight: 'bold' }} color="complementaryDark">
+        <Text bold color="complementaryDark">
           {location}
         </Text>
       )}
@@ -332,7 +376,7 @@ const PersonalDetails = () => {
         <Text>
           <Text
             color="complementaryDark"
-            fontWeight="bold"
+            bold
             mr="s"
             sx={{ textTransform: 'capitalize' }}
             inlineBlock
@@ -344,21 +388,23 @@ const PersonalDetails = () => {
           </Text>
           <Text inlineBlock>{ABOUT_ME.BIRTHDAY.extra}</Text>
         </Text>
-        <Text fontWeight="bold">
-          <Text mr="s" inlineBlock>
+        <Text>
+          <Text bold mr="s" inlineBlock>
             {ABOUT_ME.AGE.value}
           </Text>
-          <Text inlineBlock>{t('years_old')}</Text>
+          <Text bold inlineBlock>
+            {t('years_old')}
+          </Text>
         </Text>
         <Text pb="m">
           <Text mr="s" color="complementaryDark" inlineBlock>
-            <Text my="s" mr="s" fontWeight="bold">
+            <Text my="s" mr="s" bold>
               ☀️{t(ABOUT_ME.ZODIAC.value as string)}
             </Text>
-            <Text my="s" mr="s" fontWeight="bold">
+            <Text my="s" mr="s" bold>
               🌙 {t(ABOUT_ME.ZODIAC.value as string)}
             </Text>
-            <Text mr="xs" fontWeight="bold" inlineBlock>
+            <Text mr="xs" bold inlineBlock>
               AC {t(ABOUT_ME.ZODIAC.extra as string)}
             </Text>
           </Text>
@@ -379,7 +425,8 @@ const PersonalDetails = () => {
         })}
         <Text
           color="complementaryDark"
-          sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}
+          bold
+          sx={{ textTransform: 'uppercase' }}
           pt="m"
         >
           {t('hobbies')}
@@ -453,17 +500,12 @@ const LanguagesList = () => {
       {ABOUT_ME.LANGUAGES.map(language => (
         <Text my="m" mx="auto" key={language.translationKey}>
           {language.emoji}{' '}
-          <Text mr="s" fontWeight="bold" inlineBlock>
+          <Text mr="s" bold inlineBlock>
             {t(`languages:${language.translationKey}`)}
           </Text>
           {language.level ? (
             <>
-              <Text
-                mr="s"
-                fontWeight="bold"
-                color="complementaryDark"
-                inlineBlock
-              >
+              <Text mr="s" bold color="complementaryDark" inlineBlock>
                 {language.level}
               </Text>
               <Text mr="m" inlineBlock>
@@ -471,7 +513,7 @@ const LanguagesList = () => {
               </Text>
             </>
           ) : (
-            <Text fontWeight="bold" color="complementaryDark" inlineBlock>
+            <Text bold color="complementaryDark" inlineBlock>
               {t(`about:${language.levelKey}`)}
             </Text>
           )}
@@ -488,7 +530,7 @@ const getAllSkills = () => {
     const skillVariants = SKILLS[skill].variants
     skillNodesArray.push(
       <Box px="l" key={skill} my="m">
-        <Text color="complementaryDark" fontWeight="bold" inlineBlock>
+        <Text color="complementaryDark" bold inlineBlock>
           {skill}
         </Text>
         <List>

@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { usePersonasAPI } from '@/hooks/use-api'
 import { PARA_ABILITIES, PERSONAS } from 'constants/apis'
+import { PARA_ABILITY_PERSONAS } from 'constants/locations'
 
 import { matchByKey } from 'utils/foreign-key-match'
 import { MediaContextProvider, Media } from 'utils/media'
@@ -19,6 +20,7 @@ import type {
   PersonaWithParaAbilityDescription,
   Personas,
   ParaAbilities,
+  Event,
 } from 'types'
 
 const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
@@ -34,7 +36,7 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
 
   const { t } = useTranslation(['common'])
 
-  const [personasDescShown, showPersonasDesc] = useState(false)
+  const [personasDescShown, togglePersonasDesc] = useState(false)
 
   if (!personas || !paraAbilities) return <Loader />
   if (personasFetchError || paraAbilitiesFetchError) return <Box>⚠️</Box>
@@ -44,13 +46,19 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
     paraAbilities: paraAbilities as ParaAbilities,
   })
 
+  const shouldTogglePopup = (event: Event) => {
+    if (event?.target?.id === PARA_ABILITY_PERSONAS) {
+      togglePersonasDesc(false)
+    }
+  }
+
   return (
     <>
       {personasDescShown && (
         <Popup
           as="section"
           height="100%"
-          onClose={() => showPersonasDesc(!personasDescShown)}
+          onClose={event => shouldTogglePopup(event as Event)}
         >
           <ParaAbilityProjectDescription />
         </Popup>
@@ -62,9 +70,9 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
       </MediaContextProvider>
       <List as="section">
         <HoverableText
-          onClick={() => showPersonasDesc(!personasDescShown)}
+          onClick={() => togglePersonasDesc(!personasDescShown)}
           mt="s"
-          fontWeight="bold"
+          bold
           color="complementaryDark"
           variant="bodyMd"
         >

@@ -56,7 +56,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
               {emoji} {paraAbility}
             </HeadingH3>
             <Text mb="xl">
-              <Text fontWeight="bold" mr="xs" inlineBlock>
+              <Text bold mr="xs" inlineBlock>
                 Kind:
               </Text>
               {kind}
@@ -110,7 +110,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
             {persona_name}
           </Text>
           <HoverableText
-            fontWeight="bold"
+            bold
             color="accentDark"
             activeColour="complementaryDark"
           >

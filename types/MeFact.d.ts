@@ -38,3 +38,31 @@ type Language = {
   readonly levelKey: string
   readonly emoji?: string
 }
+
+export type Skills = {
+  [key: string]: {
+    variants: readonly Skill[]
+    emoji?: string
+  }
+}
+
+type Skill = {
+  name: string
+  link: string
+}
+
+export type Project = {
+  name: readonly string
+  link?: readonly string
+  stack: readonly string[]
+  created?: readonly string
+  creator?: boolean
+  whatIDo?: readonly string[]
+  proudOf?: readonly string[]
+  emoji?: string
+}
+
+export type JobProjects = {
+  SOLO: readonly Project[]
+  TEAM: readonly Project[]
+}

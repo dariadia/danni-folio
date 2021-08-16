@@ -180,7 +180,7 @@ const IntroSection = () => {
               {t('definition_origin')}
             </HoverableText>
           </Link>
-          <Text mt="l" mb="m" as="p" fontWeight="bold">
+          <Text mt="l" mb="m" as="p" bold>
             {t('folio_includes')}
           </Text>
           <List liSx={{ marginLeft: `${baseTheme.space.xl}px` }}>
@@ -193,7 +193,7 @@ const IntroSection = () => {
                   green: (
                     <Text
                       color="complementaryDark"
-                      fontWeight="bold"
+                      bold
                       as="span"
                       inlineBlock
                     />
@@ -228,7 +228,7 @@ const IntroSection = () => {
               {t('definition_origin')}
             </HoverableText>
           </Link>
-          <Text mt="l" mb="m" as="p" fontWeight="bold">
+          <Text mt="l" mb="m" as="p" bold>
             {t('folio_includes')}
           </Text>
           <List liSx={{ marginLeft: `${baseTheme.space.l}px` }}>
@@ -241,7 +241,7 @@ const IntroSection = () => {
                   green: (
                     <Text
                       color="complementaryDark"
-                      fontWeight="bold"
+                      bold
                       as="span"
                       inlineBlock
                     />
@@ -261,7 +261,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
 
   const theme = useContext(ThemeContext) as ThemeType
 
-  const [personasDescShown, showPersonasDesc] = useState(false)
+  const [personasDescShown, togglePersonasDesc] = useState(false)
 
   return (
     <>
@@ -269,7 +269,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
         <Popup
           as="section"
           height="100%"
-          onClose={() => showPersonasDesc(!personasDescShown)}
+          onClose={() => togglePersonasDesc(!personasDescShown)}
         >
           <ParaAbilityProjectDescription />
         </Popup>
@@ -324,7 +324,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
             </Link>
             <ExternalLink mt="s" href={PERSONAS_APP_ISSUES} target="_blank">
               <HoverableText
-                fontWeight="bold"
+                bold
                 color="complementaryLight"
                 activeColour="complementaryDark"
                 variant="bodyMd"
@@ -333,9 +333,9 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
               </HoverableText>
             </ExternalLink>
             <HoverableText
-              onClick={() => showPersonasDesc(!personasDescShown)}
+              onClick={() => togglePersonasDesc(!personasDescShown)}
               mt="s"
-              fontWeight="bold"
+              bold
               color="complementaryDark"
               variant="bodyMd"
             >
