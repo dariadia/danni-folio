@@ -53,7 +53,7 @@ type Skill = {
 
 export type Project = {
   name: readonly string
-  link: readonly string
+  link?: readonly string
   stack: readonly string[]
   created?: readonly string
   creator?: boolean
@@ -64,5 +64,5 @@ export type Project = {
 
 export type JobProjects = {
   SOLO: readonly Project[]
-  TEAM?: readonly Project[]
+  TEAM: readonly Project[]
 }
