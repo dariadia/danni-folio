@@ -2,7 +2,14 @@ import React from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { MainLayout } from '@/components/layouts'
-import { HeadingH3, Text, baseTheme, Box } from 'danni-s-design-system'
+import {
+  HeadingH3,
+  Text,
+  baseTheme,
+  Box,
+  Link as ExternalLink,
+  HoverableText,
+} from 'danni-s-design-system'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
 
@@ -21,6 +28,47 @@ const RandomStoryPage: Page<SinglePageProps> = () => (
         about you going on an epic adventure with an author
       </HeadingH3>
       <Text mt="xs">or enter any text you want and take off 🚀</Text>
+      <Box mt="xxl" as="article">
+        <HeadingH3 mb="s" fontSize={`${baseTheme.space.xl}px`} as="h3">
+          on this project:
+        </HeadingH3>
+        Inspired by{' '}
+        <ExternalLink
+          inlineBlock
+          href="https://dev.to/inhuofficial/what-burger-are-you-enter-your-name-to-find-out-repeatable-random-numbers-seeds-3jhf"
+          target="_blank"
+        >
+          <HoverableText bold color="complementaryDark">
+            this article by InHuOfficial
+          </HoverableText>
+        </ExternalLink>
+        <Text>
+          the app generates a random seed
+          <Box
+            width="fit-content"
+            p="l"
+            mx="auto"
+            my="l"
+            as="pre"
+            sx={{ border: `1px dashed green` }}
+          >
+            <code>
+              seed = (seed * 9301 + 49297) % 233280;
+              <br />
+              var rnd = seed / 233280;
+            </code>
+          </Box>
+          from your{' '}
+          <Text color="complementaryDark" bold inlineBlock>
+            code name
+          </Text>
+          . Which is just your name but every letter is a{' '}
+          <Text color="complementaryDark" bold inlineBlock>
+            .charCodeAt(x)
+          </Text>{' '}
+          value.
+        </Text>
+      </Box>
     </Box>
 
     <iframe
