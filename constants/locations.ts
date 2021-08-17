@@ -3,6 +3,7 @@ export const ABOUT = 'about'
 export const CONTACTS = 'contacts'
 export const PROJECTS = 'projects'
 export const PARA_ABILITY_PERSONAS = 'projects/para-ability-personas'
+export const RANDOM_STORY_MAKER = 'projects/random-story-maker'
 
 export const PROJECT_NAME = 'para-ability personas project introduction'
 export const ABOUT_PARA_ABILITY_PERSONAS = 'about para-ability personas project'
