@@ -25,7 +25,7 @@ const RandomStoryPage: Page<SinglePageProps> = () => (
 
     <iframe
       suppressHydrationWarning
-      height="300"
+      height="700"
       style={{ width: '100%' }}
       scrolling="no"
       title="Plot Generator"
