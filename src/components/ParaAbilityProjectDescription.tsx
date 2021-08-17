@@ -16,16 +16,17 @@ import {
 import {
   PERSONAS_APP_PROJECT,
   PARA_ABILITY_PERSONAS,
+  PERSONAS_APP_ISSUES,
 } from 'constants/locations'
 import { CONTACTS } from 'constants/contacts'
 
 export const ParaAbilityProjectDescription: React.FC = () => {
-  const { t } = useTranslation('about')
+  const { t } = useTranslation(['about', 'common'])
 
   return (
     <Box p="xxxl" mr="xl">
       <Button id={PARA_ABILITY_PERSONAS} p="s" mb="m">
-        ⇚ {t('return')}
+        ⇚ {t('about:return')}
       </Button>
       <Box mb="xxl" as="article">
         <HeadingH3 mb="s" kind="serif" color="accentDark" as="h1">
@@ -202,6 +203,35 @@ export const ParaAbilityProjectDescription: React.FC = () => {
           @{CONTACTS.GITHUB.value}
         </HoverableText>
       </ExternalLink>
+      <Box mt="xl" as="footer">
+        <Text bold>P.s.</Text>
+        <ExternalLink mt="s" href={PERSONAS_APP_ISSUES} target="_blank">
+          <HoverableText
+            bold
+            fontSize={`${baseTheme.space.xl}px`}
+            color="complementaryDark"
+            variant="bodyMd"
+          >
+            ⇨ {t('common:help_wanted')} ⇦
+          </HoverableText>
+        </ExternalLink>
+        <Box mt="m" as="section">
+          <Text my="m" bold>
+            In short, I plan to:
+          </Text>
+          <List>
+            <Text mb="s">
+              👓 develop an app you can switch on top of your own website.
+              Different modes show how people with different colour-vision
+              related para-abilities perceive it.
+            </Text>
+            <Text mb="s">
+              👨‍🦳 👧 🧔‍♀️ Add more perosnas & para-ability descriptions
+            </Text>
+            <Text mb="s">🇩🇪 Translate the project into other languages</Text>
+          </List>
+        </Box>
+      </Box>
     </Box>
   )
 }
