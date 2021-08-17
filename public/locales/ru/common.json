@@ -15,5 +15,9 @@
   "folio": "фолио Дани",
   "meta_description": "Взгляни на мои проекты!",
   "projects": "мои проекты",
-  "about_project": "о проекте"
+  "about_project": "о проекте",
+  "navigation": "навигация",
+  "languages": "языки сайта",
+  "open_folio": "открыть портфолио",
+  "to_contents": "вернуться к содержанию"
 }
