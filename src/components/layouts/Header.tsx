@@ -158,6 +158,7 @@ const AvailableLocalesList = ({
     <MediaContextProvider>
       <Media greaterThanOrEqual="desktop">
         <List
+          id={t('common:project_languages')}
           role={t('navigation')}
           aria-label={t('languages')}
           direction="row"
@@ -172,6 +173,7 @@ const AvailableLocalesList = ({
       </Media>
       <Media lessThan="desktop">
         <List
+          id={t('common:project_languages')}
           role={t('navigation')}
           aria-label={t('languages')}
           liSx={{ margin: 'auto', width: 'fit-content' }}
@@ -263,8 +265,14 @@ export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
                   mx="m"
                   height={`${baseTheme.space.elephant - baseTheme.space.s}px`}
                 />
-                <Popup height="100vh" p="xl">
+                <Popup
+                  ariaLabelledby={t('common:languages_available')}
+                  ariaDescribedby={t('common:project_languages')}
+                  height="100vh"
+                  p="xl"
+                >
                   <Flex
+                    id={t('common:languages_available')}
                     justifyContent="center"
                     alignItems="center"
                     height="100%"
