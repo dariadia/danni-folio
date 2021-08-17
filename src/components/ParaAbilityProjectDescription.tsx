@@ -17,6 +17,8 @@ import {
   PERSONAS_APP_PROJECT,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
+  PROJECT_NAME,
+  ABOUT_PARA_ABILITY_PERSONAS,
 } from 'constants/locations'
 import { CONTACTS } from 'constants/contacts'
 
@@ -28,7 +30,7 @@ export const ParaAbilityProjectDescription: React.FC = () => {
       <Button id={PARA_ABILITY_PERSONAS} p="s" mb="m">
         ⇚ {t('about:return')}
       </Button>
-      <Box mb="xxl" as="article">
+      <Box id={PROJECT_NAME} mb="xxl" as="article">
         <HeadingH3 mb="s" kind="serif" color="accentDark" as="h1">
           What
         </HeadingH3>
@@ -148,7 +150,7 @@ export const ParaAbilityProjectDescription: React.FC = () => {
           </Text>
         </List>
       </Box>
-      <Box mb="xxl" as="article">
+      <Box id={ABOUT_PARA_ABILITY_PERSONAS} mb="xxl" as="article">
         <HeadingH3 mb="s" kind="serif" color="accentDark" as="h2">
           Presenting
         </HeadingH3>
