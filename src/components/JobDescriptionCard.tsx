@@ -340,7 +340,8 @@ const ProjectInformation = ({ project, locale, accentDark }: ProjectProps) => {
       {created && (
         <Text>
           <Text mr="s" bold inlineBlock>
-            {t('created')} {creator && `(${t('by_me')})`}:
+            {t('created')}
+            {creator && ` (${t('by_me')})`}:
           </Text>
           {new Date(created).toLocaleDateString(locale)}
         </Text>
