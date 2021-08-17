@@ -43,7 +43,7 @@ export const JobDescriptionCard: React.FC<JobDescriptionCardProps> = ({
 
   return (
     <Box as="section">
-      <Button id={JOB_CARD} p="s" mb="m">
+      <Button aria-label={t('return')} id={JOB_CARD} p="s" mb="m">
         ⇚ {t('return')}
       </Button>
       <Box as="article" mb="xxxl" pr="m">

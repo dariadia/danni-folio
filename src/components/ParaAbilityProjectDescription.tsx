@@ -27,7 +27,7 @@ export const ParaAbilityProjectDescription: React.FC = () => {
 
   return (
     <Box p="xxxl" mr="xl">
-      <Button id={PARA_ABILITY_PERSONAS} p="s" mb="m">
+      <Button id={PARA_ABILITY_PERSONAS} aria-label={t('return')} p="s" mb="m">
         ⇚ {t('about:return')}
       </Button>
       <Box id={PROJECT_NAME} mb="xxl" as="article">
