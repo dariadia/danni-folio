@@ -4,6 +4,7 @@ export const CONTACTS = 'contacts'
 export const PROJECTS = 'projects'
 export const PARA_ABILITY_PERSONAS = 'projects/para-ability-personas'
 export const RANDOM_STORY_MAKER = 'projects/random-story-maker'
+export const AVATAR_CREATOR = 'projects/avatar-creator'
 
 export const PROJECT_NAME = 'para-ability personas project introduction'
 export const ABOUT_PARA_ABILITY_PERSONAS = 'about para-ability personas project'
@@ -16,6 +17,6 @@ export const PERSONAS_APP_PROJECT =
 export const PERSONAS_APP_ISSUES =
   'https://github.com/dariadia/para-ability-personas/issues'
 
-export const AVATAR_BUILDER = 'https://avatar-builder-teal.vercel.app/'
-export const AVATAR_BUILDER_IN_APP =
+export const AVATAR_CREATOR_APP = 'https://avatar-builder-teal.vercel.app/'
+export const AVATAR_CREATOR_IN_APP =
   'https://avatar-builder-teal.vercel.app?isApp=true'
