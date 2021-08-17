@@ -213,7 +213,7 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
       )}
       <Box p="m" mb="xl">
         <Avatar mx="auto" mb="l" size="elephant">
-          <img src="assets/photo-me.png" alt={t('about:photo')} />
+          <img src="assets/photo-me-main.png" alt={t('about:photo')} />
         </Avatar>
         <HeadingInBox text={t('about:career')} textTransform />
         <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
