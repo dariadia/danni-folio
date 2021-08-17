@@ -22,6 +22,8 @@ export const ClickMeButton: React.FC<ConstrainedBoxProps> = () => {
         borderRadius: baseTheme.radii.m,
         textTransform: 'uppercase',
       }}
+      role={t('navigation')}
+      aria-label={t('open_folio')}
     >
       <HeadingH3 variant="headingSmall" kind="serif">
         {t('click_to_open')}

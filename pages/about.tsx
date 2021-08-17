@@ -24,7 +24,13 @@ import {
 import { MainLayout } from '@/components/layouts'
 import { Avatar, JobDescriptionCard } from '@/components'
 
-import { ABOUT_ME, JOB_CARD, SKILLS } from 'constants/aboutMe'
+import {
+  ABOUT_ME,
+  JOB_CARD,
+  JOB_DESCRIPTION,
+  JOB_DUTIES,
+  SKILLS,
+} from 'constants/aboutMe'
 import { DATE_OPTIONS } from 'constants/dates'
 
 import type { Locale, Page, SinglePage as SinglePageProps, Event } from 'types'
@@ -207,7 +213,11 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
     <>
       {(isJobPopupShown.customerSupport ||
         isJobPopupShown.frontendDeveloper) && (
-        <Popup onClose={event => shouldTogglePopup(event as Event)}>
+        <Popup
+          ariaLabelledby={JOB_DESCRIPTION}
+          ariaDescribedby={JOB_DUTIES}
+          onClose={event => shouldTogglePopup(event as Event)}
+        >
           <JobDescriptionCard {...{ isJobPopupShown, locale }} />
         </Popup>
       )}

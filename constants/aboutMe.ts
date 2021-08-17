@@ -3,6 +3,8 @@ import { AboutMe, JobProjects, Skills } from 'types'
 const BIRTHDAY = '06.06.1997'
 
 export const JOB_CARD = 'job-card'
+export const JOB_DESCRIPTION = 'job description'
+export const JOB_DUTIES = 'job responsibilities'
 
 export const ABOUT_ME: AboutMe = {
   BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },

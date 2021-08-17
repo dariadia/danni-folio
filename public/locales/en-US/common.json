@@ -14,5 +14,10 @@
   "folio": "Dannis Folio",
   "meta_description": "Check out my projects!",
   "projects": "my projects",
-  "about_project": "about this project"
+  "about_project": "about this project",
+  "navigation": "navigation",
+  "languages": "languages",
+  "open_folio": "open portfolio",
+  "to_contents": "return to contents",
+  "project_languages": "available languages"
 }

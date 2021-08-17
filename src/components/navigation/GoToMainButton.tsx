@@ -11,6 +11,8 @@ export const GoToMainButton: React.FC<ConstrainedBoxProps> = ({ my }) => {
 
   return (
     <Button
+      role={t('navigation')}
+      aria-label={t('to_contents')}
       activeColour="complementaryLight"
       bg="complementaryLight"
       color="white"

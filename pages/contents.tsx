@@ -26,9 +26,11 @@ import { SelfAvatar, ParaAbilityProjectDescription } from '@/components'
 
 import {
   ABOUT,
+  ABOUT_PARA_ABILITY_PERSONAS,
   CONTACTS,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
+  PROJECT_NAME,
 } from 'constants/locations'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
@@ -267,6 +269,8 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
     <>
       {personasDescShown && (
         <Popup
+          ariaLabelledby={PROJECT_NAME}
+          ariaDescribedby={ABOUT_PARA_ABILITY_PERSONAS}
           as="section"
           height="100%"
           onClose={() => togglePersonasDesc(!personasDescShown)}
