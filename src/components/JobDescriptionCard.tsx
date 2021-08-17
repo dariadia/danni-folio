@@ -20,6 +20,8 @@ import {
   BOOKMATE_ACCOUNT_DATE,
   CURRENT_YEAR,
   JOB_CARD,
+  JOB_DESCRIPTION,
+  JOB_DUTIES,
   JOB_PROJECTS,
 } from 'constants/aboutMe'
 
@@ -90,6 +92,7 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
   return (
     <Box as="article">
       <HeadingH3
+        id={JOB_DESCRIPTION}
         mb="s"
         sx={{
           textTransform: 'capitalize',
@@ -120,6 +123,7 @@ const CustomerSupportDescription: React.FC<JobProps> = ({ locale }) => {
         ⚙️ {t('responsibilities_past')}
       </HeadingH3>
       <List
+        id={JOB_DUTIES}
         liSx={{
           marginLeft: `${baseTheme.space.m}px`,
           marginBottom: `${baseTheme.space.s}px`,
@@ -203,6 +207,7 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
   return (
     <Box as="article">
       <HeadingH3
+        id={JOB_DESCRIPTION}
         mb="s"
         sx={{
           textTransform: 'capitalize',
@@ -246,6 +251,7 @@ const FrontendDescription: React.FC<JobProps> = ({ locale }) => {
         🎤 {t('solo_projects')}
       </HeadingH3>
       <List
+        id={JOB_DUTIES}
         liSx={{
           marginLeft: `${baseTheme.space.xl}px`,
           marginBottom: `${baseTheme.space.s}px`,
