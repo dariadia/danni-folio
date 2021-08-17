@@ -12,7 +12,13 @@ export const Footer: React.FC = () => {
   const { t } = useTranslation(['common'])
 
   return (
-    <Flex mx="xl" p="m" justifyContent="flex-end">
+    <Flex
+      as="footer"
+      role="contentinfo"
+      mx="xl"
+      p="m"
+      justifyContent="flex-end"
+    >
       <Text>
         <Link
           target="_blank"
