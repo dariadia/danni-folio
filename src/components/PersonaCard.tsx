@@ -12,6 +12,10 @@ import {
   HeadingH3,
 } from 'danni-s-design-system'
 import { Avatar } from '.'
+import {
+  PARA_ABILITY_DESCRIPTION,
+  PARA_ABILITY_NAME,
+} from 'constants/locations'
 
 import type { PersonaWithParaAbilityDescription } from 'types'
 
@@ -50,9 +54,19 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
   return (
     <>
       {descriptionShown && (
-        <Popup p="xxxl" onClose={() => showDescription(!descriptionShown)}>
+        <Popup
+          ariaLabelledby={PARA_ABILITY_NAME}
+          ariaDescribedby={PARA_ABILITY_DESCRIPTION}
+          p="xxxl"
+          onClose={() => showDescription(!descriptionShown)}
+        >
           <Box mx="auto" maxWidth={`${baseTheme.space.dinosaur * 2}px`}>
-            <HeadingH3 mb="xl" kind="serif" color="accentDark">
+            <HeadingH3
+              id={PARA_ABILITY_NAME}
+              mb="xl"
+              kind="serif"
+              color="accentDark"
+            >
               {emoji} {paraAbility}
             </HeadingH3>
             <Text mb="xl">
@@ -63,6 +77,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
             </Text>
             {behaviour_patterns && behaviour_patterns.length > 0 && (
               <List
+                id={PARA_ABILITY_DESCRIPTION}
                 liSx={{ marginBottom: `${baseTheme.space.s}px` }}
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >

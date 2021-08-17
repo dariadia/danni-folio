@@ -4,7 +4,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { usePersonasAPI } from '@/hooks/use-api'
 import { PARA_ABILITIES, PERSONAS } from 'constants/apis'
-import { PARA_ABILITY_PERSONAS } from 'constants/locations'
+import {
+  ABOUT_PARA_ABILITY_PERSONAS,
+  PARA_ABILITY_PERSONAS,
+  PROJECT_NAME,
+} from 'constants/locations'
 
 import { matchByKey } from 'utils/foreign-key-match'
 import { MediaContextProvider, Media } from 'utils/media'
@@ -56,6 +60,8 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
     <>
       {personasDescShown && (
         <Popup
+          ariaLabelledby={PROJECT_NAME}
+          ariaDescribedby={ABOUT_PARA_ABILITY_PERSONAS}
           as="section"
           height="100%"
           onClose={event => shouldTogglePopup(event as Event)}
