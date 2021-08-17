@@ -70,7 +70,7 @@
   "return": "zurückkehren",
   "refactor": "umgestalten Legacy-Teilen",
   "improve_usability": "verbessern Benutzerfreundlichkeit",
-  "create": "erstellen die meisten Sachen, auf dem alten Design 🧑‍🎨, von Grund auf neu. Man beschlosst, ein neues Projekt zu starten, anstatt zu versuchen, wie das alte (legacy) verbessern. <green>Diese Website ist immer noch Unternehmens-VNP geschlossen</green>.",
-  "sneak_WCAG": "schleiche sich in <green>WCAG-Funktionen</green> ein. Weil unsere Firmenpolitik / unser Team meistens darum sich nicht kümmere 😫 <green>Ich finde das wichtig</green>.",
+  "create": "erstellen die meisten Sachen, auf dem alten Design 🧑‍🎨, von Grund auf neu. Man beschlosst, ein neues Projekt zu starten, anstatt zu versuchen, wie das alte (legacy) verbessern. <green>Diese Website ist immer noch Unternehmens-VNP geschlossen</green>",
+  "sneak_WCAG": "schleiche sich in <green>WCAG-Funktionen</green> ein. Weil unsere Firmenpolitik / unser Team meistens darum sich nicht kümmere 😫 <green>Ich finde das wichtig</green>",
   "add_options": "füge den Funktionen neue Optionen hinzu"
 }
