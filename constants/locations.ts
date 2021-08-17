@@ -4,6 +4,7 @@ export const CONTACTS = 'contacts'
 export const PROJECTS = 'projects'
 export const PARA_ABILITY_PERSONAS = 'projects/para-ability-personas'
 export const RANDOM_STORY_MAKER = 'projects/random-story-maker'
+export const RANDOM_BOOK_PICKER = 'projects/random-book-picker'
 export const AVATAR_CREATOR = 'projects/avatar-creator'
 
 export const PROJECT_NAME = 'para-ability personas project introduction'
