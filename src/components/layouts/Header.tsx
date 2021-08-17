@@ -152,30 +152,41 @@ const AvailableLocalesList = ({
 }: {
   locales: Locale[]
   currentLocale: Locale
-}) => (
-  <MediaContextProvider>
-    <Media greaterThanOrEqual="desktop">
-      <List direction="row">
-        {locales.map(
-          locale =>
-            locale !== currentLocale && (
-              <LanguageButton key={locale} locale={locale} />
-            ),
-        )}
-      </List>
-    </Media>
-    <Media lessThan="desktop">
-      <List liSx={{ margin: 'auto', width: 'fit-content' }}>
-        {locales.map(
-          locale =>
-            locale !== currentLocale && (
-              <LanguageButton key={locale} locale={locale} />
-            ),
-        )}
-      </List>
-    </Media>
-  </MediaContextProvider>
-)
+}) => {
+  const { t } = useTranslation('common')
+  return (
+    <MediaContextProvider>
+      <Media greaterThanOrEqual="desktop">
+        <List
+          role={t('navigation')}
+          aria-label={t('languages')}
+          direction="row"
+        >
+          {locales.map(
+            locale =>
+              locale !== currentLocale && (
+                <LanguageButton key={locale} locale={locale} />
+              ),
+          )}
+        </List>
+      </Media>
+      <Media lessThan="desktop">
+        <List
+          role={t('navigation')}
+          aria-label={t('languages')}
+          liSx={{ margin: 'auto', width: 'fit-content' }}
+        >
+          {locales.map(
+            locale =>
+              locale !== currentLocale && (
+                <LanguageButton key={locale} locale={locale} />
+              ),
+          )}
+        </List>
+      </Media>
+    </MediaContextProvider>
+  )
+}
 
 export const Header: React.FC<HeaderProps> = ({ currentLocale, locales }) => {
   const { t } = useTranslation(['languages', 'common'])
