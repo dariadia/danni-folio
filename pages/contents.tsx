@@ -22,7 +22,11 @@ import {
 } from 'danni-s-design-system'
 
 import { MainLayout } from '@/components/layouts'
-import { SelfAvatar, ParaAbilityProjectDescription } from '@/components'
+import {
+  SelfAvatar,
+  ParaAbilityProjectDescription,
+  ContentsItem,
+} from '@/components'
 
 import {
   ABOUT,
@@ -297,20 +301,22 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           Contents
         </HeadingH3>
         <List liSx={{ margin: `${baseTheme.space.m}px` }}>
-          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={`/${ABOUT}`} passHref>
-              <HoverableText variant="bodyMd" bold>
-                {t('about')}
-              </HoverableText>
-            </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={`/${CONTACTS}`} passHref>
-              <HoverableText variant="bodyMd" bold>
-                {t('contacts')}
-              </HoverableText>
-            </Link>
-          </motion.div>
+          <ContentsItem
+            multilingual
+            {...{
+              locale: locale as Locale,
+              link: ABOUT,
+              text: `${t('about')} 👩🏽‍🦰`,
+            }}
+          />
+          <ContentsItem
+            multilingual
+            {...{
+              locale: locale as Locale,
+              link: CONTACTS,
+              text: `${t('contacts')} ☎️`,
+            }}
+          />
           <HeadingH3
             mt="xxxl"
             mb="xl"
@@ -324,46 +330,49 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           >
             {t('projects')}
           </HeadingH3>
-          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={`/${PARA_ABILITY_PERSONAS}`} passHref>
-              <Text>
-                <HoverableText variant="bodyMd" bold>
-                  🧏 {t('personas_project')} [WIP 🚀]
-                </HoverableText>
-                {locale !== 'en-GB' && locale !== 'en-US' && t('only_english')}
-              </Text>
-            </Link>
-            <ExternalLink mt="s" href={PERSONAS_APP_ISSUES} target="_blank">
-              <HoverableText
-                bold
-                color="complementaryLight"
-                activeColour="complementaryDark"
-                variant="bodyMd"
-              >
-                ➠ {t('help_wanted')}
-              </HoverableText>
-            </ExternalLink>
-            <HoverableText
-              onClick={() => togglePersonasDesc(!personasDescShown)}
-              mt="s"
-              bold
-              color="complementaryDark"
-              variant="bodyMd"
-            >
-              ➠ {t('about_project')}
-            </HoverableText>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-            <Link href={`/${RANDOM_STORY_MAKER}`} passHref>
-              <Text>
-                {' '}
-                <HoverableText variant="bodyMd" bold>
-                  🎲 {t('random_story')} [WIP 🚀]
-                </HoverableText>
-                {locale !== 'en-GB' && locale !== 'en-US' && t('only_english')}
-              </Text>
-            </Link>
-          </motion.div>
+          <ContentsItem
+            isWIP
+            {...{
+              locale: locale as Locale,
+              link: PARA_ABILITY_PERSONAS,
+              text: `🧏 ${t('personas_project')}`,
+              extra: (
+                <>
+                  <ExternalLink
+                    mt="s"
+                    href={PERSONAS_APP_ISSUES}
+                    target="_blank"
+                  >
+                    <HoverableText
+                      bold
+                      color="complementaryLight"
+                      activeColour="complementaryDark"
+                      variant="bodyMd"
+                    >
+                      ➠ {t('help_wanted')}
+                    </HoverableText>
+                  </ExternalLink>
+                  <HoverableText
+                    onClick={() => togglePersonasDesc(!personasDescShown)}
+                    mt="s"
+                    bold
+                    color="complementaryDark"
+                    variant="bodyMd"
+                  >
+                    ➠ {t('about_project')}
+                  </HoverableText>
+                </>
+              ),
+            }}
+          />
+          <ContentsItem
+            isWIP
+            {...{
+              locale: locale as Locale,
+              link: RANDOM_STORY_MAKER,
+              text: `🎲 ${t('random_story')}`,
+            }}
+          />
         </List>
       </Flex>
     </>
