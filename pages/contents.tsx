@@ -31,6 +31,7 @@ import {
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
   PROJECT_NAME,
+  RANDOM_STORY_MAKER,
 } from 'constants/locations'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
@@ -298,12 +299,16 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
         <List liSx={{ margin: `${baseTheme.space.m}px` }}>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
             <Link href={`/${ABOUT}`} passHref>
-              <HoverableText variant="bodyMd">{t('about')}</HoverableText>
+              <HoverableText variant="bodyMd" bold>
+                {t('about')}
+              </HoverableText>
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
             <Link href={`/${CONTACTS}`} passHref>
-              <HoverableText variant="bodyMd">{t('contacts')}</HoverableText>
+              <HoverableText variant="bodyMd" bold>
+                {t('contacts')}
+              </HoverableText>
             </Link>
           </motion.div>
           <HeadingH3
@@ -321,10 +326,12 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           </HeadingH3>
           <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
             <Link href={`/${PARA_ABILITY_PERSONAS}`} passHref>
-              <HoverableText variant="bodyMd">
-                {t('personas_project')} 🚀 [WIP] <br />{' '}
+              <Text>
+                <HoverableText variant="bodyMd" bold>
+                  🧏 {t('personas_project')} [WIP 🚀]
+                </HoverableText>
                 {locale !== 'en-GB' && locale !== 'en-US' && t('only_english')}
-              </HoverableText>
+              </Text>
             </Link>
             <ExternalLink mt="s" href={PERSONAS_APP_ISSUES} target="_blank">
               <HoverableText
@@ -345,6 +352,17 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
             >
               ➠ {t('about_project')}
             </HoverableText>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
+            <Link href={`/${RANDOM_STORY_MAKER}`} passHref>
+              <Text>
+                {' '}
+                <HoverableText variant="bodyMd" bold>
+                  🎲 {t('random_story')} [WIP 🚀]
+                </HoverableText>
+                {locale !== 'en-GB' && locale !== 'en-US' && t('only_english')}
+              </Text>
+            </Link>
           </motion.div>
         </List>
       </Flex>

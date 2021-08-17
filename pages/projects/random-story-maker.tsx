@@ -22,7 +22,7 @@ const RandomStoryPage: Page<SinglePageProps> = () => {
   return (
     <>
       <Head>
-        <title>{t('random_story')}</title>
+        <title>{t('random_story_meta')}</title>
         <meta name="description" content={t('generate_a_story')} />
       </Head>
       <Box my="xl" as="section" textAlign="center">
