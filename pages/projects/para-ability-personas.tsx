@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
+
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -58,6 +60,9 @@ const ParaAbilityPersonasPage: Page<SinglePageProps> = () => {
 
   return (
     <>
+      <Head>
+        <title>{t('personas_project_meta')}</title>
+      </Head>
       {personasDescShown && (
         <Popup
           ariaLabelledby={PROJECT_NAME}

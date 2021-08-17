@@ -11,7 +11,7 @@
   "plans": "Plans for this project",
   "personas_project": "Para-ability personas project",
   "help_wanted": "help welcomed",
-  "folio": "Dannis Folio",
+  "folio": "Danni's Folio",
   "meta_description": "Check out my projects!",
   "projects": "my projects",
   "about_project": "about this project",
@@ -19,5 +19,15 @@
   "languages": "languages",
   "open_folio": "open portfolio",
   "to_contents": "return to contents",
-  "project_languages": "available languages"
+  "project_languages": "available languages",
+  "random_story": "Random Story Generator",
+  "random_story_meta": "Danni's Random Story Generator",
+  "generate_a_story": "Find out what happens to you and a famous author!",
+  "random_book": "Random Book Picker",
+  "random_book_meta": "Danni's Random Book Picker",
+  "get_a_book": "Find out what to read next according to your name!",
+  "avatar_builder": "Avatar builder",
+  "avatar_builder_meta": "Danni's Avatar builder",
+  "create_avatar": "Create your own avatar!",
+  "personas_project_meta": "Danni's para-ability personas project"
 }
