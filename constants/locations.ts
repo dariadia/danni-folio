@@ -14,3 +14,7 @@ export const PERSONAS_APP_PROJECT =
   'https://danni-s-folio.vercel.app/projects/para-ability-personas'
 export const PERSONAS_APP_ISSUES =
   'https://github.com/dariadia/para-ability-personas/issues'
+
+export const AVATAR_BUILDER = 'https://avatar-builder-teal.vercel.app/'
+export const AVATAR_BUILDER_IN_APP =
+  'https://avatar-builder-teal.vercel.app?isApp=true'
