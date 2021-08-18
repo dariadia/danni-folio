@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { motion } from 'framer-motion'
 
 import Link from 'next/link'
-import { HoverableText, Text } from 'danni-s-design-system'
+import { HoverableText, Box } from 'danni-s-design-system'
 
 import { Locale } from 'types'
 
@@ -31,12 +31,12 @@ export const ContentsItem: React.FC<ContentsItemProps> = ({
     <>
       <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
         <Link href={`/${link}`} passHref>
-          <Text>
+          <Box>
             <HoverableText variant="bodyMd" bold>
               {text} {isWIP && '[WIP 🚀]'}
             </HoverableText>
             {!multilingual && notEnglishLocale && t('only_english')}
-          </Text>
+          </Box>
         </Link>
       </motion.div>
       {extra}

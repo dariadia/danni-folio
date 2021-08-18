@@ -31,6 +31,7 @@ import {
 import {
   ABOUT,
   ABOUT_PARA_ABILITY_PERSONAS,
+  AVATAR_CREATOR,
   CONTACTS,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
@@ -297,7 +298,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
         justifyContent="center"
         sx={{ boxShadow: baseTheme.shadows.low, textAlign: 'center' }}
       >
-        <HeadingH3 as="h2" my="m" color="complementaryDark">
+        <HeadingH3 as="h2" mt="elephant" mb="m" color="complementaryDark">
           Contents
         </HeadingH3>
         <List liSx={{ margin: `${baseTheme.space.m}px` }}>
@@ -355,6 +356,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
                   <HoverableText
                     onClick={() => togglePersonasDesc(!personasDescShown)}
                     mt="s"
+                    mb="xxl"
                     bold
                     color="complementaryDark"
                     variant="bodyMd"
@@ -369,8 +371,17 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
             isWIP
             {...{
               locale: locale as Locale,
+              link: AVATAR_CREATOR,
+              text: `🧕 ${t('avatar_builder')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
+            {...{
+              locale: locale as Locale,
               link: RANDOM_STORY_MAKER,
               text: `🎲 ${t('random_story')}`,
+              extra: <Box mb="xxl" />,
             }}
           />
         </List>
