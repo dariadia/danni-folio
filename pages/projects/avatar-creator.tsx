@@ -33,6 +33,12 @@ const AvatarCreatorPage: Page<SinglePageProps> = () => {
       <Head>
         <title>{t('avatar_builder_meta')}</title>
         <meta name="description" content={t('create_avatar')} />
+        <meta
+          name="og:image"
+          property="og:image"
+          content="/assets/share-avatar-v2.png"
+        />
+        <meta name="twitter:image" content="/assets/share-avatar-v2.png" />
       </Head>
       <Box my="xl" as="section" textAlign="center">
         <HeadingH3 as="h1" kind="serif">

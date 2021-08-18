@@ -20,4 +20,4 @@ export const PERSONAS_APP_ISSUES =
 
 export const AVATAR_CREATOR_APP = 'https://avatar-builder-teal.vercel.app/'
 export const AVATAR_CREATOR_IN_APP =
-  'https://avatar-builder-teal.vercel.app?isApp=true'
+  'https://avatar-builder-teal.vercel.app/project'
