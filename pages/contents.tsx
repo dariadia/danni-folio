@@ -31,6 +31,7 @@ import {
 import {
   ABOUT,
   ABOUT_PARA_ABILITY_PERSONAS,
+  AVATAR_CREATOR,
   CONTACTS,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
@@ -368,6 +369,14 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           />
           <ContentsItem
             isWIP
+            {...{
+              locale: locale as Locale,
+              link: AVATAR_CREATOR,
+              text: `🧕 ${t('avatar_builder')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
             {...{
               locale: locale as Locale,
               link: RANDOM_STORY_MAKER,
