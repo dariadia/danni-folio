@@ -44,6 +44,12 @@ const App: React.FC<ApplicationProps> = ({ Component, pageProps }) => {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{t('folio')}</title>
         <meta name="description" content={t('meta_description')} />
+        <meta
+          name="og:image"
+          property="og:image"
+          content="/assets/og-image-main.png"
+        />
+        <meta name="twitter:image" content="/assets/og-image-main.png" />
       </Head>
       <AnimateSharedLayout>
         <ThemeProvider theme={theme}>
