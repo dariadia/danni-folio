@@ -4,6 +4,7 @@ export interface Contact {
   extra?: string
   link?: string
   hintKey?: string
+  emoji?: string
 }
 
 export interface Contacts {

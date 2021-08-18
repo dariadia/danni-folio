@@ -89,6 +89,7 @@ export const ABOUT_ME: AboutMe = {
   ],
   HOBBIES: [
     { translationKey: 'astrology', emoji: '🌌' },
+    { translationKey: 'travel', emoji: '🎒' },
     { translationKey: 'bake', emoji: '🥨' },
     { translationKey: 'algorithms', emoji: '🧮' },
     { translationKey: 'craft', emoji: '🧶' },

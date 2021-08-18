@@ -29,7 +29,7 @@ const Contacts = () => {
   const contactNodesArray = []
 
   for (const contact in CONTACTS) {
-    const { link, value, translationKey, hintKey } = CONTACTS[contact]
+    const { link, value, translationKey, hintKey, emoji } = CONTACTS[contact]
     const contactName = translationKey
       ? t(`contacts:${translationKey}`)
       : contact.toLowerCase()
@@ -45,7 +45,7 @@ const Contacts = () => {
         >
           <HoverableText>
             <Text color="complementaryDark" bold mr="s" inlineBlock>
-              {contactName}:
+              {emoji} {contactName}:
             </Text>
             {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}
           </HoverableText>
@@ -53,7 +53,7 @@ const Contacts = () => {
       ) : (
         <Text key={contact}>
           <Text mb="s" color="complementaryDark" bold mr="s" inlineBlock>
-            {contactName}:
+            {emoji} {contactName}:
           </Text>
           {value} {hintKey && <i>({t(`common:${hintKey}`)})</i>}
         </Text>
