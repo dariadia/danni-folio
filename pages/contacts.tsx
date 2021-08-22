@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
 import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -64,12 +63,6 @@ const Contacts = () => {
   return contactNodesArray
 }
 
-const Summary = styled('summary')`
-  &::-webkit-details-marker {
-    display: none;
-  }
-`
-
 const ContactsPage: Page<SinglePageProps> = () => {
   const { t } = useTranslation(['contacts'])
   const theme = useContext(ThemeContext) as ThemeType
@@ -78,10 +71,6 @@ const ContactsPage: Page<SinglePageProps> = () => {
 
   return (
     <>
-      <details>
-        hello world<Summary>hello hello</Summary>
-      </details>
-
       <Flex
         pl="s"
         pr="xxl"
