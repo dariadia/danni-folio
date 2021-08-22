@@ -182,7 +182,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
                 </HoverableText>
               }
             >
-              <PersonalDetails />
+              <PersonalDetails locale={locale as Locale} />
             </Details>
           </List>
         </motion.div>
@@ -369,7 +369,7 @@ const EducationItem = ({
   </Flex>
 )
 
-const PersonalDetails = () => {
+const PersonalDetails: React.FC<Record<string, Locale>> = ({ locale }) => {
   const { t } = useTranslation(['about'])
   return (
     <Box sx={{ textAlign: 'center' }} p="m">
@@ -394,9 +394,9 @@ const PersonalDetails = () => {
             {t('birthday')}:
           </Text>
           <Text mr="s" inlineBlock>
-            {ABOUT_ME.BIRTHDAY.value}:
+            {ABOUT_ME.BIRTHDAY.toLocaleString(locale, { timeZone: 'UTC' })}{' '}
+            (GTM+4)
           </Text>
-          <Text inlineBlock>{ABOUT_ME.BIRTHDAY.extra}</Text>
         </Text>
         <Text>
           <Text bold mr="s" inlineBlock>
