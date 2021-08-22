@@ -20,7 +20,7 @@ const StyledIframe = styled.iframe.attrs({
   allowFullScreen: true,
 })`
   width: 100%;
-  min-height: 400px;
+  min-height: 600px;
   background: transparent;
   overflow: hidden;
 `
