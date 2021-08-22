@@ -1,13 +1,13 @@
 import { AboutMe, JobProjects, Skills } from 'types'
 
-const BIRTHDAY = '06.06.1997'
+const BIRTHDAY = '1997-06-06'
 
 export const JOB_CARD = 'job-card'
 export const JOB_DESCRIPTION = 'job description'
 export const JOB_DUTIES = 'job responsibilities'
 
 export const ABOUT_ME: AboutMe = {
-  BIRTHDAY: { value: BIRTHDAY, extra: '9:30 am (GMT+4)' },
+  BIRTHDAY: new Date(Date.UTC(1997, 5, 6, 9, 30, 0)),
   AGE: {
     value: new Date().getFullYear() - new Date(BIRTHDAY).getFullYear(),
   },
@@ -16,16 +16,16 @@ export const ABOUT_ME: AboutMe = {
     SCHOOL: {
       translationKey: 'school',
       value: '№120',
-      start: '09.01.2004',
-      finish: '07.01.2015',
+      start: '2004-09-01',
+      finish: '2015-07-01',
       locationKey: 'samara',
       countryKey: 'russia',
     },
     UNIVERSITY: {
       translationKey: 'HSE',
       link: 'https://www.hse.ru/',
-      start: '09.01.2015',
-      finish: '07.01.2019',
+      start: '2015-09-01',
+      finish: '2019-07-01',
       locationKey: 'moscow',
       countryKey: 'russia',
     },
@@ -33,8 +33,8 @@ export const ABOUT_ME: AboutMe = {
       value: 'GeekBrains University: Mail.Ru Group',
       link: 'https://gb.ru',
       translationKey: 'further_education',
-      start: '12.15.2018',
-      finish: '12.30.2020',
+      start: '2018-12-15',
+      finish: '2020-12-30',
     },
   },
   CAREER: [
@@ -42,21 +42,21 @@ export const ABOUT_ME: AboutMe = {
       translationKey: 'customer_support',
       company: 'Bookmate',
       link: 'https://bookmate.com/',
-      start: '06.16.2019',
-      finish: '02.25.2020',
+      start: '2019-06-16',
+      finish: '2020-02-25',
     },
     {
       translationKey: 'junior_developer',
       company: 'Bookmate',
       link: 'https://bookmate.com/',
-      start: '02.25.2020',
-      finish: '02.16.2021',
+      start: '2020-02-25',
+      finish: '2021-02-16',
     },
     {
       translationKey: 'developer',
       company: 'Bookmate',
       link: 'https://bookmate.com/',
-      start: '02.16.2021',
+      start: '2021-02-16',
       finish: '',
     },
   ],
@@ -173,7 +173,7 @@ export const JOB_PROJECTS: JobProjects = {
       name: 'Bookmate Journal',
       link: 'https://journal.bookmate.com/',
       stack: ['Hugo', 'JavaScript', 'SCSS'],
-      created: '11.20.2019',
+      created: '2019-11-20',
       whatIDo: ['monitor', 'improve', 'interract'],
       proudOf: ['WCAG', 'lighthouse', 'refactored', 'load'],
     },
@@ -182,7 +182,7 @@ export const JOB_PROJECTS: JobProjects = {
       name: 'Bookmate Zurnal',
       link: 'https://zurnal.bookmate.com/',
       stack: ['Hugo', 'JavaScript', 'SCSS'],
-      created: '04.03.2020',
+      created: '2020-03-04',
       creator: true,
     },
     {
@@ -190,7 +190,7 @@ export const JOB_PROJECTS: JobProjects = {
       name: 'Bookmate Journal Denmark',
       link: 'https://journal.bookmate.dk/',
       stack: ['Hugo', 'JavaScript', 'SCSS'],
-      created: '02.27.2021',
+      created: '2021-02-27',
       creator: true,
     },
     {
@@ -226,7 +226,7 @@ export const JOB_PROJECTS: JobProjects = {
       emoji: '🚀',
       name: 'Bookmate New Web',
       stack: ['Next.JS', 'SWR', 'Styled components'],
-      whatIDo: ['create', 'sneak_WCAG'],
+      whatIDo: ['create'],
     },
     {
       emoji: '🎨',

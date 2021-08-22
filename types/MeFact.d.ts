@@ -1,5 +1,5 @@
 export type AboutMe = {
-  readonly BIRTHDAY: AboutMeFact
+  readonly BIRTHDAY: Date
   readonly AGE: AboutMeFact
   readonly ZODIAC: AboutMeFact
   readonly EDUCATION: {
