@@ -60,7 +60,11 @@ const RandomStoryPage: Page<SinglePageProps> = () => {
               mx="auto"
               my="l"
               as="pre"
-              sx={{ border: `1px dashed green` }}
+              sx={{
+                border: `1px dashed green`,
+                maxWidth: '100%',
+                whiteSpace: 'pre-wrap',
+              }}
             >
               <code>
                 seed = (seed * 9301 + 49297) % 233280;

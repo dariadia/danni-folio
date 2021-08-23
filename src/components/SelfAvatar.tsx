@@ -73,6 +73,11 @@ const Wrapper = styled(Circle)<ConstrainedBoxProps>`
     .shine::before {
       animation: ${glassesFlash} 2s ease-in reverse;
     }
+    ${
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ({ sx }) => sx
+    };
 `
 
 const HairBack = styled(Box).attrs({
@@ -302,8 +307,8 @@ const Mouth = styled(Box)`
   left: 24px;
 `
 
-export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my }) => (
-  <Wrapper {...{ mx, my }}>
+export const SelfAvatar: React.FC<ConstrainedBoxProps> = ({ mx, my, sx }) => (
+  <Wrapper {...{ mx, my, sx }}>
     <HairBack side={LEFT} />
     <HairBack side={RIGHT} />
     <HairTop />

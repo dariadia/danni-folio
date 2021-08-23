@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import { motion } from 'framer-motion'
@@ -182,7 +182,7 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
                 </HoverableText>
               }
             >
-              <PersonalDetails />
+              <PersonalDetails locale={locale as Locale} />
             </Details>
           </List>
         </motion.div>
@@ -191,17 +191,20 @@ const AboutPage: Page<SinglePageProps> = ({ locale }) => {
   )
 }
 
+type JobPopupsState = {
+  customerSupport: boolean
+  frontendDeveloper: boolean
+}
+
 const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
   const { t } = useTranslation(['common', 'about', 'locations', 'languages'])
 
   const initialJobPopupsState = {
     customerSupport: false,
     frontendDeveloper: false,
-  }
+  } as JobPopupsState
 
   const [isJobPopupShown, toggleJobPopup] = useState(initialJobPopupsState)
-
-  const EDUCATION = ABOUT_ME.EDUCATION
 
   const shouldTogglePopup = (event: Event) => {
     if (event?.target?.id === JOB_CARD) {
@@ -221,104 +224,148 @@ const ProfessionalDetails = ({ locale }: { locale: Locale }) => {
           <JobDescriptionCard {...{ isJobPopupShown, locale }} />
         </Popup>
       )}
-      <Box p="m" mb="xl">
-        <Avatar mx="auto" mb="l" size="elephant">
-          <img src="assets/photo-me-main.png" alt={t('about:photo')} />
-        </Avatar>
-        <HeadingInBox text={t('about:career')} textTransform />
-        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-          {ABOUT_ME.CAREER.map(job => {
-            const { translationKey, start, finish, company, link } = job
-            return (
-              <Flex key={translationKey} my="s" justifyContent="space-between">
-                <Text sx={{ textTransform: 'capitalize' }}>
-                  <HoverableText
+      <MediaContextProvider>
+        <Media greaterThanOrEqual="mobile">
+          <Box p="m" mb="xl">
+            <Avatar mx="auto" mb="l" size="elephant">
+              <img src="assets/photo-me-main.png" alt={t('about:photo')} />
+            </Avatar>
+            <CareerBox {...{ toggleJobPopup, initialJobPopupsState, locale }} />
+            <EducationBox locale={locale} />
+            <BottomDivider />
+          </Box>
+        </Media>
+        <Media lessThan="mobile">
+          <Box p="m" mb="xl" ml={`-${baseTheme.space.m}px`}>
+            <Avatar mx="auto" mb="l" size="elephant">
+              <img src="assets/photo-me-main.png" alt={t('about:photo')} />
+            </Avatar>
+            <CareerBox {...{ toggleJobPopup, initialJobPopupsState, locale }} />
+            <EducationBox locale={locale} />
+            <BottomDivider />
+          </Box>
+        </Media>
+      </MediaContextProvider>
+    </>
+  )
+}
+
+const EducationBox: React.FC<Record<string, Locale>> = ({ locale }) => {
+  const { t } = useTranslation(['about', 'locations'])
+  const EDUCATION = ABOUT_ME.EDUCATION
+
+  return (
+    <>
+      <HeadingInBox text={t('about:education')} textTransform />
+      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+        <EducationItem
+          {...{
+            name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
+              EDUCATION.SCHOOL.value
+            }`,
+            locale,
+            start: EDUCATION.SCHOOL.start,
+            finish: EDUCATION.SCHOOL.finish,
+            location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
+              `locations:${EDUCATION.SCHOOL.countryKey}`,
+            )}`,
+          }}
+        />
+        <EducationItem
+          {...{
+            name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
+            locale,
+            start: EDUCATION.UNIVERSITY.start,
+            finish: EDUCATION.UNIVERSITY.finish,
+            link: EDUCATION.UNIVERSITY.link,
+            location: `${t(
+              `locations:${EDUCATION.UNIVERSITY.locationKey}`,
+            )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
+          }}
+        />
+        <EducationItem
+          {...{
+            name: EDUCATION.FURTHER_EDUCATION.value as string,
+            locale,
+            start: EDUCATION.FURTHER_EDUCATION.start,
+            finish: EDUCATION.FURTHER_EDUCATION.finish,
+            link: EDUCATION.FURTHER_EDUCATION.link,
+            location: 'online',
+          }}
+        />
+      </List>
+    </>
+  )
+}
+
+type CareerBoxProps = {
+  toggleJobPopup: Dispatch<SetStateAction<JobPopupsState>>
+  initialJobPopupsState: JobPopupsState
+  locale: Locale
+}
+
+const CareerBox: React.FC<CareerBoxProps> = ({
+  toggleJobPopup,
+  initialJobPopupsState,
+  locale,
+}) => {
+  const { t } = useTranslation(['common', 'about'])
+  return (
+    <>
+      <HeadingInBox text={t('about:career')} textTransform />
+      <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
+        {ABOUT_ME.CAREER.map(job => {
+          const { translationKey, start, finish, company, link } = job
+          return (
+            <Flex key={translationKey} my="s" justifyContent="space-between">
+              <Text sx={{ textTransform: 'capitalize' }}>
+                <HoverableText
+                  bold
+                  onClick={() =>
+                    toggleJobPopup({
+                      ...initialJobPopupsState,
+                      [translationKey === 'customer_support'
+                        ? 'customerSupport'
+                        : 'frontendDeveloper']: true,
+                    })
+                  }
+                >
+                  ➠ {t(`about:${translationKey}`)}
+                  <Text
+                    mb="s"
+                    variant="bodySm"
                     bold
-                    onClick={() =>
-                      toggleJobPopup({
-                        ...initialJobPopupsState,
-                        [translationKey === 'customer_support'
-                          ? 'customerSupport'
-                          : 'frontendDeveloper']: true,
-                      })
-                    }
+                    sx={{ textTransform: 'none' }}
+                    color="complementaryLight"
                   >
-                    ➠ {t(`about:${translationKey}`)}
-                    <Text
-                      mb="s"
-                      variant="bodySm"
-                      bold
-                      sx={{ textTransform: 'none' }}
-                      color="complementaryLight"
-                    >
-                      {t('about:click_to_open')}
-                    </Text>
-                  </HoverableText>
-                  {link ? (
-                    <Link href={link} target="_blank">
-                      <HoverableText bold color="complementaryDark">
-                        {company}
-                      </HoverableText>
-                    </Link>
-                  ) : (
-                    <Text bold>{company}</Text>
-                  )}
-                </Text>
-                <Text ml="xl" textAlign="right">
-                  {new Date(start).toLocaleDateString(locale)}–
-                  {finish ? (
-                    new Date(finish).toLocaleDateString(locale)
-                  ) : (
-                    <Text color="complementaryDark" bold inlineBlock>
-                      {t(`common:now`)}
-                    </Text>
-                  )}
-                </Text>
-              </Flex>
-            )
-          })}
-        </List>
-        <Box mb="m" />
-        <HeadingInBox text={t('about:education')} textTransform />
-        <List display="flex" sx={{ flexDirection: 'column-reverse' }}>
-          <EducationItem
-            {...{
-              name: `${t(`about:${EDUCATION.SCHOOL.translationKey}`)} ${
-                EDUCATION.SCHOOL.value
-              }`,
-              locale,
-              start: EDUCATION.SCHOOL.start,
-              finish: EDUCATION.SCHOOL.finish,
-              location: `${t(`locations:${EDUCATION.SCHOOL.locationKey}`)}, ${t(
-                `locations:${EDUCATION.SCHOOL.countryKey}`,
-              )}`,
-            }}
-          />
-          <EducationItem
-            {...{
-              name: t(`about:${EDUCATION.UNIVERSITY.translationKey}`),
-              locale,
-              start: EDUCATION.UNIVERSITY.start,
-              finish: EDUCATION.UNIVERSITY.finish,
-              link: EDUCATION.UNIVERSITY.link,
-              location: `${t(
-                `locations:${EDUCATION.UNIVERSITY.locationKey}`,
-              )}, ${t(`locations:${EDUCATION.UNIVERSITY.countryKey}`)}`,
-            }}
-          />
-          <EducationItem
-            {...{
-              name: EDUCATION.FURTHER_EDUCATION.value as string,
-              locale,
-              start: EDUCATION.FURTHER_EDUCATION.start,
-              finish: EDUCATION.FURTHER_EDUCATION.finish,
-              link: EDUCATION.FURTHER_EDUCATION.link,
-              location: 'online',
-            }}
-          />
-        </List>
-        <BottomDivider />
-      </Box>
+                    {t('about:click_to_open')}
+                  </Text>
+                </HoverableText>
+                {link ? (
+                  <Link href={link} target="_blank">
+                    <HoverableText bold color="complementaryDark">
+                      {company}
+                    </HoverableText>
+                  </Link>
+                ) : (
+                  <Text bold>{company}</Text>
+                )}
+              </Text>
+              <Text ml="xl" textAlign="right">
+                {new Date(start).toLocaleDateString(locale)}–
+                {finish ? (
+                  new Date(finish).toLocaleDateString(locale)
+                ) : (
+                  <Text color="complementaryDark" bold inlineBlock>
+                    {t(`common:now`)}
+                  </Text>
+                )}
+              </Text>
+            </Flex>
+          )
+        })}
+      </List>
+      <Box mb="m" />
     </>
   )
 }
@@ -361,15 +408,32 @@ const EducationItem = ({
         </Text>
       )}
     </Box>
-    <Text ml="xl" textAlign="right">
-      {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
-      {finish &&
-        new Date(finish).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}
-    </Text>
+    <MediaContextProvider>
+      <Media greaterThanOrEqual="mobile">
+        <Text ml="xl" textAlign="right">
+          {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
+          {finish &&
+            new Date(finish).toLocaleDateString(
+              locale,
+              DATE_OPTIONS.MONTH_YEAR,
+            )}
+        </Text>
+      </Media>
+      <Media lessThan="mobile">
+        <Text ml="s" textAlign="right">
+          {new Date(start).toLocaleDateString(locale, DATE_OPTIONS.MONTH_YEAR)}–
+          {finish &&
+            new Date(finish).toLocaleDateString(
+              locale,
+              DATE_OPTIONS.MONTH_YEAR,
+            )}
+        </Text>
+      </Media>
+    </MediaContextProvider>
   </Flex>
 )
 
-const PersonalDetails = () => {
+const PersonalDetails: React.FC<Record<string, Locale>> = ({ locale }) => {
   const { t } = useTranslation(['about'])
   return (
     <Box sx={{ textAlign: 'center' }} p="m">
@@ -394,9 +458,9 @@ const PersonalDetails = () => {
             {t('birthday')}:
           </Text>
           <Text mr="s" inlineBlock>
-            {ABOUT_ME.BIRTHDAY.value}:
+            {ABOUT_ME.BIRTHDAY.toLocaleString(locale, { timeZone: 'UTC' })}{' '}
+            (GTM+4)
           </Text>
-          <Text inlineBlock>{ABOUT_ME.BIRTHDAY.extra}</Text>
         </Text>
         <Text>
           <Text bold mr="s" inlineBlock>

@@ -7,10 +7,10 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { MainLayout } from '@/components/layouts'
-import { HeadingH3, Box } from 'danni-s-design-system'
+import { HeadingH3, Box, HoverableText, Link } from 'danni-s-design-system'
 
 import type { Locale, Page, SinglePage as SinglePageProps } from 'types'
-import { AVATAR_CREATOR_IN_APP } from 'constants/locations'
+import { AVATAR_CREATOR_IN_APP, AVATAR_CREATOR_APP } from 'constants/locations'
 
 const StyledIframe = styled.iframe.attrs({
   loading: 'lazy',
@@ -20,7 +20,7 @@ const StyledIframe = styled.iframe.attrs({
   allowFullScreen: true,
 })`
   width: 100%;
-  min-height: 400px;
+  min-height: 600px;
   background: transparent;
   overflow: hidden;
 `
@@ -44,6 +44,9 @@ const AvatarCreatorPage: Page<SinglePageProps> = () => {
         <HeadingH3 as="h1" kind="serif">
           🧑‍🦳 {t('create_avatar')} 🧔‍♀️
         </HeadingH3>
+        <Link mt="s" href={AVATAR_CREATOR_APP} target="_blank">
+          <HoverableText bold>➠ {t('play_on_site')}</HoverableText>
+        </Link>
       </Box>
       <StyledIframe />
     </>

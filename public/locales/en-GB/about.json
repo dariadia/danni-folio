@@ -72,6 +72,5 @@
   "refactor": "refactor legacy parts",
   "improve_usability": "improve usability",
   "create": "create most of the stuff, based on the old design 🧑‍🎨, from scratch. It was decided we start a new project rather than try to refactor and boost the legacy one. <green>This site is still corporate-VNP closed</green>",
-  "sneak_WCAG": "sneak in <green>WCAG features</green>. Because our company policy/team mostly doesn't bother 😫 <green>I do</green>",
   "add_options": "add new options to features"
 }
