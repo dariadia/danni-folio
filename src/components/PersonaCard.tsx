@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { useTranslation } from 'next-i18next'
 
 import {
@@ -11,6 +12,7 @@ import {
   Popup,
   List,
   HeadingH3,
+  ThemeType,
 } from 'danni-s-design-system'
 
 import { Avatar } from '.'
@@ -24,6 +26,18 @@ import type { PersonaWithParaAbilityDescription } from 'types'
 type PersonaCardProps = {
   persona: PersonaWithParaAbilityDescription
 }
+
+const StyledText = styled(Text)`
+  a {
+    color: black;
+    text-decoration: 2px underline ${({ theme }) => theme.colours.accentDark};
+    &:hover {
+      color: ${({ theme }) => theme.colours.accentDark};
+      transition: ${({ theme }) => theme.transitions.default};
+    }
+  }
+`
+
 // TODO add avatars from the avatar-builder project
 const getRandomInt = (max: number): number => {
   return Math.floor(Math.random() * max)
@@ -49,6 +63,8 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
   }
 
   const { t } = useTranslation('about')
+
+  const theme = useContext(ThemeContext) as ThemeType
 
   const {
     persona_name,
@@ -114,9 +130,9 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
                 {webDo.map(item => (
-                  <Text key={item}>
+                  <StyledText key={item} theme={theme}>
                     🛠 <span dangerouslySetInnerHTML={{ __html: item }} />
-                  </Text>
+                  </StyledText>
                 ))}
               </List>
             )}
@@ -126,9 +142,9 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
                 {webDoNot.map(item => (
-                  <Text key={item}>
+                  <StyledText key={item} theme={theme}>
                     ❌ <span dangerouslySetInnerHTML={{ __html: item }} />
-                  </Text>
+                  </StyledText>
                 ))}
               </List>
             )}
