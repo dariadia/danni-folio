@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 import {
   baseTheme,
@@ -38,7 +39,9 @@ const colours = [
 export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
   const randomColourKey = getRandomInt(colours.length - 1)
   const randomColour = colours[randomColourKey]
+
   const [descriptionShown, showDescription] = useState(false)
+  const { t } = useTranslation('about')
 
   const {
     persona_name,
@@ -50,6 +53,8 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
     advice_web,
     emoji,
   } = persona
+
+  const { do: webDo, do_not: webDoNot } = advice_web
 
   return (
     <>
@@ -96,13 +101,23 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 ))}
               </List>
             )}
-            {advice_web && advice_web.length > 0 && (
+            {webDo && webDo.length > 0 && (
               <List
                 liSx={{ marginBottom: `${baseTheme.space.s}px` }}
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
-                {advice_web.map(item => (
+                {webDo.map(item => (
                   <Text key={item}>🛠{item}</Text>
+                ))}
+              </List>
+            )}
+            {webDoNot && webDoNot.length > 0 && (
+              <List
+                liSx={{ marginBottom: `${baseTheme.space.s}px` }}
+                sx={{ marginBottom: `${baseTheme.space.l}px` }}
+              >
+                {webDoNot.map(item => (
+                  <Text key={item}>❌{item}</Text>
                 ))}
               </List>
             )}
@@ -131,6 +146,15 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
           >
             {paraAbility}
           </HoverableText>
+          <Text
+            mb="s"
+            variant="bodySm"
+            bold
+            sx={{ textTransform: 'none' }}
+            color="complementaryLight"
+          >
+            {t('click_to_open')}
+          </Text>
           <Text my="s">{description}</Text>
         </Box>
       </Box>
