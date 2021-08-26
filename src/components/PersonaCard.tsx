@@ -42,6 +42,12 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
   const randomColour = colours[randomColourKey]
 
   const [descriptionShown, showDescription] = useState(false)
+  const closePopup = (tagName: string) => {
+    if (tagName !== 'A') {
+      showDescription(!descriptionShown)
+    }
+  }
+
   const { t } = useTranslation('about')
 
   const {
@@ -64,7 +70,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
           ariaLabelledby={PARA_ABILITY_NAME}
           ariaDescribedby={PARA_ABILITY_DESCRIPTION}
           p="xxxl"
-          onClose={() => showDescription(!descriptionShown)}
+          onClose={event => closePopup(event.target.tagName)}
         >
           <Box mx="auto" maxWidth={`${baseTheme.space.dinosaur * 2}px`}>
             <HeadingH3
