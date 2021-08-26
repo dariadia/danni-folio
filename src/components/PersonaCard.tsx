@@ -12,6 +12,7 @@ import {
   List,
   HeadingH3,
 } from 'danni-s-design-system'
+
 import { Avatar } from '.'
 import {
   PARA_ABILITY_DESCRIPTION,
@@ -147,13 +148,13 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
             {paraAbility}
           </HoverableText>
           <Text
-            mb="s"
+            my="s"
             variant="bodySm"
             bold
             sx={{ textTransform: 'none' }}
             color="complementaryLight"
           >
-            {t('click_to_open')}
+            ➠ {t('click_to_open')}
           </Text>
           <Text my="s">{description}</Text>
         </Box>
