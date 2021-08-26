@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { useTranslation } from 'next-i18next'
 
 import {
   baseTheme,
@@ -10,7 +12,9 @@ import {
   Popup,
   List,
   HeadingH3,
+  ThemeType,
 } from 'danni-s-design-system'
+
 import { Avatar } from '.'
 import {
   PARA_ABILITY_DESCRIPTION,
@@ -22,6 +26,18 @@ import type { PersonaWithParaAbilityDescription } from 'types'
 type PersonaCardProps = {
   persona: PersonaWithParaAbilityDescription
 }
+
+const StyledText = styled(Text)`
+  a {
+    color: black;
+    text-decoration: 2px underline ${({ theme }) => theme.colours.accentDark};
+    &:hover {
+      color: ${({ theme }) => theme.colours.accentDark};
+      transition: ${({ theme }) => theme.transitions.default};
+    }
+  }
+`
+
 // TODO add avatars from the avatar-builder project
 const getRandomInt = (max: number): number => {
   return Math.floor(Math.random() * max)
@@ -38,7 +54,17 @@ const colours = [
 export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
   const randomColourKey = getRandomInt(colours.length - 1)
   const randomColour = colours[randomColourKey]
+
   const [descriptionShown, showDescription] = useState(false)
+  const closePopup = (tagName: string) => {
+    if (tagName !== 'A') {
+      showDescription(!descriptionShown)
+    }
+  }
+
+  const { t } = useTranslation('about')
+
+  const theme = useContext(ThemeContext) as ThemeType
 
   const {
     persona_name,
@@ -51,6 +77,8 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
     emoji,
   } = persona
 
+  const { do: webDo, do_not: webDoNot } = advice_web
+
   return (
     <>
       {descriptionShown && (
@@ -58,7 +86,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
           ariaLabelledby={PARA_ABILITY_NAME}
           ariaDescribedby={PARA_ABILITY_DESCRIPTION}
           p="xxxl"
-          onClose={() => showDescription(!descriptionShown)}
+          onClose={event => closePopup(event.target.tagName)}
         >
           <Box mx="auto" maxWidth={`${baseTheme.space.dinosaur * 2}px`}>
             <HeadingH3
@@ -96,13 +124,27 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 ))}
               </List>
             )}
-            {advice_web && advice_web.length > 0 && (
+            {webDo && webDo.length > 0 && (
               <List
                 liSx={{ marginBottom: `${baseTheme.space.s}px` }}
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
-                {advice_web.map(item => (
-                  <Text key={item}>🛠{item}</Text>
+                {webDo.map(item => (
+                  <StyledText key={item} theme={theme}>
+                    🛠 <span dangerouslySetInnerHTML={{ __html: item }} />
+                  </StyledText>
+                ))}
+              </List>
+            )}
+            {webDoNot && webDoNot.length > 0 && (
+              <List
+                liSx={{ marginBottom: `${baseTheme.space.s}px` }}
+                sx={{ marginBottom: `${baseTheme.space.l}px` }}
+              >
+                {webDoNot.map(item => (
+                  <StyledText key={item} theme={theme}>
+                    ❌ <span dangerouslySetInnerHTML={{ __html: item }} />
+                  </StyledText>
                 ))}
               </List>
             )}
@@ -131,6 +173,15 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
           >
             {paraAbility}
           </HoverableText>
+          <Text
+            my="s"
+            variant="bodySm"
+            bold
+            sx={{ textTransform: 'none' }}
+            color="complementaryLight"
+          >
+            ➠ {t('click_to_open')}
+          </Text>
           <Text my="s">{description}</Text>
         </Box>
       </Box>
