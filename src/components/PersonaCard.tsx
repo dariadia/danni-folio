@@ -108,7 +108,9 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
                 {webDo.map(item => (
-                  <Text key={item}>🛠{item}</Text>
+                  <Text key={item}>
+                    🛠 <span dangerouslySetInnerHTML={{ __html: item }} />
+                  </Text>
                 ))}
               </List>
             )}
@@ -118,7 +120,9 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({ persona }) => {
                 sx={{ marginBottom: `${baseTheme.space.l}px` }}
               >
                 {webDoNot.map(item => (
-                  <Text key={item}>❌{item}</Text>
+                  <Text key={item}>
+                    ❌ <span dangerouslySetInnerHTML={{ __html: item }} />
+                  </Text>
                 ))}
               </List>
             )}
