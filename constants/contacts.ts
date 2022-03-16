@@ -6,7 +6,12 @@ export const CONTACTS: Contacts = {
     value: 'dariadia',
     emoji: '💻',
   },
-  TELEGRAM: { value: '@dariadia', emoji: '📬' },
+  TELEGRAM: { value: '@dariadia', link: 'https://t.me/dariadia', emoji: '📬' },
+  LEETCODE: {
+    link: 'https://leetcode.com/mxdanni/',
+    value: 'mxdanni',
+    emoji: '🧮',
+  },
   PHONE_NUMBER: {
     translationKey: 'phone_number',
     value: '+7 917 168 1854',
@@ -30,8 +35,8 @@ export const CONTACTS: Contacts = {
     emoji: '🎒',
   },
   INSTAGRAM: {
-    link: 'https://www.instagram.com/_dariadia/',
-    value: '_dariadia',
+    link: 'https://www.instagram.com/witchonthebummel/',
+    value: 'witchonthebummel',
     emoji: '🏞',
   },
   VK: { link: 'https://vk.com/dariadia/', value: 'dariadia', emoji: '👋🏽' },

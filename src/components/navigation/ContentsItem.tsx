@@ -14,6 +14,7 @@ type ContentsItemProps = {
   isWIP?: boolean
   multilingual?: boolean
   extra?: React.ReactNode | React.ReactNode[]
+  external?: boolean
 }
 
 export const ContentsItem: React.FC<ContentsItemProps> = ({
@@ -23,6 +24,7 @@ export const ContentsItem: React.FC<ContentsItemProps> = ({
   isWIP,
   multilingual,
   extra,
+  external = false,
 }) => {
   const { t } = useTranslation('common')
   const notEnglishLocale = locale !== 'en-GB' && locale !== 'en-US'
@@ -30,7 +32,7 @@ export const ContentsItem: React.FC<ContentsItemProps> = ({
   return (
     <>
       <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.9 }}>
-        <Link href={`/${link}`} passHref>
+        <Link href={external ? link : `/${link}`} passHref>
           <Box>
             <HoverableText variant="bodyMd" bold>
               {text} {isWIP && '[WIP 🚀]'}

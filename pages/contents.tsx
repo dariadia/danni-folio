@@ -33,6 +33,7 @@ import {
   ABOUT_PARA_ABILITY_PERSONAS,
   AVATAR_CREATOR,
   CONTACTS,
+  FORTUNE_COOKIE_APP,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
   PROJECT_NAME,
@@ -331,6 +332,33 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           >
             {t('projects')}
           </HeadingH3>
+
+          <ContentsItem
+            {...{
+              multilingual: true,
+              locale: locale as Locale,
+              link: AVATAR_CREATOR,
+              text: `🧕 ${t('avatar_builder')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
+            {...{
+              external: true,
+              locale: locale as Locale,
+              link: FORTUNE_COOKIE_APP,
+              text: `🥠 ${t('fortune_cookie')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
+            {...{
+              locale: locale as Locale,
+              link: RANDOM_STORY_MAKER,
+              text: `🎲 ${t('random_story')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
           <ContentsItem
             isWIP
             {...{
@@ -365,23 +393,6 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
                   </HoverableText>
                 </>
               ),
-            }}
-          />
-          <ContentsItem
-            isWIP
-            {...{
-              locale: locale as Locale,
-              link: AVATAR_CREATOR,
-              text: `🧕 ${t('avatar_builder')}`,
-              extra: <Box mb="xxl" />,
-            }}
-          />
-          <ContentsItem
-            {...{
-              locale: locale as Locale,
-              link: RANDOM_STORY_MAKER,
-              text: `🎲 ${t('random_story')}`,
-              extra: <Box mb="xxl" />,
             }}
           />
         </List>
