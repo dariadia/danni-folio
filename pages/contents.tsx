@@ -331,6 +331,23 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           >
             {t('projects')}
           </HeadingH3>
+
+          <ContentsItem
+            {...{
+              locale: locale as Locale,
+              link: AVATAR_CREATOR,
+              text: `🧕 ${t('avatar_builder')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
+            {...{
+              locale: locale as Locale,
+              link: RANDOM_STORY_MAKER,
+              text: `🎲 ${t('random_story')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
           <ContentsItem
             isWIP
             {...{
@@ -365,23 +382,6 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
                   </HoverableText>
                 </>
               ),
-            }}
-          />
-          <ContentsItem
-            isWIP
-            {...{
-              locale: locale as Locale,
-              link: AVATAR_CREATOR,
-              text: `🧕 ${t('avatar_builder')}`,
-              extra: <Box mb="xxl" />,
-            }}
-          />
-          <ContentsItem
-            {...{
-              locale: locale as Locale,
-              link: RANDOM_STORY_MAKER,
-              text: `🎲 ${t('random_story')}`,
-              extra: <Box mb="xxl" />,
             }}
           />
         </List>
