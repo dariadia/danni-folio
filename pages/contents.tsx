@@ -344,6 +344,7 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
           />
           <ContentsItem
             {...{
+              external: true,
               locale: locale as Locale,
               link: FORTUNE_COOKIE_APP,
               text: `🥠 ${t('fortune_cookie')}`,
