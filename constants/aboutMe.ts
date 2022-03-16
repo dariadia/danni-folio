@@ -6,10 +6,18 @@ export const JOB_CARD = 'job-card'
 export const JOB_DESCRIPTION = 'job description'
 export const JOB_DUTIES = 'job responsibilities'
 
+const calculateAge = (birthday: Date): number => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const ageDifMs = Date.now() - birthday
+  const ageDate = new Date(ageDifMs)
+  return Math.abs(ageDate.getUTCFullYear() - 1970)
+}
+
 export const ABOUT_ME: AboutMe = {
   BIRTHDAY: new Date(Date.UTC(1997, 5, 6, 9, 30, 0)),
   AGE: {
-    value: new Date().getFullYear() - new Date(BIRTHDAY).getFullYear(),
+    value: calculateAge(new Date(BIRTHDAY)),
   },
   ZODIAC: { value: 'gemini', extra: 'leo' },
   EDUCATION: {
