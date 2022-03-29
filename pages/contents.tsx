@@ -34,6 +34,7 @@ import {
   AVATAR_CREATOR,
   CONTACTS,
   FORTUNE_COOKIE_APP,
+  LIL_BM_APP,
   PARA_ABILITY_PERSONAS,
   PERSONAS_APP_ISSUES,
   PROJECT_NAME,
@@ -339,6 +340,15 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
               locale: locale as Locale,
               link: AVATAR_CREATOR,
               text: `🧕 ${t('avatar_builder')}`,
+              extra: <Box mb="xxl" />,
+            }}
+          />
+          <ContentsItem
+            {...{
+              external: true,
+              locale: locale as Locale,
+              link: LIL_BM_APP,
+              text: `👾 Lil' Bm Adventures`,
               extra: <Box mb="xxl" />,
             }}
           />
