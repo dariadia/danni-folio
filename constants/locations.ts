@@ -8,6 +8,7 @@ export const RANDOM_BOOK_PICKER = 'projects/random-book-picker'
 export const AVATAR_CREATOR = 'projects/avatar-creator'
 export const FORTUNE_COOKIE_APP =
   'https://fortune-cookies-xi.vercel.app/fortune-cookie'
+export const LIL_BM_APP = 'https://fun-games.vercel.app/lil-bm'
 
 export const PROJECT_NAME = 'para-ability personas project introduction'
 export const ABOUT_PARA_ABILITY_PERSONAS = 'about para-ability personas project'
