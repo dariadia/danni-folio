@@ -349,7 +349,12 @@ const ContentsPage: Page<SinglePageProps> = ({ locale }) => {
               locale: locale as Locale,
               link: LIL_BM_APP,
               text: `👾 Lil' Bm Adventures`,
-              extra: <Box mb="xxl" />,
+              extra: (
+                <>
+                  {t('desktop_only')}
+                  <Box mb="xxl" />
+                </>
+              ),
             }}
           />
           <ContentsItem
