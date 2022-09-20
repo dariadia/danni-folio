@@ -67,6 +67,13 @@ export const ABOUT_ME: AboutMe = {
       start: '2021-02-16',
       finish: '',
     },
+    {
+      translationKey: 'lead_developer',
+      company: 'Bookmate',
+      link: 'https://bookmate.com/',
+      start: '2021-09-15',
+      finish: '',
+    },
   ],
   GRANTS: { translationKey: 'presidential_grant', start: '01.01.2016' },
   LANGUAGES: [
