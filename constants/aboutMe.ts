@@ -71,7 +71,7 @@ export const ABOUT_ME: AboutMe = {
       translationKey: 'lead_developer',
       company: 'Bookmate',
       link: 'https://bookmate.com/',
-      start: '2021-09-15',
+      start: '2022-09-15',
       finish: '',
     },
   ],
