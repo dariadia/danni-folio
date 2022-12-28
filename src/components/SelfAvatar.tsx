@@ -6,9 +6,9 @@ import { Circle, Box, Flex, baseTheme, mainTheme } from 'danni-s-design-system'
 import type { ConstrainedBoxProps } from 'danni-s-design-system'
 
 const PRIMARY_COLOUR =
-  'linear-gradient(180deg, #39A33E 20%, #A3A3A3 20%, 40%, #FFFFFF 40%, 60%, #A3A3A3 60%, 80%, #39A33E 80%)'
+  'linear-gradient(0deg, #08AEEA 0%, #2AF598 100%)'
 const SECONDARY_COLOUR =
-  'linear-gradient(180deg, #FFF430 25%, #FFFFFF 25%, 50%, #9C59D1 50%, 75%, #181818 75%)'
+  'linear-gradient(225deg, #e9e2ee 0%, #8e71a8 50%, #330049 100%)'
 
 const LEFT = 'left'
 const RIGHT = 'right'
